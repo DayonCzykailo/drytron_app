@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="375.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="468.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/iconSpaceLogin.jpg" />
+         </image>
+      </ImageView>
+      <Pane layoutX="352.0" layoutY="10.0" prefHeight="355.0" prefWidth="239.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <ImageView fitHeight="103.0" fitWidth="135.0" layoutX="68.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/iconPlanet.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="42.0" layoutX="14.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/iconAustronauta03.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="20.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/iconPassword.png" />
+               </image>
+            </ImageView>
+            <PasswordField layoutX="56.0" layoutY="173.0" />
+            <TextField layoutX="56.0" layoutY="115.0" />
+            <ImageView fitHeight="42.0" fitWidth="51.0" layoutX="119.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/iconCadeado.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="29.0" layoutY="231.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #8fce00;" text="ENTRAR">
+               <font>
+                  <Font name="Gill Sans MT" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="29.0" layoutY="272.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #ff0000;" text="SAIR">
+               <font>
+                  <Font name="Gill Sans MT" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="29.0" layoutY="315.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #FFFFFF;" text="Esqueci minha senha." textFill="#0013ff">
+               <font>
+                  <Font name="Gill Sans MT" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</Pane>

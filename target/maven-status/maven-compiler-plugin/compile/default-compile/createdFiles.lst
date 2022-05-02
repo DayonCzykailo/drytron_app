@@ -1,0 +1,13 @@
+drytron\main\Main.class
+drytron\dto\Jogos.class
+drytron\dto\Clientes.class
+drytron\dao\ClientesDAO.class
+drytron\controller\FxmlMainClienteController.class
+drytron\dao\JogosDAO.class
+drytron\util\Mensagens.class
+drytron\main\Drytron.class
+drytron\controller\FxmlMainController.class
+drytron\controller\FxmlCadastroJogosController.class
+drytron\util\ValidaDados.class
+drytron\controller\FxmlDeletarJogosController.class
+drytron\controller\FxmlAlterarJogosController.class
