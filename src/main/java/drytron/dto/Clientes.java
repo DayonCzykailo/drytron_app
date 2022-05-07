@@ -1,44 +1,61 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package drytron.dto;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
- * @author patyu
+ * @author dayon
  */
-
+@Entity
 public class Clientes {
-    private int idCli = 0;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long idCli = 0;
+    @Column(nullable = false, length = 50)
     private String nomeCli = "";
+    @Column(nullable = false, length = 11)
     private String cpfCli = "";
+    @Column(nullable = false, length = 50)
     private String telCli = "";
+    @Column(nullable = false, length = 50)
     private String emaCli = "";
-    private String endCli = "";
-    private String estCli = "";
-    
-    public Clientes(){}
+    @OneToOne(cascade = CascadeType.ALL)
+    private Endereco endCli;
+    @Column(nullable = false)
+    private char ativo;
 
-    public Clientes(int idCli,String nomeCli, String cpfCli, 
-        String telCli,String emaCli,String endCli, String estCli){
-    
-       this.idCli = idCli;
-       this.nomeCli = nomeCli;
-       this.cpfCli = cpfCli;
-       this.telCli = telCli;
-       this.emaCli = emaCli;
-       this.endCli = endCli;
-       this.estCli = estCli;
+    public Clientes() {
+        ativo = 'S';
     }
 
-    public int getIdCli() {
-        return idCli;
-    }
-
-    public void setIdCli(int idCli) {
+    public Clientes(int idCli, String nomeCli, String cpfCli,
+            String telCli, String emaCli, Endereco endCli) {
+        this.endCli = endCli;
         this.idCli = idCli;
+        this.nomeCli = nomeCli;
+        this.cpfCli = cpfCli;
+        this.telCli = telCli;
+        this.emaCli = emaCli;
+        this.endCli = endCli;
+        ativo = 'S';
+    }
+
+    public char getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(char ativo) {
+        this.ativo = ativo;
+    }
+
+    public long getIdCli() {
+        return idCli;
     }
 
     public String getNomeCli() {
@@ -73,22 +90,12 @@ public class Clientes {
         this.emaCli = emaCli;
     }
 
-    public String getEndCli() {
+    public Endereco getEndCli() {
         return endCli;
     }
 
-    public void setEndCli(String endCli) {
+    public void setEndCli(Endereco endCli) {
         this.endCli = endCli;
     }
 
-    public String getEstCli() {
-        return estCli;
-    }
-
-    public void setEstCli(String estCli) {
-        this.estCli = estCli;
-    }
-    
-    
-    
 }

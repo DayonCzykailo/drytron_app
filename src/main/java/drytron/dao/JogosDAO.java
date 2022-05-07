@@ -44,10 +44,10 @@ public class JogosDAO {
             rt = st.executeQuery(query);
             Jogos jogos;
             while(rt.next()){
-                jogos = new Jogos(rt.getInt("id"), rt.getString("nome"),rt.getString("genero"),rt.getString("plataforma")
+                /*jogos = new Jogos(rt.getInt("id"), rt.getString("nome"),rt.getString("genero"),rt.getString("plataforma")
                 ,rt.getString("lancamento"),rt.getString("desenvolvedor"),rt.getString("publicador"),rt.getString("idioma"),
                 rt.getFloat("preco"),rt.getInt("estoque"));
-              listaJogos.add(jogos);
+              listaJogos.add(jogos);*/
             }
         } catch (Exception e) {
              e.printStackTrace();
@@ -93,10 +93,10 @@ public class JogosDAO {
            rt = st.executeQuery(query);
            Jogos jogos;
            while(rt.next()){
-               jogos = new Jogos(rt.getInt("id"), rt.getString("nome"),rt.getString("genero"),rt.getString("plataforma")
+               /*jogos = new Jogos(rt.getInt("id"), rt.getString("nome"),rt.getString("genero"),rt.getString("plataforma")
                ,rt.getString("anoLan"),rt.getString("desenvolvedor"),rt.getString("publicador"),rt.getString("idioma"),
                rt.getFloat("preco"),rt.getInt("estoque"));
-               jogosList.add(jogos);
+               jogosList.add(jogos);*/
            }
            
        } catch (Exception ex) {

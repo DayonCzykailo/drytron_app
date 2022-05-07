@@ -17,7 +17,7 @@
             <artifactId>hibernate-core</artifactId>
             <version>5.4.2.Final</version>
         </dependency>
-  	
+        
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -35,6 +35,24 @@
             <artifactId>javafx-controls</artifactId>
             <version>19-ea+5</version>
         </dependency>
+        
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20220320</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>1.1.1</version>
+        </dependency> 
 	
     </dependencies>
     <name>drytron_app</name>

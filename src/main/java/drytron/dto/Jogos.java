@@ -1,82 +1,125 @@
-
 package drytron.dto;
 
+import java.time.LocalDate;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+/**
+ *
+ * @author dayon
+ */
+@Entity
 public class Jogos {
 
-   private int id=0;
-   private String nome = "";
-   private String genero = "";
-   private String plataforma = "";
-   private String lancamento = "" ;
-   private String desenvolvedor = "";
-   private String publicador = "";
-   private String idioma = "";
-   private Float preco = 0f;
-   private int estoque = 0;
-   
-    public Jogos(){}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id = 0;
+    @Column(nullable = false, length = 50)
+    private String nome = "";
+    @Column(nullable = false, length = 50)
+    private String genero = "";
+    @Column(nullable = false, length = 50)
+    private String plataforma = "";
+    @Column
+    private LocalDate lancamento;
+    @Column(nullable = true, length = 50)
+    private String desenvolvedor = "";
+    @Column(nullable = false, length = 50)
+    private String publicador = "";
+    @Column(nullable = true, length = 50)
+    private String idioma = "";
+    @Column(nullable = false)
+    private Float preco = 0f;
+    private int estoque = 0;
+    private char ativo = 'S';
 
-    public Jogos(int id,String nome, String genero, 
-        String plataforma,String lancamento,
-        String desenvolvedor, String publicador,
-        String idioma,Float preco,int estoque ) {
-        this.id = id;
-        this.nome = nome;
-        this.genero = genero;
-        this.plataforma = plataforma;
-        this.lancamento = lancamento;
-        this.desenvolvedor = desenvolvedor;
-        this.publicador = publicador;
-        this.idioma = idioma;
-        this.preco = preco;
-        this.estoque = estoque;
-    } 
-//Setter JOGOS
-    public void setjogo(int id,String nome, String genero, 
-        String plataforma,String lancamento,String desenvolvedor, String publicador,
-        String idioma,Float preco,int estoque ){
-        
-        this.id = id;
-        this.nome = nome;
-        this.genero = genero;
-        this.plataforma = plataforma;
-        this.lancamento = lancamento;
-        this.desenvolvedor = desenvolvedor;
-        this.publicador = publicador;
-        this.idioma = idioma;
-        this.preco = preco;
-        this.estoque = estoque;  
-    }
-//Getters
-    public int getId(){
+    public int getId() {
         return id;
     }
-    public String getNome(){
+
+    public String getNome() {
         return nome;
     }
-    public String getGenero(){
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getGenero() {
         return genero;
     }
-    public String getPlataforma(){
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public String getPlataforma() {
         return plataforma;
     }
-    public String getLancamento(){
+
+    public void setPlataforma(String plataforma) {
+        this.plataforma = plataforma;
+    }
+
+    public LocalDate getLancamento() {
         return lancamento;
     }
-    public String getDesenvolvedor(){
+
+    public void setLancamento(LocalDate lancamento) {
+        this.lancamento = lancamento;
+    }
+
+    public String getDesenvolvedor() {
         return desenvolvedor;
     }
-    public String getPublicador(){
+
+    public void setDesenvolvedor(String desenvolvedor) {
+        this.desenvolvedor = desenvolvedor;
+    }
+
+    public String getPublicador() {
         return publicador;
     }
-    public String getIdioma(){
+
+    public void setPublicador(String publicador) {
+        this.publicador = publicador;
+    }
+
+    public String getIdioma() {
         return idioma;
     }
-    public float getPreco(){
+
+    public void setIdioma(String idioma) {
+        this.idioma = idioma;
+    }
+
+    public Float getPreco() {
         return preco;
     }
-    public int getEstoque(){
-        return estoque;
-     }
-}            
 
+    public void setPreco(Float preco) {
+        this.preco = preco;
+    }
+
+    public int getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(int estoque) {
+        this.estoque = estoque;
+    }
+
+    public char getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(char ativo) {
+        this.ativo = ativo;
+    }
+    
+    
+
+}

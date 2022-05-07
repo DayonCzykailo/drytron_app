@@ -1,7 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ IGNORAR 
+
+---->>>>>          cd /d D:\Download\NetBeansProject\drytron_app
+
+---->>>>> dayon@LAPTOP-UIKP5HD1 MINGW64 ~
+$ cd /D/Download/NetBeansProject/drytron_app
  */
 package drytron.main;
 
