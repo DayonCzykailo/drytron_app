@@ -2,6 +2,7 @@ drytron\main\Main.class
 drytron\cep_api\CEP.class
 drytron\controller\FxmlMainClienteController.class
 drytron\cep_api\Main.class
+drytron\controller\FxmlLoginController.class
 drytron\dao\JogosDAO.class
 drytron\main\Drytron.class
 drytron\cep_api\ViaCEPEvents.class

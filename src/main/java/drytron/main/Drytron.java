@@ -35,26 +35,24 @@ public class Drytron extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Parent root = null;
-            root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlMainProdutos.fxml"));
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/drytron/css/cssfxmlmain.css").toExternalForm());
+        root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlLogin.fxml"));
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/drytron/css/cssfxmlmain.css").toExternalForm());
 
-            stage.setTitle("Sistema de Vendas-Drytron");
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
-            System.out.println("DEU CERTO");
-            setStage(stage);
-    }     
-
-    
+        stage.setTitle("Sistema de Vendas-Drytron");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+        System.out.println("DEU CERTO");
+        setStage(stage);
+    }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-             launch(args);
-        
+        launch(args);
+
     }
 
 }

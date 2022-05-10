@@ -65,7 +65,8 @@
                     <include>**/*.png</include>
                     <include>**/*.jpg</include>
                     <include>**/*.css</include>  
-                    <include>**/*.jpeg</include>                                      
+                    <include>**/*.jpeg</include>     
+                    <include>**/*.xml</include>                                                                       
                 </includes>  
             </resource>
         </resources>
