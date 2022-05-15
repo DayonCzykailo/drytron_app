@@ -3,11 +3,13 @@ D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\dto\PlataformaJogo
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\cep_api\ViaCEP.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\dto\Funcionarios.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\cep_api\ViaCEPBase.java
+D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\controller\FxmlRelatorioJogosController.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\dto\Jogos.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\dao\JogosDAO.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\dto\Endereco.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\cep_api\CEP.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\main\Drytron.java
+D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\controller\FxmlExibicaoJogosController.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\dao\ClientesDAO.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\controller\FxmlCadastroJogosController.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\controller\FxmlAlterarJogosController.java
@@ -20,6 +22,7 @@ D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\cep_api\Main.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\controller\FxmlMainController.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\util\Util.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\controller\FxmlMainClienteController.java
+D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\util\Exibicao.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\util\ValidaDados.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\dao\FuncionariosRepository.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\dto\Clientes.java
