@@ -23,7 +23,7 @@ public class Clientes {
     private String cpfCli = "";
     @Column(nullable = false, length = 50)
     private String telCli = "";
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 50, name="")
     private String emaCli = "";
     @OneToOne(cascade = CascadeType.ALL)
     private Endereco endCli;

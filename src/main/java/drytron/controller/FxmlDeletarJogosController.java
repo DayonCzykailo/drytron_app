@@ -1,6 +1,9 @@
 package drytron.controller;
 
 import drytron.dao.JogosDAO;
+import drytron.dao.JogosRepository;
+import drytron.dto.Jogos;
+import drytron.util.Util;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -16,56 +19,41 @@ import javafx.scene.layout.AnchorPane;
  * @author patyu
  */
 public class FxmlDeletarJogosController implements Initializable {
+ @FXML
+    private Button btnDeletar;
 
     @FXML
-    private AnchorPane apMain;
+    private Button btnLimpar;
 
     @FXML
-    private TextField tfNome;
-
-    @FXML
-    private Button btnDelNome;
+    private Button btnSair;
 
     @FXML
     private TextField tfId;
 
     @FXML
-    private Button btnDelId;
-
-    @FXML
-    private Button btnDelSair;
-    
-    @FXML
-    protected void btnClickExcluirIdJogosAction(ActionEvent e){
-        JogosDAO jogos = new JogosDAO();
-        //jogos.deletarComId(tfId);
-         System.out.println("\n\n btnClickExcluirIdJogosAction \n\n");
-
+    void btnClickDeletarAction(ActionEvent event) {
+        JogosRepository jr = new JogosRepository();
+        Integer id = Integer.parseInt(tfId.getText());
+        jr.remove(id);
     }
-    @FXML
-    protected void btnClickExcluirNomeJogosAction(ActionEvent e){
-       JogosDAO jogos = new JogosDAO();
-        
-      // jogos.deletarComNome(tfNome);
-    System.out.println("\n\n btnClickExcluirJogosJogosAction \n\n");
 
+    @FXML
+    void btnClickLimparAction(ActionEvent event) {
+        tfId.clear();
     }
-    /**
-     * Initializes the controller class.
-     */
-     @FXML
-    protected void btnClickSairAction(ActionEvent e){
-        try {           
-           // FxmlMainController.getStage().close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        
-        
+
+    @FXML
+    void btnClickSairAction(ActionEvent event) {
+        FxmlMainController.getStage().close();
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+        if (Util.getJogos() != null) {
+            Jogos j = Util.getJogos();
+            tfId.setText(Long.toString(j.getId()));
+            Util.setJogos(null);
+        }
+    }
+
 }

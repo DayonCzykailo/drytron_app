@@ -33,11 +33,11 @@
                   <Image url="@../icon/iconPassword.png" />
                </image>
             </ImageView>
-            <PasswordField fx:id="tfSenha" layoutX="56.0" layoutY="173.0">
+            <PasswordField fx:id="tfSenha" layoutX="56.0" layoutY="173.0" promptText="senha">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></PasswordField>
-            <TextField fx:id="tfLogin" layoutX="56.0" layoutY="115.0">
+            <TextField fx:id="tfLogin" layoutX="56.0" layoutY="115.0" promptText="Usuário">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor></TextField>

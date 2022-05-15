@@ -20,7 +20,7 @@ public class JogosRepository {
                 .createEntityManager();
     }
 
-    public Jogos pesquisaPeloId(Long id) {
+    public Jogos pesquisaPeloId(Integer id) {
         return em.find(Jogos.class, id);
     }
 
@@ -29,6 +29,20 @@ public class JogosRepository {
         try {
             em.getTransaction().begin();
             Query query = em.createQuery("SELECT j FROM Jogos j");
+            jogos = query.getResultList();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            System.out.println("JogosRepository: Ocorreu um problema no método listaTodos");
+        }
+        return jogos;
+    }
+
+    public List<Jogos> listaPorNome(String nome) {
+        List<Jogos> jogos = null;
+        try {
+            em.getTransaction().begin();
+            Query query = em.createQuery("SELECT j FROM Jogos j where j.nome like :nomeJogos").setParameter("nomeJogos", '%' + nome + '%');
             jogos = query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -50,19 +64,21 @@ public class JogosRepository {
         }
     }
 
-    public void atualiza(Jogos jogos) {
+    public void alterar(Jogos jogos) {
         try {
-            em.getTransaction().begin();
-            em.merge(jogos);
-            em.getTransaction().commit();
+            if (em.find(Jogos.class, jogos.getId()) != null) {
+                em.getTransaction().begin();
+                em.merge(jogos);
+                em.getTransaction().commit();
+            }
         } catch (Exception e) {
             em.getTransaction().rollback();
-            System.out.println("JogosRepository: Ocorreu um problema no método atualiza");
+            System.out.println("JogosRepository: Ocorreu um problema no método alterar");
         }
     }
-
-    public void remove(Long id) {
-        Jogos jogos = this.pesquisaPeloId(id);
+   
+    public void remove(Integer id) {
+        Jogos jogos = pesquisaPeloId(id);
         try {
             em.getTransaction().begin();
             em.remove(jogos);

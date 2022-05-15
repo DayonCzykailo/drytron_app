@@ -1,5 +1,7 @@
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\controller\FxmlLoginController.java
+D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\dto\PlataformaJogos.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\cep_api\ViaCEP.java
+D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\dto\Funcionarios.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\cep_api\ViaCEPBase.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\dto\Jogos.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\dao\JogosDAO.java
@@ -13,12 +15,16 @@ D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\controller\FxmlDel
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\dao\JogosRepository.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\cep_api\ViaCEPEvents.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\dao\EnderecoRepository.java
+D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\util\Dicionario.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\cep_api\Main.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\controller\FxmlMainController.java
+D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\util\Util.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\controller\FxmlMainClienteController.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\util\ValidaDados.java
+D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\dao\FuncionariosRepository.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\dto\Clientes.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\email\SendEmail.java
+D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\dto\GeneroJogos.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\main\Main.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\cep_api\ViaCEPException.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\dao\ClientesRepository.java

@@ -9,7 +9,6 @@ $ cd /D/Download/NetBeansProject/drytron_app
 package drytron.main;
 
 import java.io.IOException;
-import static java.lang.System.exit;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -43,7 +42,6 @@ public class Drytron extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
-        System.out.println("DEU CERTO");
         setStage(stage);
     }
 
