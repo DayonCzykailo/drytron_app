@@ -3,8 +3,10 @@ drytron\dao\FuncionariosRepository.class
 drytron\dto\GeneroJogos.class
 drytron\main\Main.class
 drytron\dto\Funcionarios.class
+drytron\controller\FxmlRelatorioJogosController.class
 drytron\cep_api\CEP.class
 drytron\controller\FxmlMainClienteController.class
+drytron\util\Exibicao.class
 drytron\util\Util.class
 drytron\cep_api\Main.class
 drytron\controller\FxmlLoginController.class
@@ -18,6 +20,7 @@ drytron\controller\FxmlMainController$1.class
 drytron\controller\FxmlAlterarJogosController.class
 drytron\email\SendEmail$1.class
 drytron\util\Dicionario$1.class
+drytron\controller\FxmlExibicaoJogosController.class
 drytron\util\Dicionario.class
 drytron\dto\Jogos.class
 drytron\dto\Clientes.class

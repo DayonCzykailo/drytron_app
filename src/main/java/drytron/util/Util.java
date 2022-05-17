@@ -1,6 +1,9 @@
 package drytron.util;
 
 import drytron.dto.Jogos;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -17,5 +20,13 @@ public class Util {
         jogos = jogo;
     }
     
+    static public String getDataAgora(){
+        return LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/uuuu"));
+    }
     
+    
+    static public String getDataHoraAgora(){
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm"));
+    }
+  
 }

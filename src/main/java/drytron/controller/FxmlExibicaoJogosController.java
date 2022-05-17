@@ -3,6 +3,7 @@ package drytron.controller;
 import drytron.dao.JogosRepository;
 import drytron.dto.Jogos;
 import drytron.util.Exibicao;
+import drytron.util.Pdf;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
@@ -48,12 +49,13 @@ public class FxmlExibicaoJogosController implements Initializable {
 
     @FXML
     void btnClickPdfAction(ActionEvent event) {
-        Exibicao.GerarPdf(tfDir.getText() == null || tfDir.getText() == "" ? tfDir.getText() : "D:\\Download");
-        try {
-            Desktop.getDesktop().open(new File(((tfDir.getText() == null || tfDir.getText() == "" ? tfDir.getText() : "D:\\Download") + "\\00_JogosRelatorio.pdf")));
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+       try {
+            Pdf.gerar();
+            Desktop.getDesktop().open(new File(("D:\\Download" + "\\00_JogosRelatorio.pdf")));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 
     @FXML
