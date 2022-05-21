@@ -7,6 +7,7 @@ drytron\controller\FxmlRelatorioJogosController.class
 drytron\cep_api\CEP.class
 drytron\controller\FxmlMainClienteController.class
 drytron\util\Exibicao.class
+drytron\controller\FxmlMainClientesController.class
 drytron\util\Util.class
 drytron\cep_api\Main.class
 drytron\controller\FxmlLoginController.class
@@ -18,6 +19,7 @@ drytron\controller\FxmlDeletarJogosController.class
 drytron\dao\ClientesRepository.class
 drytron\controller\FxmlMainController$1.class
 drytron\controller\FxmlAlterarJogosController.class
+drytron\controller\FxmlExibicaoClientesController.class
 drytron\email\SendEmail$1.class
 drytron\util\Dicionario$1.class
 drytron\controller\FxmlExibicaoJogosController.class
@@ -25,13 +27,18 @@ drytron\util\Dicionario.class
 drytron\dto\Jogos.class
 drytron\dto\Clientes.class
 drytron\dao\ClientesDAO.class
+drytron\util\Pdf.class
 drytron\dao\JogosRepository.class
+drytron\controller\FxmlAlterarClientesController.class
 drytron\cep_api\ViaCEPBase.class
 drytron\cep_api\ViaCEP.class
+drytron\controller\FxmlMainClientesController$1.class
 drytron\util\Mensagens.class
+drytron\controller\FxmlCadastroClientesController.class
 drytron\controller\FxmlMainController.class
 drytron\cep_api\ViaCEPException.class
 drytron\dao\EnderecoRepository.class
 drytron\email\SendEmail.class
 drytron\dto\Endereco.class
+drytron\controller\FxmlRelatorioClientesController.class
 drytron\util\ValidaDados.class

@@ -1,3 +1,4 @@
+D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\controller\FxmlRelatorioClientesController.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\controller\FxmlLoginController.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\dto\PlataformaJogos.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\cep_api\ViaCEP.java
@@ -19,6 +20,7 @@ D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\cep_api\ViaCEPEven
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\dao\EnderecoRepository.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\util\Dicionario.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\util\Pdf.java
+D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\controller\FxmlCadastroClientesController.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\cep_api\Main.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\controller\FxmlMainController.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\util\Util.java
@@ -28,8 +30,11 @@ D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\util\ValidaDados.j
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\dao\FuncionariosRepository.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\dto\Clientes.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\email\SendEmail.java
+D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\controller\FxmlMainClientesController.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\dto\GeneroJogos.java
+D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\controller\FxmlAlterarClientesController.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\main\Main.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\cep_api\ViaCEPException.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\dao\ClientesRepository.java
 D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\util\Mensagens.java
+D:\Download\NetBeansProject\drytron_app\src\main\java\drytron\controller\FxmlExibicaoClientesController.java

@@ -1,6 +1,8 @@
 package drytron.dao;
 
 import drytron.dto.Clientes;
+import drytron.dto.Endereco;
+import drytron.dto.Jogos;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -23,6 +25,9 @@ public class ClientesRepository {
     public Clientes pesquisaPeloId(Long id) {
         return em.find(Clientes.class, id);
     }
+    public Endereco pesquisaEnderecoClientes(Long id) {
+        return em.find(Clientes.class, id).getEndCli();
+    }
 
     public List<Clientes> listaTodos() {
         List<Clientes> clientes = null;
@@ -39,7 +44,19 @@ public class ClientesRepository {
         }
         return clientes;
     }
-
+  public List<Clientes> listaPorNome(String nome) {
+        List<Clientes> clientes = null;
+        try {
+            em.getTransaction().begin();
+            Query query = em.createQuery("SELECT c FROM Clientes c where c.nome like :nomeClientes").setParameter("nomeClientes", '%' + nome + '%');
+            clientes = query.getResultList();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            System.out.println("ClientesRepository: Ocorreu um problema no método listaTodos");
+        }
+        return clientes;
+    }
     public void insere(Clientes clientes) {
         try {
             em.getTransaction().begin();

@@ -2,6 +2,7 @@ package drytron.util;
 
 import drytron.dto.GeneroJogos;
 import drytron.dto.PlataformaJogos;
+import drytron.dto.UfEnum;
 import java.text.NumberFormat;
 import java.util.Locale;
 
@@ -9,7 +10,7 @@ import java.util.Locale;
  *
  * @author dayon
  */
-public class Dicionario {
+public abstract class Dicionario {
     
     static public String getDinheiro(String valor){
        return getDinheiro(Double.valueOf(valor));
@@ -20,7 +21,65 @@ public class Dicionario {
     static public String getDinheiro(double valor){
         NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt","BR"));
         return nf.format(valor);
-    }    
+    }  
+    /*static public String getUF(UfEnum ue){
+        switch (ue) {
+            case UF:
+                return "";
+                 case val:
+                return ;
+                 case val:
+                return ;
+                 case val:
+                return ;
+                 case val:
+                return ;
+                 case val:
+                return ;
+                 case val:
+                return ;
+                 case val:
+                return ;
+                 case val:
+                return ;
+                 case val:
+                return ;
+                 case val:
+                return ;
+                 case val:
+                return ;
+                 case val:
+                return ;
+                 case val:
+                return ;
+                 case val:
+                return ;
+                 case val:
+                return ;
+                 case val:
+                return ;
+                 case val:
+                return ;
+                 case val:
+                return ;
+                 case val:
+                return ;
+                 case val:
+                return ;
+                 case val:
+                return ;
+                 case val:
+                return ;
+                 case val:
+                return ;
+                 case val:
+                return ;
+                
+                
+                
+            default: 
+        }
+    }
 
     static public String getGenero(GeneroJogos gj) {
         return switch (gj) {
@@ -95,6 +154,6 @@ public class Dicionario {
             case  "DS" -> PlataformaJogos.NINTENDODS;
             default -> null;
         };
-    }
+    }*/
     
 }

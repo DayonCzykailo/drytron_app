@@ -76,7 +76,7 @@ public class JogosRepository {
             System.out.println("JogosRepository: Ocorreu um problema no método alterar");
         }
     }
-   
+
     public void remove(Integer id) {
         Jogos jogos = pesquisaPeloId(id);
         try {

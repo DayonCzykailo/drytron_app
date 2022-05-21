@@ -1,6 +1,7 @@
 package drytron.dao;
 
 import drytron.dto.Endereco;
+import drytron.dto.Jogos;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -36,7 +37,8 @@ public class EnderecoRepository {
             System.out.println("EnderecoRepository: Ocorreu um problema no método listaTodos");
         }
         return endereco;
-    }
+    } 
+       
 
     public void insere(Endereco endereco) {
         try {

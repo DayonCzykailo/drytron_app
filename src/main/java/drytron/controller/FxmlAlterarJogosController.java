@@ -58,7 +58,7 @@ public class FxmlAlterarJogosController implements Initializable {
     @FXML
     private TextField tfPublicador;
 
-    @FXML
+    /*@FXML
     void tfClickPesquisarIdAction(ActionEvent event) {
         JogosRepository jr = new JogosRepository();
         Jogos j = jr.pesquisaPeloId(Integer.parseInt(tfID.getText()));
@@ -76,9 +76,9 @@ public class FxmlAlterarJogosController implements Initializable {
             Util.setJogos(null);
         }
 
-    }
+    }*/
 
-    @FXML
+    /*@FXML
     void btnClickAlterarAction(ActionEvent event) {
         Jogos j = new Jogos();
 
@@ -95,7 +95,7 @@ public class FxmlAlterarJogosController implements Initializable {
 
         JogosRepository jr = new JogosRepository();
         jr.alterar(j);
-    }
+    }*/
 
     @FXML
     void btnClickLimparAction(ActionEvent event) {
@@ -123,7 +123,7 @@ public class FxmlAlterarJogosController implements Initializable {
         cbGenero.getItems().addAll();
         cbPlataforma.getItems().addAll();
 
-        if (Util.getJogos() != null) {
+        /*if (Util.getJogos() != null) {
             Jogos j = Util.getJogos();
             tfID.setText(Long.toString(j.getId()));
             tfNome.setText(j.getNome());
@@ -136,7 +136,7 @@ public class FxmlAlterarJogosController implements Initializable {
             cbPlataforma.setValue(Dicionario.getPlataformaEnum(j.getPlataforma()));
             dpLancamento.setValue(j.getLancamento());
             Util.setJogos(null);
-        }
+        }*/
 
     }
 

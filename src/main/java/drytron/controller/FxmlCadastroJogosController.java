@@ -76,7 +76,7 @@ public class FxmlCadastroJogosController implements Initializable {
     @FXML
     private TextField tfPublicador;
 
-    @FXML
+    /*@FXML
     void btnClickCadastrarAction(ActionEvent event) {
         Jogos j = new Jogos();
 

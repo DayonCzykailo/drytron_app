@@ -50,8 +50,8 @@ public class FxmlExibicaoJogosController implements Initializable {
     @FXML
     void btnClickPdfAction(ActionEvent event) {
        try {
-            Pdf.gerar();
-            Desktop.getDesktop().open(new File(("D:\\Download" + "\\00_JogosRelatorio.pdf")));
+            Pdf.gerar(tfDir.getText() == null || tfDir.getText() == "" ? tfDir.getText() : "D:\\Download");
+            Desktop.getDesktop().open(new File(((tfDir.getText() == null || tfDir.getText() == "" ? tfDir.getText() : "D:\\Download") + "\\JogosRelatorio.pdf")));
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -33,23 +33,18 @@ import org.apache.poi.ss.usermodel.Cell;
 
 public class Pdf {
 
-    private static String FILE = "D:\\Download" + "\\00_JogosRelatorio.pdf";
-    private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
-            Font.BOLD);
-    private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,
-            Font.NORMAL, BaseColor.RED);
-    private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16,
-            Font.BOLD);
-    private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
-            Font.BOLD);
+    private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
+    private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.RED);
+    private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
+    private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
 
-    public static void gerar() {
+    public static void gerar(String dir) {
         try {
             Document document = new Document();
             document.setPageSize(PageSize.LETTER.rotate());
-            PdfWriter.getInstance(document, new FileOutputStream(FILE));
+            PdfWriter.getInstance(document, new FileOutputStream(dir + "\\JogosRelatorio.pdf"));
             document.open();
-            addMetaData(document);
+            addMetaDado(document);
             addContent(document);
 
             document.close();
@@ -58,8 +53,7 @@ public class Pdf {
         }
     }
 
-
-    private static void addMetaData(Document document) {
+    private static void addMetaDado(Document document) {
         document.addTitle("Drytron - Jogos");
         document.addSubject("Area: Produtos");
         document.addKeywords("Drytron, Produtos, Jogos");
@@ -98,10 +92,6 @@ public class Pdf {
             throws BadElementException {
         PdfPTable table = new PdfPTable(10);
 
-        // t.setBorderColor(BaseColor.GRAY);
-        // t.setPadding(4);
-        // t.setSpacing(4);
-        // t.setBorderWidth(1);
         int fonte = 10;
 
         PdfPCell c1 = new PdfPCell(new Paragraph("ID", new Font(Font.FontFamily.TIMES_ROMAN, fonte, Font.BOLD)));
@@ -184,7 +174,6 @@ public class Pdf {
             table.addCell(new Phrase(Element.ALIGN_LEFT, Double.toString(list.get(i).getPreco()),
                     new Font(Font.FontFamily.TIMES_ROMAN, fonteDados, Font.BOLD)));
         }
-
         subCatPart.add(table);
     }
 

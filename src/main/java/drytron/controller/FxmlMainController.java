@@ -90,7 +90,6 @@ public class FxmlMainController implements Initializable {
     @FXML
     private TableColumn<Jogos, String> colPublicador;
 
-
     @FXML
     private TableView<Jogos> tableMain;
 
@@ -156,6 +155,11 @@ public class FxmlMainController implements Initializable {
     //*Drytron d = new Drytron();
        Drytron.getStage().close();
        d.start(new Stage( ));*/
+    @FXML
+    void btnClickVendasTelaAction(ActionEvent event) {
+
+    }
+
     @FXML
     void btnClickRelatorioAction(ActionEvent event) {
         Parent root;
@@ -309,6 +313,7 @@ public class FxmlMainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+         FxmlMainClientesController.getStage().close();
         mostrarDadosJogos();
         lbnData.setText(LocalDate.now().format(DateTimeFormatter.ofPattern("d/MM/uuuu")));
 
