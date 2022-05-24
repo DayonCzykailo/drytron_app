@@ -1,9 +1,9 @@
 /*
  IGNORAR 
 
----->>>>>          cd /d D:\Download\NetBeansProject\drytron_app
+---:>>>>          cd /d D:\Download\NetBeansProject\drytron_app
 
----->>>>> dayon@LAPTOP-UIKP5HD1 MINGW64 ~
+---:>>>> dayon@LAPTOP-UIKP5HD1 MINGW64 ~
 $ cd /D/Download/NetBeansProject/drytron_app
  */
 package drytron.main;
@@ -34,9 +34,9 @@ public class Drytron extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Parent root = null;
-        //root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlMainClientes.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlMainClientes.fxml"));
 
-        root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlLogin.fxml"));
+        //root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlLogin.fxml"));
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/drytron/css/cssfxmlmain.css").toExternalForm());
 

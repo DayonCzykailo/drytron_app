@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -67,16 +68,25 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Button fx:id="btnLimpar" layoutX="9.0" layoutY="481.0" mnemonicParsing="false" onAction="#btnClickLimparAction" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: #3d85c6;" text="Limpar">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Button fx:id="btnSair" layoutX="145.0" layoutY="481.0" mnemonicParsing="false" onAction="#btnClickSairAction" prefHeight="25.0" prefWidth="136.0" style="-fx-background-color: #ff0000;" text="Sair">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Pane layoutX="-3.0" layoutY="365.0" prefHeight="31.0" prefWidth="246.0">
                <children>
@@ -87,13 +97,17 @@
             <Pane layoutX="-1.0" layoutY="396.0" prefHeight="31.0" prefWidth="246.0">
                <children>
                   <Label layoutX="7.0" layoutY="6.0" prefHeight="17.0" prefWidth="57.0" text="Estado(UF)" />
-                  <ComboBox fx:id="cbUf" layoutX="83.0" layoutY="3.0" prefHeight="25.0" prefWidth="149.0" promptText="UF" />
+                  <ChoiceBox fx:id="cbUf" layoutX="82.0" layoutY="2.0" prefWidth="150.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ChoiceBox>
                </children>
             </Pane>
             <Pane layoutX="27.0" layoutY="239.0" prefHeight="31.0" prefWidth="204.0">
                <children>
                   <Label layoutX="23.0" layoutY="9.0" text="CEP" />
-                  <TextField fx:id="tfCep" layoutX="54.0" layoutY="2.0" prefHeight="25.0" prefWidth="149.0" promptText="ex: 81315095" />
+                  <TextField fx:id="tfCep" layoutX="54.0" layoutY="2.0" onAction="#btnClickCepAction" prefHeight="25.0" prefWidth="149.0" promptText="ex: 81315095" />
                </children>
             </Pane>
             <Pane layoutX="1.0" layoutY="270.0" prefHeight="31.0" prefWidth="246.0">

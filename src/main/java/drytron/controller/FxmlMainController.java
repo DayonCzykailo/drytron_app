@@ -220,7 +220,7 @@ public class FxmlMainController implements Initializable {
             stage.setResizable(false);
             stage.show();
         } catch (IOException ex) {
-            System.out.println("ERRO NO BOTÃO CADASTRAR");
+            System.out.println("ERRO NO BOTÃO CADASTRAR  "  + ex.getMessage());
             if (root == null) {
                 System.out.println("Nao Acho a tela");
             }

@@ -43,6 +43,7 @@ public class FuncionariosRepository {
     public void insere(Funcionarios funcionarios) {
         try {
             em.getTransaction().begin();
+            funcionarios.getEndFun().setCep(funcionarios.getEndFun().getCep().replace("-", ""));
             em.persist(funcionarios);
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -55,6 +56,7 @@ public class FuncionariosRepository {
     public void atualiza(Funcionarios funcionarios) {
         try {
             em.getTransaction().begin();
+            funcionarios.getEndFun().setCep(funcionarios.getEndFun().getCep().replace("-", ""));
             em.merge(funcionarios);
             em.getTransaction().commit();
         } catch (Exception e) {

@@ -118,15 +118,16 @@ public class FxmlMainClientesController implements Initializable {
     void btnClickMostrarMaisAction(ActionEvent event) {
         Parent root;
         try {
-            ClientesRepository cliente = new ClientesRepository();           
-            Util.setEndereco( cliente.pesquisaEnderecoClientes(tableMain.getSelectionModel().getSelectedItem().getId()));
+            ClientesRepository cliente = new ClientesRepository();
+            Util.setEndereco(cliente.pesquisaEnderecoClientes(tableMain.getSelectionModel().getSelectedItem().getId()));
+            System.out.println("End  " + Util.getEndereco().getLocalidade());
             root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlEnderecoClientes.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.setResizable(false);
             stage.show();
         } catch (IOException ex) {
-            System.out.println("ERRO NO BOTÃO Relatório");
+            System.out.println("ERRO NO BOTÃO MostrarMais  :" + ex.getMessage());
         }
     }
 
@@ -221,7 +222,7 @@ public class FxmlMainClientesController implements Initializable {
     void btnClickCadastrarAction(ActionEvent event) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/drytron/fxml/ViewFxmlCadastrarClientes.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlCadastrarClientes.fxml"));
             Scene scene = new Scene(root);
             stage = new Stage();
             stage.setScene(scene);
@@ -240,14 +241,14 @@ public class FxmlMainClientesController implements Initializable {
     void btnClickDeletarAction(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("/drytron/fxml/ViewFxmlDeletarClientes.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlDeletarClientes.fxml"));
             Scene scene = new Scene(root);
             stage = new Stage();
             stage.setScene(scene);
             stage.setResizable(false);
             stage.show();
         } catch (IOException ex) {
-            System.out.println("ERRO NO BOTÃO DELETAR");
+            System.out.println("ERRO NO BOTÃO DELETAR: " + ex.getMessage());
         }
 
     }
@@ -323,16 +324,11 @@ public class FxmlMainClientesController implements Initializable {
             @Override
             public void handle(MouseEvent t) {
                 if (t.getClickCount() == 2) {
-                    Clientes c = new Clientes();
 
-                    c.setId(tableMain.getSelectionModel().getSelectedItem().getId());
-                    c.setNome(tableMain.getSelectionModel().getSelectedItem().getNome());
-                    c.setCpf(tableMain.getSelectionModel().getSelectedItem().getCpf());
-                    c.setTelefone(tableMain.getSelectionModel().getSelectedItem().getTelefone());
-                    c.setEmail(tableMain.getSelectionModel().getSelectedItem().getEmail());
+                    Util.setClientes(new ClientesRepository().pesquisaPeloId(tableMain.getSelectionModel().getSelectedItem().getId()));
+
                     Parent root = null;
                     try {
-                        Util.setClientes(c);
                         stage = new Stage();
 
                         root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlAlterarClientes.fxml"));
@@ -342,8 +338,7 @@ public class FxmlMainClientesController implements Initializable {
                         stage.show();
 
                     } catch (IOException ex) {
-                        System.out.println("ERRO EM ALTERAR CLICK");
-                        System.out.println(ex.getMessage());
+                        System.out.println("ERRO EM ALTERAR CLICK :" + ex.getMessage());
                         if (root == null) {
                             System.out.println("Nao Acho a tela ");
                         }
@@ -356,15 +351,14 @@ public class FxmlMainClientesController implements Initializable {
                         Util.setClientes(c);
                         stage = new Stage();
 
-                        root = FXMLLoader.load(getClass().getResource("/drytron/fxml/ViewFxmlDeletarClientes.fxml"));
+                        root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlDeletarClientes.fxml"));
                         Scene scene = new Scene(root);
                         stage.setScene(scene);
                         stage.setResizable(false);
                         stage.show();
 
                     } catch (IOException ex) {
-                        System.out.println("ERRO EM ALTERAR CLICK");
-                        System.out.println(ex.getMessage());
+                        System.out.println("ERRO EM ALTERAR CLICK : " + ex.getMessage());
                         if (root == null) {
                             System.out.println("Nao Acho a tela ");
                         }

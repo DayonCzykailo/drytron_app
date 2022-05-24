@@ -105,7 +105,7 @@ public abstract class Mensagens {
         alert.setContentText(message);
 
         //To make enter key press the actual focused button, not the first one. Just like pressing "space".
-        alert.getDialogPane().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+       /* alert.getDialogPane().addEventFilter(KeyEvent.KEY_PRESSED, event : {
             if (event.getCode().equals(KeyCode.ENTER)) {
                 event.consume();
                 try {
@@ -116,7 +116,7 @@ public abstract class Mensagens {
                     e.printStackTrace();
                 }
             }
-        });
+        });*/
 
         if (options == null || options.length == 0) {
             options = new String[]{OK, CANCEL};

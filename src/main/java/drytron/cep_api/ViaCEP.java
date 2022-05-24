@@ -31,7 +31,9 @@ public class ViaCEP extends ViaCEPBase {
     @Override
     public final void buscar(String cep) throws ViaCEPException {
         currentCEP = cep;
-
+        cep = cep.replaceAll("-", "");
+        cep = cep.replace(" ", "");
+        
         String url = "http://viacep.com.br/ws/" + cep + "/json/";
 
         JSONObject obj = new JSONObject(getHttpGET(url));
@@ -45,7 +47,7 @@ public class ViaCEP extends ViaCEPBase {
                     obj.getString("uf"),
                     obj.getString("ibge"),
                     obj.getString("gia"));
-
+            
             CEPs.add(novoCEP);
 
             index = CEPs.size() - 1;

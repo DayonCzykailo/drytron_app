@@ -2,8 +2,8 @@ package drytron.controller;
 
 import drytron.dao.JogosRepository;
 import drytron.dto.Jogos;
-import drytron.util.Exibicao;
-import drytron.util.Pdf;
+import drytron.util.XlsxJogos;
+import drytron.util.PdfJogos;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
@@ -35,8 +35,8 @@ public class FxmlExibicaoJogosController implements Initializable {
     @FXML
     void btnClickXlsxAction(ActionEvent event) {
         try {
-            Exibicao.GerarXlsx(tfDir.getText() == null || tfDir.getText() == "" ? tfDir.getText() : "D:\\Download");
-            Desktop.getDesktop().open(new File(((tfDir.getText() == null || tfDir.getText() == "" ? tfDir.getText() : "D:\\Download") + "\\00_JogosRelatorio.xlsx")));
+            XlsxJogos.GerarXlsx(tfDir.getText() == null || tfDir.getText() == "" ? tfDir.getText() : "D:\\Downloads");
+            Desktop.getDesktop().open(new File(((tfDir.getText() == null || tfDir.getText() == "" ? tfDir.getText() : "D:\\Downloads") + "\\00_JogosRelatorio.xlsx")));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
@@ -50,12 +50,11 @@ public class FxmlExibicaoJogosController implements Initializable {
     @FXML
     void btnClickPdfAction(ActionEvent event) {
        try {
-            Pdf.gerar(tfDir.getText() == null || tfDir.getText() == "" ? tfDir.getText() : "D:\\Download");
-            Desktop.getDesktop().open(new File(((tfDir.getText() == null || tfDir.getText() == "" ? tfDir.getText() : "D:\\Download") + "\\JogosRelatorio.pdf")));
+            PdfJogos.gerar(tfDir.getText() == null || tfDir.getText() == "" ? tfDir.getText() : "D:\\Downloads");
+            Desktop.getDesktop().open(new File(((tfDir.getText() == null || tfDir.getText() == "" ? tfDir.getText() : "D:\\Downloads") + "\\JogosRelatorio.pdf")));
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @FXML

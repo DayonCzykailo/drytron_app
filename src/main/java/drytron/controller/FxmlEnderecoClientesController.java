@@ -5,8 +5,8 @@ import drytron.dao.EnderecoRepository;
 import drytron.dao.JogosRepository;
 import drytron.dto.Endereco;
 import drytron.dto.Jogos;
-import drytron.util.Exibicao;
-import drytron.util.Pdf;
+import drytron.util.XlsxJogos;
+import drytron.util.PdfJogos;
 import drytron.util.Util;
 import java.awt.Desktop;
 import java.io.File;
@@ -63,12 +63,15 @@ public class FxmlEnderecoClientesController implements Initializable {
                 endMerge.setCep(tfCep.getText());
                 ViaCEP vc = new ViaCEP();
                 vc.buscar(tfCep.getText());
+                
                 if (tfCep.getText() != null) {
+                    
                     endMerge.setBairro(vc.getBairro());
                     endMerge.setComplemento(tfComplemento.getText());
                     endMerge.setLocalidade(vc.getLocalidade());
                     endMerge.setLogradouro(vc.getLogradouro());
                     endMerge.setUf(vc.getUf());
+                    
                     EnderecoRepository merge = new EnderecoRepository();
                     merge.atualiza(endMerge);
 
@@ -102,6 +105,7 @@ public class FxmlEnderecoClientesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         endereco = Util.getEndereco();
         tfBairro.setText(Util.getEndereco().getBairro());
         tfCep.setText(Util.getEndereco().getCep());
@@ -109,6 +113,7 @@ public class FxmlEnderecoClientesController implements Initializable {
         tfLocalidadade.setText(Util.getEndereco().getLocalidade());
         tfLongradouro.setText(Util.getEndereco().getLogradouro());
         tfUf.setText(Util.getEndereco().getUf());
+        
         Util.setEndereco(null);
     }
 

@@ -24,14 +24,16 @@ import com.itextpdf.text.Section;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import drytron.dao.ClientesRepository;
 import drytron.dao.JogosRepository;
+import drytron.dto.Clientes;
 import drytron.dto.Jogos;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import org.apache.poi.ss.usermodel.Cell;
 
-public class Pdf {
+public class PdfClientes {
 
     private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
     private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.RED);
@@ -42,7 +44,7 @@ public class Pdf {
         try {
             Document document = new Document();
             document.setPageSize(PageSize.LETTER.rotate());
-            PdfWriter.getInstance(document, new FileOutputStream(dir + "\\JogosRelatorio.pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream(dir + "\\ClientesRelatorio.pdf"));
             document.open();
             addMetaDado(document);
             addContent(document);
@@ -54,22 +56,22 @@ public class Pdf {
     }
 
     private static void addMetaDado(Document document) {
-        document.addTitle("Drytron - Jogos");
-        document.addSubject("Area: Produtos");
-        document.addKeywords("Drytron, Produtos, Jogos");
+        document.addTitle("Drytron - Clientes");
+        document.addSubject("Area: Clientes");
+        document.addKeywords("Drytron, Clientes");
         document.addAuthor("Drytron - Sistema de gerenciamento de produtos e clientes");
         document.addCreator("Drytron - Sistema de gerenciamento de produtos e clientes");
     }
 
     private static void addContent(Document document) throws DocumentException {
-        Anchor anchor = new Anchor("Produtos Jogos", catFont);
-        anchor.setName("Produtos Jogos");
+        Anchor anchor = new Anchor("Area Clientes", catFont);
+        anchor.setName("Area Clientes");
 
         Chapter catPart = new Chapter(new Paragraph(anchor), 1);
 
         Paragraph prefacio = new Paragraph();
         addLinhaVazia(prefacio, 1);
-        prefacio.add(new Paragraph("Jogos", catFont));
+        prefacio.add(new Paragraph("Clientes", catFont));
         addLinhaVazia(prefacio, 1);
         prefacio.add(new Paragraph(
                 "Autor: " + System.getProperty("user.name") + ", " + Util.getDataHoraAgora() + ".",
@@ -78,7 +80,7 @@ public class Pdf {
 
         document.add(prefacio);
 
-        Paragraph subPara = new Paragraph("Tabela Jogos \n\n", subFont);
+        Paragraph subPara = new Paragraph("Tabela Clientes \n\n", subFont);
         Section subCatPart = catPart.addSection(subPara);
 
         criarTabela(subCatPart);
@@ -90,7 +92,7 @@ public class Pdf {
 
     private static void criarTabela(Section subCatPart)
             throws BadElementException {
-        PdfPTable table = new PdfPTable(10);
+        PdfPTable table = new PdfPTable(8);
 
         int fonte = 10;
 
@@ -102,76 +104,62 @@ public class Pdf {
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
 
-        c1 = new PdfPCell(new Paragraph("GÊNERO", new Font(Font.FontFamily.TIMES_ROMAN, fonte, Font.BOLD)));
+        c1 = new PdfPCell(new Paragraph("CPF", new Font(Font.FontFamily.TIMES_ROMAN, fonte, Font.BOLD)));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
 
-        c1 = new PdfPCell(new Paragraph("PLATAFORMA", new Font(Font.FontFamily.TIMES_ROMAN, 6, Font.BOLD)));
+        c1 = new PdfPCell(new Paragraph("TELEFONE", new Font(Font.FontFamily.TIMES_ROMAN, 6, Font.BOLD)));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
 
-        c1 = new PdfPCell(new Paragraph("LANÇAMENTO", new Font(Font.FontFamily.TIMES_ROMAN, 6, Font.BOLD)));
+        c1 = new PdfPCell(new Paragraph("E-MAIL", new Font(Font.FontFamily.TIMES_ROMAN, 6, Font.BOLD)));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
 
-        c1 = new PdfPCell(new Paragraph("DESENVOLVEDOR", new Font(Font.FontFamily.TIMES_ROMAN, 5, Font.BOLD)));
+        c1 = new PdfPCell(new Paragraph("LOCALIDADE", new Font(Font.FontFamily.TIMES_ROMAN, 5, Font.BOLD)));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
 
-        c1 = new PdfPCell(new Paragraph("PUBLICADOR", new Font(Font.FontFamily.TIMES_ROMAN, 6, Font.BOLD)));
+        c1 = new PdfPCell(new Paragraph("BAIRRO", new Font(Font.FontFamily.TIMES_ROMAN, 6, Font.BOLD)));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
 
-        c1 = new PdfPCell(new Paragraph("IDIOMA", new Font(Font.FontFamily.TIMES_ROMAN, fonte, Font.BOLD)));
-        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-        table.addCell(c1);
-
-        c1 = new PdfPCell(new Paragraph("ESTOQUE", new Font(Font.FontFamily.TIMES_ROMAN, fonte, Font.BOLD)));
-        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-        table.addCell(c1);
-
-        c1 = new PdfPCell(new Paragraph("PREÇO", new Font(Font.FontFamily.TIMES_ROMAN, fonte, Font.BOLD)));
+        c1 = new PdfPCell(new Paragraph("UF", new Font(Font.FontFamily.TIMES_ROMAN, fonte, Font.BOLD)));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
 
         table.setHeaderRows(1);
 
-        ArrayList<Jogos> list;
+        ArrayList<Clientes> list;
 
-        JogosRepository jogo = new JogosRepository();
-        list = new ArrayList<>(jogo.listaTodos());
+        ClientesRepository clientes = new ClientesRepository();
+        list = new ArrayList<>(clientes.listaTodos());
 
         int fonteDados = 12;
         for (int i = 0; i < list.size(); i++) {
 
-            table.addCell(new Phrase(Element.ALIGN_LEFT, Integer.toString(list.get(i).getId()),
+            table.addCell(new Phrase(Element.ALIGN_LEFT, Long.toString(list.get(i).getId()),
                     new Font(Font.FontFamily.TIMES_ROMAN, fonteDados, Font.BOLD)));
 
             table.addCell(new Phrase(Element.ALIGN_LEFT, list.get(i).getNome(),
                     new Font(Font.FontFamily.TIMES_ROMAN, fonteDados, Font.BOLD)));
 
-            table.addCell(new Phrase(Element.ALIGN_LEFT, list.get(i).getGenero(),
+            table.addCell(new Phrase(Element.ALIGN_LEFT, list.get(i).getCpf(),
                     new Font(Font.FontFamily.TIMES_ROMAN, fonteDados, Font.BOLD)));
 
-            table.addCell(new Phrase(Element.ALIGN_LEFT, list.get(i).getPlataforma(),
+            table.addCell(new Phrase(Element.ALIGN_LEFT, list.get(i).getTelefone(),
                     new Font(Font.FontFamily.TIMES_ROMAN, fonteDados, Font.BOLD)));
 
-            table.addCell(new Phrase(Element.ALIGN_LEFT, list.get(i).getLancamento().format(DateTimeFormatter.ofPattern("dd/MM/uuuu")),
+            table.addCell(new Phrase(Element.ALIGN_LEFT, list.get(i).getEmail(),
                     new Font(Font.FontFamily.TIMES_ROMAN, 10, Font.BOLD)));
 
-            table.addCell(new Phrase(Element.ALIGN_LEFT, list.get(i).getDesenvolvedor(),
+            table.addCell(new Phrase(Element.ALIGN_LEFT, list.get(i).getEndCli().getLocalidade(),
                     new Font(Font.FontFamily.TIMES_ROMAN, fonteDados, Font.BOLD)));
 
-            table.addCell(new Phrase(Element.ALIGN_LEFT, list.get(i).getPublicador(),
+            table.addCell(new Phrase(Element.ALIGN_LEFT, list.get(i).getEndCli().getBairro(),
                     new Font(Font.FontFamily.TIMES_ROMAN, fonteDados, Font.BOLD)));
 
-            table.addCell(new Phrase(Element.ALIGN_LEFT, list.get(i).getIdioma(),
-                    new Font(Font.FontFamily.TIMES_ROMAN, fonteDados, Font.BOLD)));
-
-            table.addCell(new Phrase(Element.ALIGN_LEFT, Integer.toString(list.get(i).getEstoque()),
-                    new Font(Font.FontFamily.TIMES_ROMAN, fonteDados, Font.BOLD)));
-
-            table.addCell(new Phrase(Element.ALIGN_LEFT, Double.toString(list.get(i).getPreco()),
+            table.addCell(new Phrase(Element.ALIGN_LEFT, list.get(i).getEndCli().getUf(),
                     new Font(Font.FontFamily.TIMES_ROMAN, fonteDados, Font.BOLD)));
         }
         subCatPart.add(table);

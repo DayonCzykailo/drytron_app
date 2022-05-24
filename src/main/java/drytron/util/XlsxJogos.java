@@ -30,7 +30,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author dayon
  */
-public class Exibicao {
+public class XlsxJogos {
 
     static Document doc;
 

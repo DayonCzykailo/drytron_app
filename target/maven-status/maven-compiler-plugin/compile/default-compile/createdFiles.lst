@@ -2,11 +2,13 @@ drytron\dto\PlataformaJogos.class
 drytron\dao\FuncionariosRepository.class
 drytron\dto\GeneroJogos.class
 drytron\main\Main.class
+drytron\util\XlsxJogos.class
 drytron\dto\Funcionarios.class
+drytron\controller\FxmlDeletarClientesController.class
 drytron\controller\FxmlRelatorioJogosController.class
 drytron\cep_api\CEP.class
-drytron\controller\FxmlMainClienteController.class
-drytron\util\Exibicao.class
+drytron\util\XlsxClientes.class
+drytron\util\PdfJogos.class
 drytron\controller\FxmlMainClientesController.class
 drytron\util\Util.class
 drytron\cep_api\Main.class
@@ -27,7 +29,8 @@ drytron\util\Dicionario.class
 drytron\dto\Jogos.class
 drytron\dto\Clientes.class
 drytron\dao\ClientesDAO.class
-drytron\util\Pdf.class
+drytron\util\PdfClientes.class
+drytron\controller\FxmlEnderecoClientesController.class
 drytron\dao\JogosRepository.class
 drytron\controller\FxmlAlterarClientesController.class
 drytron\cep_api\ViaCEPBase.class
@@ -37,6 +40,7 @@ drytron\util\Mensagens.class
 drytron\controller\FxmlCadastroClientesController.class
 drytron\controller\FxmlMainController.class
 drytron\cep_api\ViaCEPException.class
+drytron\dto\UfEnum.class
 drytron\dao\EnderecoRepository.class
 drytron\email\SendEmail.class
 drytron\dto\Endereco.class

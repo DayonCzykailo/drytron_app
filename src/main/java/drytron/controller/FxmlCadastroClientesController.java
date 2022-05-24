@@ -1,6 +1,10 @@
 package drytron.controller;
 
 import com.sun.mail.imap.ACL;
+import drytron.cep_api.ViaCEP;
+import drytron.cep_api.ViaCEPException;
+import drytron.dao.ClientesRepository;
+import drytron.dao.EnderecoRepository;
 import drytron.dao.JogosRepository;
 import drytron.dto.Clientes;
 import drytron.dto.Endereco;
@@ -12,6 +16,8 @@ import drytron.util.Dicionario;
 import drytron.util.Util;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -31,19 +37,6 @@ import javafx.scene.layout.Pane;
  */
 public class FxmlCadastroClientesController implements Initializable {
 
-    public FxmlCadastroClientesController() {
-
-    }
-
-    public FxmlCadastroClientesController(Jogos j) {
-        tfNome.setText(j.getNome());
-        /*tfDesenvolvedor.clear();
-        tfPublicador.clear();
-        tfEstoque.clear();
-        tfPreco.clear();
-        tfIdioma.clear();*/
-    }
-
     @FXML
     private Button btnCadastrar;
 
@@ -54,7 +47,7 @@ public class FxmlCadastroClientesController implements Initializable {
     private Button btnSair;
 
     @FXML
-    private ComboBox<UfEnum> cbUf;
+    private ChoiceBox<UfEnum> cbUf;
 
     @FXML
     private TextField tfBairro;
@@ -83,7 +76,26 @@ public class FxmlCadastroClientesController implements Initializable {
     @FXML
     private TextField tfTel;
 
-    /*@FXML
+    @FXML
+    void btnClickCepAction(ActionEvent event) {
+        ViaCEP vc = new ViaCEP();
+        try {
+            vc.buscar(tfCep.getText());
+
+            tfBairro.setText(vc.getBairro());
+            tfCep.setText(vc.getCep());
+            tfComplemento.setText(vc.getComplemento());
+            tfLocalidade.setText(vc.getLocalidade());
+            tfLongradouro.setText(vc.getLogradouro());
+            cbUf.setValue(Dicionario.getUFEnum(vc.getUf()));
+            
+            System.out.println(vc.getLocalidade());
+        } catch (ViaCEPException ex) {
+            Logger.getLogger(FxmlCadastroClientesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
     void btnClickCadastrarAction(ActionEvent event) {
         Clientes c = new Clientes();
 
@@ -91,29 +103,35 @@ public class FxmlCadastroClientesController implements Initializable {
         c.setCpf(tfCpf.getText());
         c.setTelefone(tfTel.getText());
         c.setEmail(tfEmail.getText());
+
         Endereco e = new Endereco();
+
         e.setCep(tfCep.getText());
         e.setComplemento(tfComplemento.getText());
         e.setLogradouro(tfLongradouro.getText());
         e.setBairro(tfBairro.getText());
         e.setLocalidade(tfLocalidade.getText());
-        e.setUF(cbUf.getValue());
+        e.setUf(Dicionario.getUF(cbUf.getValue()));
 
-        JogosRepository jr = new JogosRepository();
-        jr.insere(c);
+        c.setEndCli(e);
+
+        System.out.println(e.getLocalidade());
+        ClientesRepository cr = new ClientesRepository();
+        cr.insere(c);
     }
 
     @FXML
     void btnClickLimparAction(ActionEvent event) {
         tfNome.clear();
-        tfDesenvolvedor.clear();
-        tfPublicador.clear();
-        tfEstoque.clear();
-        tfPreco.clear();
-        tfIdioma.clear();
-        dpLancamento.setValue(null);
-        cbGenero.setValue(null);
-        cbPlataforma.setValue(null);
+        tfCpf.clear();
+        tfTel.clear();
+        tfEmail.clear();
+        tfCep.clear();
+        tfComplemento.clear();
+        tfLongradouro.clear();
+        tfBairro.clear();
+        tfLocalidade.clear();
+        cbUf.setValue(UfEnum.UF);
     }
 
     @FXML
@@ -121,14 +139,10 @@ public class FxmlCadastroClientesController implements Initializable {
         FxmlMainController.getStage().close();
     }
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         cbUf.setItems(FXCollections.observableArrayList(UfEnum.values()));
-
         cbUf.getItems().addAll();
 
     }

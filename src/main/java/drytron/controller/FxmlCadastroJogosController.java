@@ -33,11 +33,11 @@ public class FxmlCadastroJogosController implements Initializable {
 
     public FxmlCadastroJogosController(Jogos j) {
         tfNome.setText(j.getNome());
-        /*tfDesenvolvedor.clear();
+        tfDesenvolvedor.clear();
         tfPublicador.clear();
         tfEstoque.clear();
         tfPreco.clear();
-        tfIdioma.clear();*/
+        tfIdioma.clear();
     }
 
     @FXML
@@ -76,7 +76,7 @@ public class FxmlCadastroJogosController implements Initializable {
     @FXML
     private TextField tfPublicador;
 
-    /*@FXML
+    @FXML
     void btnClickCadastrarAction(ActionEvent event) {
         Jogos j = new Jogos();
 

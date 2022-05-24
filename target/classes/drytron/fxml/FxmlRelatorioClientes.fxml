@@ -20,7 +20,7 @@
             <Image url="@../icon/iconBGspace02.jpg" />
          </image>
       </ImageView>
-      <Pane layoutX="49.0" layoutY="43.0" prefHeight="520.0" prefWidth="591.0" style="-fx-background-color: #FFFFFF;">
+      <Pane focusTraversable="true" layoutX="49.0" layoutY="43.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="520.0" prefWidth="591.0" style="-fx-background-color: #FFFFFF;">
          <children>
             <ImageView fitHeight="104.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -37,7 +37,12 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <PieChart fx:id="pcMain" layoutX="24.0" layoutY="104.0" prefHeight="410.0" prefWidth="544.0" title="Clientes Por Estado" />
+            <PieChart fx:id="pcMain" layoutX="24.0" layoutY="104.0" prefHeight="328.0" prefWidth="549.0" style="-fx-background-color: #FFFFFF;" title="Clientes Por Estado" />
+            <Label fx:id="percentLbl" layoutX="474.0" layoutY="165.0">
+               <font>
+                  <Font name="Arial Black" size="18.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>

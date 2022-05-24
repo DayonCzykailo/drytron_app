@@ -32,7 +32,7 @@ public class Jogos {
     @Column(nullable = true, length = 50)
     private String idioma = "";
     @Column(nullable = false)
-    private Float preco = 0f;
+    private float preco = 0f;
     private int estoque = 0;
     private char ativo = 'S';
 

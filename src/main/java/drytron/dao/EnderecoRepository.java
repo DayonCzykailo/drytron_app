@@ -37,13 +37,13 @@ public class EnderecoRepository {
             System.out.println("EnderecoRepository: Ocorreu um problema no método listaTodos");
         }
         return endereco;
-    } 
-       
+    }
 
     public void insere(Endereco endereco) {
         try {
             em.getTransaction().begin();
             em.persist(endereco);
+            endereco.setCep(endereco.getCep().replace("-", ""));
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -55,6 +55,7 @@ public class EnderecoRepository {
     public void atualiza(Endereco endereco) {
         try {
             em.getTransaction().begin();
+            endereco.setCep(endereco.getCep().replace("-", ""));
             em.merge(endereco);
             em.getTransaction().commit();
         } catch (Exception e) {
