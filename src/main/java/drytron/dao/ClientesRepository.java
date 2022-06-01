@@ -1,6 +1,5 @@
 package drytron.dao;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
 import drytron.dto.Clientes;
 import drytron.dto.Endereco;
 import drytron.dto.Jogos;
@@ -33,7 +32,7 @@ public class ClientesRepository {
         return em.find(Clientes.class, id);
     }
 
-    public Endereco pesquisaEnderecoClientes(Long id) {
+    public Endereco pesquisaEndereco(Long id) {
         return em.find(Clientes.class, id).getEndCli();
     }
 
@@ -53,8 +52,24 @@ public class ClientesRepository {
         return clientes;
     }
 
+    public List<Clientes> listaTodosNomes() {
+        List<Clientes> clientes = null;
+        try {
+            em.getTransaction().begin();
+            Query query = em.createQuery("SELECT c.nome FROM Clientes c");
+            clientes = query.getResultList();
+            em.getTransaction().commit();
+
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            System.out.println(e);
+            System.out.println("ClientesRepository: Ocorreu um problema no método listaTodos");
+        }
+        return clientes;
+    }
+
     public void listaPieChart(PieChart pcMain) {
-        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();;
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
         List<Object[]> resultado = null;
         try {
             em.getTransaction().begin();
@@ -62,11 +77,10 @@ public class ClientesRepository {
             resultado = query.getResultList();
             em.getTransaction().commit();
             Data[] list = null;
-            for (Object[] obj : resultado) {             
-                  pieChartData.add(new PieChart.Data(java.lang.String.valueOf(obj[1]), (Long) obj[0]));
-               
+            for (Object[] obj : resultado) {
+                pieChartData.add(new PieChart.Data(java.lang.String.valueOf(obj[1]), (Long) obj[0]));
+
             }
-            
 
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -80,12 +94,9 @@ public class ClientesRepository {
     public List<Clientes> listaPorNome(String nome) {
         List<Clientes> clientes = null;
         try {
-            em.getTransaction().begin();
-            Query query = em.createQuery("SELECT c FROM Clientes c where c.nome like :nomeClientes").setParameter("nomeClientes", "%" + nome + "%");
+            Query query = em.createQuery("FROM Clientes c where c.nome like :nomeClientes").setParameter("nomeClientes", "%" + nome + "%");
             clientes = query.getResultList();
-            em.getTransaction().commit();
         } catch (Exception e) {
-            em.getTransaction().rollback();
             System.out.println("ClientesRepository: Ocorreu um problema no método listaTodos");
         }
         return clientes;

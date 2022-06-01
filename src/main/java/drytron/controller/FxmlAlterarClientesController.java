@@ -6,7 +6,7 @@ import drytron.dto.Clientes;
 import drytron.dto.Endereco;
 import drytron.dto.GeneroJogos;
 import drytron.dto.Jogos;
-import drytron.dto.UfEnum;
+import drytron.dto.Uf;
 import drytron.util.Dicionario;
 import drytron.util.Util;
 import java.net.URL;
@@ -32,7 +32,7 @@ public class FxmlAlterarClientesController implements Initializable {
     private Button btnSair;
 
     @FXML
-    private ChoiceBox<UfEnum> cbUf;
+    private ChoiceBox<Uf> cbUf;
 
     @FXML
     private TextField tfBairro;
@@ -100,7 +100,7 @@ public class FxmlAlterarClientesController implements Initializable {
         tfLongradouro.clear();
         tfBairro.clear();
         tfLocalidade.clear();
-        cbUf.setValue(UfEnum.UF);
+        cbUf.setValue(Uf.UF);
     }
 
     @FXML
@@ -131,7 +131,7 @@ public class FxmlAlterarClientesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        cbUf.setItems(FXCollections.observableArrayList(UfEnum.values()));
+        cbUf.setItems(FXCollections.observableArrayList(Uf.values()));
         cbUf.getItems().addAll();
 
         if (Util.getClientes() != null) {

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.ScatterChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="587.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="drytron.controller.FxmlRelatorioVendasController">
+   <children>
+      <ImageView fitHeight="336.0" fitWidth="591.0" layoutX="203.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+         <image>
+            <Image url="@../icon/iconBackgroundVender.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="342.0" fitWidth="593.0" layoutX="-131.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+         <image>
+            <Image url="@../icon/iconBackgroundVender.jpg" />
+         </image>
+      </ImageView>
+      <Pane layoutX="26.0" layoutY="21.0" prefHeight="557.0" prefWidth="611.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <ImageView fitHeight="104.0" fitWidth="104.0" layoutX="88.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/iconPlanet.jpeg" />
+               </image>
+            </ImageView>
+            <Label layoutX="241.0" layoutY="35.0" prefHeight="37.0" prefWidth="167.0" text="RELATÓRIO">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Pane layoutX="78.0" layoutY="370.0" prefHeight="31.0" prefWidth="246.0" />
+            <Pane layoutX="10.0" layoutY="135.0" prefHeight="31.0" prefWidth="246.0" />
+            <Pane layoutX="235.0" layoutY="104.0" prefHeight="31.0" prefWidth="149.0" />
+            <Pane layoutX="9.0" layoutY="104.0" prefHeight="31.0" prefWidth="222.0" />
+            <ScatterChart fx:id="scMain" layoutX="4.0" layoutY="101.0" prefHeight="458.0" prefWidth="611.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </ScatterChart>
+            <Label layoutX="201.0" layoutY="72.0" prefHeight="37.0" prefWidth="267.0" text="Valor total de vendas por Vendedor">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

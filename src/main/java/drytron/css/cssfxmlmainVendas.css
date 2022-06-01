@@ -1,0 +1,12 @@
+.vbox {
+    -fx-background-color: #FFFFFF;
+}
+.button{
+    -fx-background-color: #9de26b;
+}
+.buttonData{
+    -fx-background-color: #bada55;
+}
+.buttonDevolucao{
+    -fx-background-color: #bada55;
+}

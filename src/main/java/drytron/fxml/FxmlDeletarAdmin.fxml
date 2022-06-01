@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="333.0" prefWidth="545.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="drytron.controller.FxmlDeletarAdminController">
+   <children>
+      <ImageView fitHeight="334.0" fitWidth="566.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/iconBGAdmin.jpg" />
+         </image>
+      </ImageView>
+      <Pane layoutX="127.0" layoutY="59.0" prefHeight="216.0" prefWidth="290.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <ImageView fitHeight="104.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/iconPlanet.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="37.0" fitWidth="44.0" layoutX="95.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/iconDeletarClientes.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="139.0" layoutY="41.0" prefHeight="37.0" prefWidth="85.0" text="Deletar">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnDeletar" layoutX="9.0" layoutY="153.0" mnemonicParsing="false" onAction="#btnClickDeletarAction" prefHeight="25.0" prefWidth="272.0" style="-fx-background-color: #8fce00;" text="Deletar">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnLimpar" layoutX="9.0" layoutY="184.0" mnemonicParsing="false" onAction="#btnClickLimparAction" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: #3d85c6;" text="Limpar">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnSair" layoutX="145.0" layoutY="184.0" mnemonicParsing="false" onAction="#btnClickSairAction" prefHeight="25.0" prefWidth="136.0" style="-fx-background-color: #ff0000;" text="Sair">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <TextField fx:id="tfId" alignment="TOP_LEFT" cache="true" cacheHint="QUALITY" layoutX="132.0" layoutY="104.0" onAction="#tfClickPesquisarIdAction" prefHeight="25.0" prefWidth="57.0" promptText="ID" style="-fx-background-radius: 1000;">
+               <font>
+                  <Font name="Arial Black" size="13.0" />
+               </font>
+            </TextField>
+            <Label layoutX="52.0" layoutY="110.0" prefHeight="17.0" prefWidth="71.0" text="Insira o ID:" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

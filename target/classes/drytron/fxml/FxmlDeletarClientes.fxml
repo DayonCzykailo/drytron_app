@@ -25,7 +25,7 @@
             </ImageView>
             <ImageView fitHeight="37.0" fitWidth="44.0" layoutX="95.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../icon/iconAlterarClientes.png" />
+                  <Image url="@../icon/iconDeletarClientes.png" />
                </image>
             </ImageView>
             <Label layoutX="139.0" layoutY="41.0" prefHeight="37.0" prefWidth="85.0" text="Deletar">

@@ -1,11 +1,13 @@
 package drytron.dto;
 
+import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
@@ -13,56 +15,51 @@ import javax.persistence.OneToOne;
  * @author dayon
  */
 @Entity
-public class Funcionarios {
+public class Funcionarios implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idFun = 0;
+    private long id = 0;
     @Column(nullable = false, length = 50)
-    private String nomeFun = "";
-    
-    @Column(nullable = false, length = 50)
-    private String usuario = "";
-    @Column(nullable = false, length = 50)
-    private String senha = "";
-    
+    private String nome = "";  
     @Column(nullable = false, length = 11)
-    private String cpfFun = "";
+    private String cpf = "";
     @Column(nullable = false, length = 50)
-    private String telFun = "";
+    private String telefone = "";
     @Column(nullable = false, length = 50)
-    private String emaFun = "";
+    private String email = "";
     @OneToOne(cascade = CascadeType.ALL)
     private Endereco endFun;
     @Column(nullable = false)
     private char ativo;
+    
+    @Column(nullable = false, length = 50)
+    private String senha = "";
 
+    @Column(nullable = false)
+    private int nivel;
+    @Column(nullable = false, length = 50)
+    private Cargo cargo;
+    
+  
     public Funcionarios() {
     this.ativo = 'S';
     }
-    
-    public long getIdFun() {
-        return idFun;
+
+    public long getId() {
+        return id;
     }
 
-    public void setIdFun(long idFun) {
-        this.idFun = idFun;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getNomeFun() {
-        return nomeFun;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNomeFun(String nomeFun) {
-        this.nomeFun = nomeFun;
-    }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getSenha() {
@@ -73,28 +70,28 @@ public class Funcionarios {
         this.senha = senha;
     }
 
-    public String getCpfFun() {
-        return cpfFun;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCpfFun(String cpfFun) {
-        this.cpfFun = cpfFun;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
-    public String getTelFun() {
-        return telFun;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setTelFun(String telFun) {
-        this.telFun = telFun;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
-    public String getEmaFun() {
-        return emaFun;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmaFun(String emaFun) {
-        this.emaFun = emaFun;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Endereco getEndFun() {
@@ -112,7 +109,22 @@ public class Funcionarios {
     public void setAtivo(char ativo) {
         this.ativo = ativo;
     }
-    
-    
-    
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
+
+    public Cargo getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(Cargo cargo) {
+        this.cargo = cargo;
+    }
+
+   
 }

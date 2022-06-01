@@ -2,9 +2,11 @@ package drytron.controller;
 
 import drytron.dao.ClientesRepository;
 import drytron.dao.FuncionariosRepository;
+import drytron.dto.Cargo;
 import drytron.dto.Clientes;
 import drytron.dto.Funcionarios;
 import drytron.main.Drytron;
+import drytron.util.Util;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -56,31 +58,45 @@ public class FxmlLoginController implements Initializable {
 
     @FXML
     void btnClickbtnEntrarAction(ActionEvent event) {
-       /* FuncionariosRepository cr = new FuncionariosRepository();
+        FuncionariosRepository cr = new FuncionariosRepository();
         List<Funcionarios> lista = cr.listaTodos();
-        for (int i = 0; i < lista.size(); i++) {*/
-            //if (((lista.get(i).getUsuario().equals(tfLogin.getText())) && (lista.get(i).getSenha().equals(tfSenha.getText())))) {
-                try {
-                    Parent root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlMainProdutos.fxml"));
-                    Scene scene = new Scene(root);
-                    scene.getStylesheets().add(getClass().getResource("/drytron/css/cssfxmlmain.css").toExternalForm());
-                    stage.setTitle("Sistema de Vendas-Drytron");
-                    stage.setScene(scene);
-                    stage.setResizable(false);
-                    stage.show();
-                    Drytron.getStage().close();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                    System.out.println("DEU RUIM EM btnClickbtnEntrarAction no FXMLLOGIN");
+        for (int i = 0; i < lista.size(); i++) {
+            if (((lista.get(i).getNome().equals(tfLogin.getText())) && (lista.get(i).getSenha().equals(tfSenha.getText())))) {
+                Util.setUsuario(lista.get(i));
+                if (lista.get(i).getCargo().equals(Cargo.ADMINISTRADOR) || lista.get(i).getCargo().equals(Cargo.GERENTE)) {
+                    try {                        
+                        Parent root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlMainAdmin.fxml"));
+                        Scene scene = new Scene(root);
+                        scene.getStylesheets().add(getClass().getResource("/drytron/css/cssfxmlmainAdmin.css").toExternalForm());
+                        stage.setTitle("Sistema de Vendas-Drytron");
+                        stage.setScene(scene);
+                        stage.setResizable(false);
+                        stage.show();
+                        Drytron.getStage().close();
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                        System.out.println("DEU RUIM EM btnClickbtnEntrarAction no FXMLLOGIN");
+                    }
+                } else {
+                    try {
+                        Parent root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlMainProdutos.fxml"));
+                        Scene scene = new Scene(root);
+                        scene.getStylesheets().add(getClass().getResource("/drytron/css/cssfxmlmain.css").toExternalForm());
+                        stage.setTitle("Sistema de Vendas-Drytron");
+                        stage.setScene(scene);
+                        stage.setResizable(false);
+                        stage.show();
+                        Drytron.getStage().close();
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                        System.out.println("DEU RUIM EM btnClickbtnEntrarAction no FXMLLOGIN");
+                    }
                 }
-
-            //}
-
-        //}
+            }
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
 }

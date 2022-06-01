@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="512.0" prefWidth="637.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="drytron.controller.FxmlCadastroAdminController">
+   <children>
+      <ImageView fitHeight="331.0" fitWidth="519.0" layoutX="219.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+         <image>
+            <Image url="@../icon/iconBGAdmin.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="339.0" fitWidth="520.0" layoutX="-100.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+         <image>
+            <Image url="@../icon/iconBGAdmin.jpg" />
+         </image>
+      </ImageView>
+      <Pane fx:id="pMain" layoutX="76.0" layoutY="84.0" prefHeight="371.0" prefWidth="532.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <ImageView fitHeight="104.0" fitWidth="104.0" layoutX="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/iconPlanet.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="37.0" fitWidth="44.0" layoutX="163.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/iconCadastro.jpg" />
+               </image>
+            </ImageView>
+            <Label layoutX="209.0" layoutY="43.0" prefHeight="37.0" prefWidth="130.0" text="Cadastrar">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Pane layoutX="14.0" layoutY="104.0" prefHeight="31.0" prefWidth="246.0">
+               <children>
+                  <Label layoutX="7.0" layoutY="6.0" text="Nome" />
+                  <TextField fx:id="tfNome" layoutX="69.0" layoutY="3.0" promptText="ex: Fulano" />
+               </children>
+            </Pane>
+            <Pane layoutX="14.0" layoutY="135.0" prefHeight="31.0" prefWidth="246.0">
+               <children>
+                  <Label layoutX="6.0" layoutY="6.0" text="CPF" />
+                  <TextField fx:id="tfCpf" layoutX="69.0" layoutY="2.0" promptText="ex: 51123929084" />
+               </children>
+            </Pane>
+            <Pane layoutX="10.0" layoutY="166.0" prefHeight="31.0" prefWidth="246.0">
+               <children>
+                  <Label layoutX="7.0" layoutY="6.0" text="Telefone" />
+                  <TextField fx:id="tfTel" layoutX="73.0" layoutY="2.0" promptText="ex: (45) 3957-3356" />
+               </children>
+            </Pane>
+            <Pane layoutX="14.0" layoutY="199.0" prefHeight="31.0" prefWidth="246.0">
+               <children>
+                  <Label layoutX="3.0" layoutY="6.0" text="E-Mail" />
+                  <TextField fx:id="tfEmail" layoutX="69.0" layoutY="2.0" promptText="ex: fulano@email.com" />
+               </children>
+            </Pane>
+            <Pane layoutX="282.0" layoutY="229.0" prefHeight="31.0" prefWidth="246.0">
+               <children>
+                  <Label layoutX="8.0" layoutY="5.0" text="Localidade" />
+                  <TextField fx:id="tfLocalidade" disable="true" layoutX="84.0" layoutY="2.0" prefHeight="25.0" prefWidth="149.0" promptText="ex: São Paulo" />
+               </children>
+            </Pane>
+            <Pane layoutX="284.0" layoutY="260.0" prefHeight="31.0" prefWidth="246.0">
+               <children>
+                  <Label layoutX="7.0" layoutY="6.0" prefHeight="17.0" prefWidth="57.0" text="Estado(UF)" />
+                  <ChoiceBox fx:id="cbUf" layoutX="82.0" layoutY="2.0" prefWidth="150.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ChoiceBox>
+               </children>
+            </Pane>
+            <Pane layoutX="284.0" layoutY="104.0" prefHeight="31.0" prefWidth="204.0">
+               <children>
+                  <Label layoutX="4.0" layoutY="9.0" text="CEP" />
+                  <TextField fx:id="tfCep" layoutX="81.0" layoutY="2.0" onAction="#btnClickCepAction" prefHeight="25.0" prefWidth="149.0" promptText="ex: 81315095" />
+               </children>
+            </Pane>
+            <Pane layoutX="286.0" layoutY="134.0" prefHeight="31.0" prefWidth="246.0">
+               <children>
+                  <Label layoutY="6.0" prefHeight="17.0" prefWidth="78.0" text="Complemento" />
+                  <TextField fx:id="tfComplemento" layoutX="79.0" layoutY="2.0" prefHeight="25.0" prefWidth="149.0" promptText="ex: casa" />
+               </children>
+            </Pane>
+            <Pane layoutX="282.0" layoutY="198.0" prefHeight="31.0" prefWidth="246.0">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" text="Bairro" />
+                  <TextField fx:id="tfBairro" disable="true" layoutX="84.0" layoutY="2.0" prefHeight="25.0" prefWidth="149.0" promptText="ex: Centro" />
+               </children>
+            </Pane>
+            <Pane layoutX="282.0" layoutY="165.0" prefHeight="31.0" prefWidth="246.0">
+               <children>
+                  <Label layoutX="7.0" layoutY="7.0" text="Logradouro" />
+                  <TextField fx:id="tfLongradouro" disable="true" layoutX="84.0" layoutY="2.0" prefHeight="25.0" prefWidth="149.0" promptText="ex: Rua das Maças" />
+               </children>
+            </Pane>
+            <Pane layoutX="12.0" layoutY="230.0" prefHeight="31.0" prefWidth="246.0">
+               <children>
+                  <Label layoutX="6.0" layoutY="6.0" text="Senha" />
+                  <RadioButton fx:id="rbMostrarSenha" layoutX="223.0" layoutY="8.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="20.0" />
+                  <PasswordField fx:id="tfSenha" layoutX="70.0" layoutY="2.0">
+                     <tooltip>
+                        <Tooltip fx:id="toolTip" text="Empty Tooltip" />
+                     </tooltip></PasswordField>
+               </children>
+            </Pane>
+            <Pane layoutX="7.0" layoutY="261.0" prefHeight="31.0" prefWidth="222.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="6.0" text="Cargo" />
+                  <ChoiceBox fx:id="cbCargo" layoutX="72.0" layoutY="2.0" prefWidth="150.0" />
+               </children>
+            </Pane>
+            <Pane layoutX="15.0" layoutY="349.0" prefHeight="31.0" prefWidth="246.0" />
+            <Button fx:id="btnCadastrar" layoutX="5.0" layoutY="308.0" mnemonicParsing="false" onAction="#btnClickCadastrarAction" prefHeight="25.0" prefWidth="513.0" style="-fx-background-color: #8fce00;" text="Cadastrar">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnLimpar" layoutX="5.0" layoutY="339.0" mnemonicParsing="false" onAction="#btnClickLimparAction" prefHeight="25.0" prefWidth="246.0" style="-fx-background-color: #3d85c6;" text="Limpar">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnSair" layoutX="256.0" layoutY="339.0" mnemonicParsing="false" onAction="#btnClickSairAction" prefHeight="25.0" prefWidth="262.0" style="-fx-background-color: #ff0000;" text="Sair">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

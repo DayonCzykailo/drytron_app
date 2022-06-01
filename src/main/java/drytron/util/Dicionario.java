@@ -1,8 +1,9 @@
 package drytron.util;
 
+import drytron.dto.Cargo;
 import drytron.dto.GeneroJogos;
 import drytron.dto.PlataformaJogos;
-import drytron.dto.UfEnum;
+import drytron.dto.Uf;
 import java.text.NumberFormat;
 import java.util.Locale;
 
@@ -25,7 +26,52 @@ public abstract class Dicionario {
         return nf.format(valor);
     }
 
-    static public String getUF(UfEnum ue) {
+    static public int getNivel(Cargo cargo) {
+        switch (cargo) {
+            case SEM_CARGO:
+                return 0;
+            case ADMINISTRADOR:
+                return 1;
+            case FUNCIONARIO:
+                return 2;
+            case GERENTE:
+                return 3;
+            default:
+                return 0;
+        }
+    }
+
+    static public String getCargo(Cargo cargo) {
+        switch (cargo) {
+            case SEM_CARGO:
+                return "SEM CARGO";
+            case ADMINISTRADOR:
+                return "ADMINISTRADOR";
+            case FUNCIONARIO:
+                return "FUNCIONARIO";
+            case GERENTE:
+                return "GERENTE";
+            default:
+                return "SEM_CARGO";
+        }
+    }
+
+    static public Cargo getCargoEnum(String cargo) {
+        switch (cargo) {
+            case "SEM_CARGO":
+                return Cargo.SEM_CARGO;
+            case "ADMINISTRADOR":
+                return Cargo.ADMINISTRADOR;
+            case "FUNCIONARIO":
+                return Cargo.FUNCIONARIO;
+            case "GERENTE":
+                return Cargo.GERENTE;
+            default:
+                return Cargo.SEM_CARGO;
+        }
+    }
+
+    static public String getUF(Uf ue) {
         switch (ue) {
             case UF:
                 return "UF";
@@ -87,65 +133,65 @@ public abstract class Dicionario {
                 return "";
         }
     }
-    
-    static public UfEnum getUFEnum(String ue) {
+
+    static public Uf getUFEnum(String ue) {
         switch (ue) {
             case "UF":
-                return UfEnum.UF;
+                return Uf.UF;
             case "AC":
-                return UfEnum.AC;
-            case  "AL":
-                return UfEnum.AL;
+                return Uf.AC;
+            case "AL":
+                return Uf.AL;
             case "AM":
-                return UfEnum.AM;
+                return Uf.AM;
             case "AP":
-                return UfEnum.AP;
+                return Uf.AP;
             case "BA":
-                return UfEnum.BA;
+                return Uf.BA;
             case "CE":
-                return UfEnum.CE;
+                return Uf.CE;
             case "DF":
-                return UfEnum.DF;
+                return Uf.DF;
             case "ES":
-                return UfEnum.ES;
+                return Uf.ES;
             case "GO":
-                return UfEnum.GO;
+                return Uf.GO;
             case "MA":
-                return UfEnum.MA;
+                return Uf.MA;
             case "MG":
-                return UfEnum.MG;
-            case  "MS":
-                return UfEnum.MS;
-            case  "MT":
-                return UfEnum.MT;
+                return Uf.MG;
+            case "MS":
+                return Uf.MS;
+            case "MT":
+                return Uf.MT;
             case "PA":
-                return UfEnum.PA;
+                return Uf.PA;
             case "PB":
-                return UfEnum.PB;
+                return Uf.PB;
             case "PE":
-                return UfEnum.PE;
-            case  "PI":
-                return UfEnum.PI;
+                return Uf.PE;
+            case "PI":
+                return Uf.PI;
             case "PR":
-                return UfEnum.PR;
+                return Uf.PR;
             case "RJ":
-                return UfEnum.RJ;
+                return Uf.RJ;
             case "RN":
-                return UfEnum.RN;
+                return Uf.RN;
             case "RO":
-                return UfEnum.RO;
+                return Uf.RO;
             case "RR":
-                return UfEnum.RR;
+                return Uf.RR;
             case "RS":
-                return UfEnum.RS;
+                return Uf.RS;
             case "SC":
-                return UfEnum.SC;
+                return Uf.SC;
             case "SE":
-                return UfEnum.SE;
-            case  "SP":
-                return UfEnum.SP;
+                return Uf.SE;
+            case "SP":
+                return Uf.SP;
             case "TO":
-                return UfEnum.TO;
+                return Uf.TO;
             default:
                 return null;
         }

@@ -48,7 +48,7 @@
             </ImageView>
             <Button fx:id="btnEntrar" layoutX="29.0" layoutY="231.0" mnemonicParsing="false" onAction="#btnClickbtnEntrarAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #8fce00;" text="ENTRAR">
                <font>
-                  <Font name="Gill Sans MT" size="14.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -56,7 +56,7 @@
             </Button>
             <Button fx:id="btnSair" layoutX="29.0" layoutY="272.0" mnemonicParsing="false" onAction="#btnClickSairAction" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #ff0000;" text="SAIR">
                <font>
-                  <Font name="Gill Sans MT" size="14.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />

@@ -8,7 +8,7 @@ package drytron.dto;
  *
  * @author dayon
  */
-public enum UfEnum {
+public enum Uf {
     UF,//VALOR GENERICO
     AC,
     AL,

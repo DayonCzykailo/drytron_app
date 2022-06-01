@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TreeTableColumn?>
-<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -15,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="drytron.controller.FxmlMainAdminController">
    <left>
       <VBox prefHeight="400.0" prefWidth="122.0" styleClass="vbox" stylesheets="@../css/cssfxmlmainAdmin.css" BorderPane.alignment="CENTER">
          <children>
@@ -29,144 +28,189 @@
                   <Label layoutX="7.0" layoutY="6.0" text="Área: Administrador." />
                </children>
             </Pane>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="125.0" text="Cadastrar">
+            <Button fx:id="btnCadastrar" mnemonicParsing="false" onAction="#btnClickCadastrarAction" prefHeight="26.0" prefWidth="125.0" text="Cadastrar">
                <font>
                   <Font name="Gill Sans MT Bold" size="14.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="14.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../iconRegistry-removebg-preview.png" />
+                        <Image url="@../icon/iconRegistry-removebg-preview.png" />
                      </image>
                   </ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="125.0" text="Alterar">
+            <Button fx:id="btnAlterar" mnemonicParsing="false" onAction="#btnClickAlterarAction" prefHeight="26.0" prefWidth="125.0" text="Alterar">
                <font>
                   <Font name="Gill Sans MT Bold" size="14.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="14.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../lixo-removebg-preview.png" />
+                        <Image url="@../icon/lixo-removebg-preview.png" />
                      </image>
                   </ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="125.0" text="Deletar">
+            <Button fx:id="btnDeletar" mnemonicParsing="false" onAction="#btnClickDeletarAction" prefHeight="26.0" prefWidth="125.0" text="Deletar">
                <font>
                   <Font name="Gill Sans MT Bold" size="14.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../iii-removebg-preview.png" />
+                        <Image url="@../icon/iii-removebg-preview.png" />
                      </image>
                   </ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="125.0" text="Relatório">
+            <Button fx:id="btnRelatorio" mnemonicParsing="false" onAction="#btnClickRelatorioAction" prefHeight="26.0" prefWidth="125.0" text="Relatório">
                <font>
                   <Font name="Gill Sans MT Bold" size="14.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="13.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../rela-removebg-preview.png" />
+                        <Image url="@../icon/rela-removebg-preview.png" />
                      </image>
                   </ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="125.0" text="Opções">
+            <Button fx:id="btnExibicao" mnemonicParsing="false" onAction="#btnClickExibicaoAction" prefHeight="26.0" prefWidth="125.0" text="Exibição">
                <font>
                   <Font name="Gill Sans MT Bold" size="14.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="13.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../opt-removebg-preview.png" />
+                        <Image url="@../icon/opt-removebg-preview.png" />
                      </image>
                   </ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="125.0" text="Ajuda">
+            <Button fx:id="btnAjuda" mnemonicParsing="false" onAction="#btnClickAjudaAction" prefHeight="26.0" prefWidth="125.0" text="Ajuda">
                <font>
                   <Font name="Gill Sans MT Bold" size="14.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="13.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../índice-removebg-preview.png" />
+                        <Image url="@../icon/índice-removebg-preview.png" />
                      </image>
                   </ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="125.0" text="Sair">
+            <Button fx:id="btnSair" mnemonicParsing="false" onAction="#btnClickSairAction" prefHeight="26.0" prefWidth="125.0" text="Sair">
                <font>
                   <Font name="Gill Sans MT Bold" size="14.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="13.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../hghg-removebg-preview.png" />
+                        <Image url="@../icon/hghg-removebg-preview.png" />
                      </image>
                   </ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
       </VBox>
    </left>
-   <center>
-      <TreeTableView prefHeight="414.0" prefWidth="827.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TreeTableColumn prefWidth="75.0" text="ID" />
-          <TreeTableColumn prefWidth="75.0" text="NOME" />
-            <TreeTableColumn prefWidth="75.0" text="GÊNERO" />
-            <TreeTableColumn prefWidth="93.60003662109375" text="PLATAFORMA" />
-            <TreeTableColumn prefWidth="100.79998779296875" text="LANÇAMENTO" />
-            <TreeTableColumn prefWidth="111.99996948242188" text="DESENVOLVEDOR" />
-            <TreeTableColumn prefWidth="87.20001220703125" text="PUBLICADOR" />
-            <TreeTableColumn prefWidth="64.0" text="IDIOMA" />
-            <TreeTableColumn prefWidth="59.9998779296875" text="PREÇO" />
-            <TreeTableColumn prefWidth="74.4000244140625" text="ESTOQUE" />
-        </columns>
-      </TreeTableView>
-   </center>
    <top>
       <HBox prefHeight="46.0" prefWidth="938.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
          <children>
-            <Pane prefHeight="46.0" prefWidth="124.0" />
+            <Pane prefHeight="46.0" prefWidth="124.0">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" text="Usuário:" />
+                  <Label fx:id="lblUsuario" layoutX="51.0" layoutY="6.0" prefHeight="17.0" prefWidth="70.0" />
+                  <Label layoutX="8.0" layoutY="24.0" text="Cargo:" />
+                  <Label fx:id="lblCargo" layoutX="42.0" layoutY="24.0" prefHeight="17.0" prefWidth="80.0">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+               </children></Pane>
             <Pane prefHeight="46.0" prefWidth="806.0">
                <children>
-                  <MenuButton layoutX="14.0" layoutY="11.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" styleClass="button" stylesheets="@../css/cssfxmlmainAdmin.css" text="Filtros:">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Action 1" />
-                      <MenuItem mnemonicParsing="false" text="Action 2" />
-                    </items>
-                  </MenuButton>
-                  <Button layoutX="114.0" layoutY="10.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="31.0" style="-fx-background-color: #80b900;">
+                  <Button fx:id="btnPesquisar" layoutX="114.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnClickPesquisarAction" prefHeight="26.0" prefWidth="31.0" style="-fx-background-color: #ea5e07;">
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../../lupa-removebg-preview.png" />
+                              <Image url="@../icon/lupa-removebg-preview.png" />
                            </image>
                         </ImageView>
                      </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
-                  <TextField layoutX="144.0" layoutY="10.0" prefHeight="27.0" prefWidth="563.0" />
-                  <Label layoutX="724.0" layoutY="15.0" prefHeight="17.0" prefWidth="82.0" text="03/05/2021">
+                  <TextField fx:id="tfPesquisar" layoutX="144.0" layoutY="10.0" prefHeight="27.0" prefWidth="563.0" />
+                  <Label fx:id="lbnData" layoutX="711.0" layoutY="15.0" prefHeight="17.0" prefWidth="95.0" text="03/05/2021">
                      <graphic>
                         <ImageView fitHeight="16.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../../date-removebg-preview.png" />
+                              <Image url="@../icon/date-removebg-preview.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Label>
-                  <ImageView fitHeight="48.0" fitWidth="814.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="btnAtualizar" layoutX="37.0" layoutY="7.0" mnemonicParsing="false" onAction="#btnClickAtualizarAction" prefHeight="34.0" prefWidth="45.0" style="-fx-background-radius: 360;" stylesheets="@../css/cssfxmlmainAdmin.css">
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/iconAtualizar-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </Pane>
          </children>
       </HBox>
    </top>
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="tableMain" prefHeight="368.0" prefWidth="817.0">
+              <columns>
+                  <TableColumn fx:id="colId" prefWidth="43.200010657310486" text="ID" />
+                  <TableColumn fx:id="colNome" prefWidth="169.5999984741211" text="NOME" />
+                  <TableColumn fx:id="colCpf" prefWidth="136.79998779296875" text="CPF" />
+                  <TableColumn fx:id="colTelefone" prefWidth="141.59991455078125" text="TELEFONE" />
+                  <TableColumn fx:id="colEmail" prefWidth="168.79995727539062" text="E-MAIL" />
+                  <TableColumn fx:id="colCargo" prefWidth="154.39996337890625" text="CARGO" />
+              </columns>
+            </TableView>
+            <Button fx:id="btnMostrarMain" layoutX="784.0" layoutY="-2.0" mnemonicParsing="false" onAction="#btnClickMostrarMaisAction" prefHeight="21.0" prefWidth="34.0" style="-fx-background-color: #e1dfd9;">
+               <graphic>
+                  <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icon/iconMostrarMais.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
+   </center>
 </BorderPane>

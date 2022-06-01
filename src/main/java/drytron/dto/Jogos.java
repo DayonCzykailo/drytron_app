@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -35,6 +36,7 @@ public class Jogos {
     private float preco = 0f;
     private int estoque = 0;
     private char ativo = 'S';
+
 
     public int getId() {
         return id;

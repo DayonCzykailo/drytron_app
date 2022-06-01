@@ -118,9 +118,6 @@ public class FxmlMainClientesController implements Initializable {
     void btnClickMostrarMaisAction(ActionEvent event) {
         Parent root;
         try {
-            ClientesRepository cliente = new ClientesRepository();
-            Util.setEndereco(cliente.pesquisaEnderecoClientes(tableMain.getSelectionModel().getSelectedItem().getId()));
-            System.out.println("End  " + Util.getEndereco().getLocalidade());
             root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlEnderecoClientes.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -133,31 +130,18 @@ public class FxmlMainClientesController implements Initializable {
 
     @FXML
     void btnClickAtualizarAction(ActionEvent event) {
-        mostrarDadosJogos();
+        mostrarDados();
     }
 
-    public void mostrarDadosJogos() {
-
+    private void mostrarDados() {
         colId.setCellValueFactory(new PropertyValueFactory<>("Id"));
         colNome.setCellValueFactory(new PropertyValueFactory<>("Nome"));
         colCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         colTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        //colEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
 
         ClientesRepository cliente = new ClientesRepository();
         list = new ArrayList<>(cliente.listaTodos());
-
-        if (list == null) {
-            System.out.println("LISTA VAZIA JOGOS");
-        } else {
-            System.out.println("Não vazia");
-        }
-
-        for (Clientes c : list) {
-            System.out.println(c.getNome());
-            System.out.println(c.getTelefone());
-        }
 
         obList = FXCollections.observableArrayList(list);
         tableMain.setItems(obList);
@@ -195,7 +179,6 @@ public class FxmlMainClientesController implements Initializable {
         } catch (IOException ex) {
             System.out.println("ERRO NO BOTÃO AJUDA");
         }
-
     }
 
     @FXML
@@ -250,7 +233,6 @@ public class FxmlMainClientesController implements Initializable {
         } catch (IOException ex) {
             System.out.println("ERRO NO BOTÃO DELETAR: " + ex.getMessage());
         }
-
     }
 
     @FXML
@@ -278,14 +260,7 @@ public class FxmlMainClientesController implements Initializable {
 
         ClientesRepository cliente = new ClientesRepository();
         list = new ArrayList<>(cliente.listaPorNome(tfPesquisar.getText()));
-        if (list == null) {
-            System.out.println("LISTA VAZIA JOGOS");
-        } else {
-            System.out.println("Não vazia");
-        }
-        for (Clientes c : list) {
-            System.out.println(c.getNome());
-        }
+
         obList = FXCollections.observableArrayList(list);
         tableMain.setItems(obList);
     }
@@ -296,6 +271,7 @@ public class FxmlMainClientesController implements Initializable {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlMainProdutos.fxml"));
             Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/drytron/css/cssfxmlmain.css").toExternalForm());
             stage = new Stage();
             stage.setScene(scene);
             stage.setResizable(false);
@@ -317,7 +293,7 @@ public class FxmlMainClientesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        mostrarDadosJogos();
+        mostrarDados();
         lbnData.setText(LocalDate.now().format(DateTimeFormatter.ofPattern("d/MM/uuuu")));
 
         tableMain.setOnMouseClicked(new EventHandler<MouseEvent>() {

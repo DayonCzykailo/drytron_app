@@ -146,18 +146,18 @@ public class FxmlMainController implements Initializable {
 
     }
 
-    /*@FXML
-    public void handleMenuItemTelaCliente() throws IOException {
-        AnchorPane a =(AnchorPane) FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlMainCliente.fxml"));
-        spMain.getChildrenUnmodifiable().setAll(a);
-    }*
-    //abrir tela principal
-    //*Drytron d = new Drytron();
-       Drytron.getStage().close();
-       d.start(new Stage( ));*/
     @FXML
     void btnClickVendasTelaAction(ActionEvent event) {
-
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlMainVendas.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println("ERRO NO BOTÃO Relatório");
+        }
     }
 
     @FXML
@@ -220,7 +220,7 @@ public class FxmlMainController implements Initializable {
             stage.setResizable(false);
             stage.show();
         } catch (IOException ex) {
-            System.out.println("ERRO NO BOTÃO CADASTRAR  "  + ex.getMessage());
+            System.out.println("ERRO NO BOTÃO CADASTRAR  " + ex.getMessage());
             if (root == null) {
                 System.out.println("Nao Acho a tela");
             }
@@ -313,7 +313,7 @@ public class FxmlMainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         FxmlMainClientesController.getStage().close();
+        FxmlMainClientesController.getStage().close();
         mostrarDadosJogos();
         lbnData.setText(LocalDate.now().format(DateTimeFormatter.ofPattern("d/MM/uuuu")));
 

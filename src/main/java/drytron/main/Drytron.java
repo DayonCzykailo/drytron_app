@@ -3,9 +3,13 @@
 
 ---:>>>>          cd /d D:\Download\NetBeansProject\drytron_app
 
+
+
+
 ---:>>>> dayon@LAPTOP-UIKP5HD1 MINGW64 ~
-$ cd /D/Download/NetBeansProject/drytron_app
- */
+ cd /D/NetBeansProjects/drytron_app/
+
+*/
 package drytron.main;
 
 import java.io.IOException;
@@ -34,17 +38,21 @@ public class Drytron extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Parent root = null;
-        root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlMainClientes.fxml"));
+        try {
+            root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlMainVendas.fxml"));
 
-        //root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlLogin.fxml"));
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("/drytron/css/cssfxmlmain.css").toExternalForm());
+            //root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlLogin.fxml"));
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/drytron/css/cssfxmlmain.css").toExternalForm());
 
-        stage.setTitle("Sistema de Vendas-Drytron");
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
-        setStage(stage);
+            stage.setTitle("Sistema de Vendas-Drytron");
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+            setStage(stage);
+        } catch (IOException e) {
+            System.out.println("ERRO em iniciar o programa. (" + e.getMessage() + ")");
+        }
     }
 
     /**

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="587.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="drytron.controller.FxmlVenderVendasController">
+   <children>
+      <ImageView fitHeight="336.0" fitWidth="591.0" layoutX="203.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+         <image>
+            <Image url="@../icon/iconBackgroundVender.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="342.0" fitWidth="593.0" layoutX="-131.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+         <image>
+            <Image url="@../icon/iconBackgroundVender.jpg" />
+         </image>
+      </ImageView>
+      <Pane layoutX="142.0" layoutY="63.0" prefHeight="478.0" prefWidth="402.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <ImageView fitHeight="104.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/iconPlanet.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="37.0" fitWidth="44.0" layoutX="96.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/iconVender.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="142.0" layoutY="43.0" prefHeight="37.0" prefWidth="130.0" text="Vender">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Pane layoutX="78.0" layoutY="370.0" prefHeight="31.0" prefWidth="246.0">
+               <children>
+                  <Label layoutX="6.0" layoutY="6.0" text="Cliente" />
+                  <TextField fx:id="tfComprador" layoutX="69.0" layoutY="2.0" promptText="ex: 51123929084" />
+               </children>
+            </Pane>
+            <Pane layoutX="10.0" layoutY="135.0" prefHeight="31.0" prefWidth="246.0">
+               <children>
+                  <Label layoutY="7.0" prefHeight="17.0" prefWidth="95.0" text="Desconto %" />
+                  <TextField fx:id="tfDesconto" layoutX="71.0" layoutY="3.0" promptText="ex: 20.0" />
+               </children>
+            </Pane>
+            <Pane layoutX="235.0" layoutY="104.0" prefHeight="31.0" prefWidth="149.0">
+               <children>
+                  <Label layoutX="2.0" layoutY="6.0" prefHeight="17.0" prefWidth="67.0" text="Quantidade" />
+                  <Spinner fx:id="spQuantidade" layoutX="74.0" layoutY="2.0" prefHeight="25.0" prefWidth="67.0" />
+               </children>
+            </Pane>
+            <Button fx:id="btnVender" layoutX="11.0" layoutY="408.0" mnemonicParsing="false" onAction="#btnClickVenderAction" prefHeight="25.0" prefWidth="379.0" style="-fx-background-color: #8fce00;" text="Vender">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnLimpar" layoutX="11.0" layoutY="439.0" mnemonicParsing="false" onAction="#btnClickLimparAction" prefHeight="25.0" prefWidth="188.0" style="-fx-background-color: #3d85c6;" text="Limpar">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnSair" layoutX="201.0" layoutY="439.0" mnemonicParsing="false" onAction="#btnClickSairAction" prefHeight="25.0" prefWidth="188.0" style="-fx-background-color: #ff0000;" text="Sair">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Pane layoutX="9.0" layoutY="104.0" prefHeight="31.0" prefWidth="222.0">
+               <children>
+                  <Label layoutX="7.0" layoutY="6.0" text="Produto" />
+                  <TextField fx:id="tfProduto" layoutX="71.0" layoutY="2.0" promptText="nome de um Jogo" />
+               </children>
+            </Pane>
+            <TableView fx:id="tvVendas" layoutX="10.0" layoutY="170.0" prefHeight="200.0" prefWidth="390.0" style="-fx-background-color: #FFFFFF;">
+              <columns>
+                <TableColumn fx:id="colProdutos" prefWidth="184.79998779296875" text="Produtos" />
+                  <TableColumn fx:id="colDesconto" prefWidth="79.20001220703125" text="Desconto" />
+                  <TableColumn fx:id="colQuantidade" prefWidth="124.39999389648438" text="Quantidade" />
+              </columns>
+            </TableView>
+            <Button fx:id="btnRemove" layoutX="310.0" layoutY="138.0" mnemonicParsing="false" onAction="#btnClickRemoveAction" prefHeight="25.0" prefWidth="26.0" style="-fx-background-radius: 720;">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icon/iconRemove.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnAdd" layoutX="255.0" layoutY="138.0" mnemonicParsing="false" onAction="#btnClickAddAction" prefHeight="25.0" prefWidth="26.0" style="-fx-background-radius: 720;">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icon/iconAdd.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -79,7 +79,12 @@
             <scope>test</scope>
         </dependency>
 
-	
+        <dependency>
+            <groupId>org.controlsfx</groupId>
+            <artifactId>controlsfx</artifactId>
+            <version>11.1.1</version>
+        </dependency>
+
     </dependencies>
     <name>drytron_app</name>
     <build>

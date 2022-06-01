@@ -11,7 +11,7 @@ import drytron.dto.Endereco;
 import drytron.dto.GeneroJogos;
 import drytron.dto.Jogos;
 import drytron.dto.PlataformaJogos;
-import drytron.dto.UfEnum;
+import drytron.dto.Uf;
 import drytron.util.Dicionario;
 import drytron.util.Util;
 import java.net.URL;
@@ -47,7 +47,7 @@ public class FxmlCadastroClientesController implements Initializable {
     private Button btnSair;
 
     @FXML
-    private ChoiceBox<UfEnum> cbUf;
+    private ChoiceBox<Uf> cbUf;
 
     @FXML
     private TextField tfBairro;
@@ -88,7 +88,7 @@ public class FxmlCadastroClientesController implements Initializable {
             tfLocalidade.setText(vc.getLocalidade());
             tfLongradouro.setText(vc.getLogradouro());
             cbUf.setValue(Dicionario.getUFEnum(vc.getUf()));
-            
+
             System.out.println(vc.getLocalidade());
         } catch (ViaCEPException ex) {
             Logger.getLogger(FxmlCadastroClientesController.class.getName()).log(Level.SEVERE, null, ex);
@@ -131,7 +131,7 @@ public class FxmlCadastroClientesController implements Initializable {
         tfLongradouro.clear();
         tfBairro.clear();
         tfLocalidade.clear();
-        cbUf.setValue(UfEnum.UF);
+        cbUf.setValue(Uf.UF);
     }
 
     @FXML
@@ -142,7 +142,7 @@ public class FxmlCadastroClientesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        cbUf.setItems(FXCollections.observableArrayList(UfEnum.values()));
+        cbUf.setItems(FXCollections.observableArrayList(Uf.values()));
         cbUf.getItems().addAll();
 
     }
