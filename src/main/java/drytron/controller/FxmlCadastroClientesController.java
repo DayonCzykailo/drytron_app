@@ -1,35 +1,21 @@
 package drytron.controller;
 
-import com.sun.mail.imap.ACL;
 import drytron.cep_api.ViaCEP;
-import drytron.cep_api.ViaCEPException;
 import drytron.dao.ClientesRepository;
-import drytron.dao.EnderecoRepository;
-import drytron.dao.JogosRepository;
 import drytron.dto.Clientes;
 import drytron.dto.Endereco;
-import drytron.dto.GeneroJogos;
-import drytron.dto.Jogos;
-import drytron.dto.PlataformaJogos;
 import drytron.dto.Uf;
 import drytron.util.Dicionario;
-import drytron.util.Util;
+import drytron.util.Mascaras;
+import drytron.util.Mensagens;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 
 /**
  *
@@ -37,14 +23,6 @@ import javafx.scene.layout.Pane;
  */
 public class FxmlCadastroClientesController implements Initializable {
 
-    @FXML
-    private Button btnCadastrar;
-
-    @FXML
-    private Button btnLimpar;
-
-    @FXML
-    private Button btnSair;
 
     @FXML
     private ChoiceBox<Uf> cbUf;
@@ -90,8 +68,7 @@ public class FxmlCadastroClientesController implements Initializable {
             cbUf.setValue(Dicionario.getUFEnum(vc.getUf()));
 
             System.out.println(vc.getLocalidade());
-        } catch (ViaCEPException ex) {
-            Logger.getLogger(FxmlCadastroClientesController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
         }
     }
 
@@ -116,8 +93,13 @@ public class FxmlCadastroClientesController implements Initializable {
         c.setEndCli(e);
 
         System.out.println(e.getLocalidade());
-        ClientesRepository cr = new ClientesRepository();
-        cr.insere(c);
+        //if (FxDialogs.showConfirm("Choose one baby!", "Can i ask you a question?", FxDialogs.YES, FxDialogs.NO).equals(FxDialogs.YES)) {
+
+        if (Mensagens.mensagemConfirmar("CONFIRMAR CADASTRO", "TEM CERTEZA QUE OS DADOS ESTÃO CORRETOS?", Mensagens.SIM, Mensagens.NAO).equals(Mensagens.SIM)) {
+            ClientesRepository cr = new ClientesRepository();
+            cr.insere(c);
+        }
+
     }
 
     @FXML
@@ -141,7 +123,10 @@ public class FxmlCadastroClientesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        Mascaras.mascaraCEP(tfCep);
+        Mascaras.mascaraCPF(tfCpf);
+        Mascaras.mascaraTelefone(tfTel);
+        Mascaras.mascaraEmail(tfEmail);
         cbUf.setItems(FXCollections.observableArrayList(Uf.values()));
         cbUf.getItems().addAll();
 

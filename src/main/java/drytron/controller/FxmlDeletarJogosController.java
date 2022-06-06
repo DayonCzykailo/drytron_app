@@ -1,6 +1,5 @@
 package drytron.controller;
 
-import drytron.dao.JogosDAO;
 import drytron.dao.JogosRepository;
 import drytron.dto.Jogos;
 import drytron.util.Util;
@@ -9,24 +8,15 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
  *
- * @author patyu
+ * @author Dayon
  */
 public class FxmlDeletarJogosController implements Initializable {
- @FXML
-    private Button btnDeletar;
 
-    @FXML
-    private Button btnLimpar;
-
-    @FXML
-    private Button btnSair;
 
     @FXML
     private TextField tfId;

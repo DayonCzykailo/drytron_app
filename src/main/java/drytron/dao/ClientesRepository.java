@@ -2,8 +2,8 @@ package drytron.dao;
 
 import drytron.dto.Clientes;
 import drytron.dto.Endereco;
-import drytron.dto.Jogos;
-import java.util.ArrayList;
+import drytron.util.Mensagens;
+import drytron.util.ValidaDados;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,7 +12,6 @@ import javafx.scene.chart.PieChart.Data;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -88,7 +87,6 @@ public class ClientesRepository {
             System.out.println("ClientesRepository: Ocorreu um problema no método listaPieChart");
         }
         pcMain.setData(pieChartData);
-        System.out.println(resultado.toString());
     }
 
     public List<Clientes> listaPorNome(String nome) {
@@ -104,8 +102,20 @@ public class ClientesRepository {
 
     public void insere(Clientes clientes) {
         try {
-            em.getTransaction().begin();
+            if (ValidaDados.validaCpf(clientes.getCpf())) {
+                Mensagens.mensagemAlerta("CPF INVALIDO!", "Insira um CPF valido, novamente.");
+                return;
+            } else if (clientes.getEndCli().getCep().isBlank() || clientes.getEndCli().getCep().isEmpty()) {
+                Mensagens.mensagemAlerta("CEP VAZIO!", "Insira um CEP valido, novamente.");
+            }
+            clientes.setCpf(clientes.getCpf().replace(".", "").replace("-", ""));
+            if (clientes.getCpf().length() != 11) {
+                Mensagens.mensagemAlerta("O TAMANHO DO CPF ESTÁ INCORRETO!", "Insira um CPF valido, novamente.");
+            }
+            clientes.setTelefone(clientes.getTelefone().replace(")", "").replace("(", "").replace("-", ""));
             clientes.getEndCli().setCep(clientes.getEndCli().getCep().replace("-", ""));
+
+            em.getTransaction().begin();
             em.persist(clientes);
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -117,8 +127,19 @@ public class ClientesRepository {
 
     public void atualiza(Clientes clientes) {
         try {
-            em.getTransaction().begin();
+            if (ValidaDados.validaCpf(clientes.getCpf())) {
+                Mensagens.mensagemAlerta("CPF INVALIDO!", "Insira um CPF valido, novamente.");
+                return;
+            } else if (clientes.getEndCli().getCep().isBlank() || clientes.getEndCli().getCep().isEmpty()) {
+                Mensagens.mensagemAlerta("CEP VAZIO!", "Insira um CEP valido, novamente.");
+            }
+            clientes.setCpf(clientes.getCpf().replace(".", "").replace("-", ""));
+            if (clientes.getCpf().length() != 11) {
+                Mensagens.mensagemAlerta("O TAMANHO DO CPF ESTÁ INCORRETO!", "Insira um CPF valido, novamente.");
+            }
+            clientes.setTelefone(clientes.getTelefone().replace(")", "").replace("(", "").replace("-", ""));
             clientes.getEndCli().setCep(clientes.getEndCli().getCep().replace("-", ""));
+            em.getTransaction().begin();
             em.merge(clientes);
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -129,6 +150,9 @@ public class ClientesRepository {
 
     public void remove(Long id) {
         Clientes clientes = this.pesquisaPeloId(id);
+        if (clientes == null || id == null || id == 0) {
+            Mensagens.mensagemAlerta("ID Inválido!", "Insira um ID válido, novamente.");
+        }
         try {
             em.getTransaction().begin();
             em.remove(clientes);
@@ -139,5 +163,4 @@ public class ClientesRepository {
         }
     }
 
-    //public void 
 }

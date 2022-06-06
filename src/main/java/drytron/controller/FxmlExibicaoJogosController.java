@@ -2,6 +2,7 @@ package drytron.controller;
 
 import drytron.dao.JogosRepository;
 import drytron.dto.Jogos;
+import drytron.util.Mensagens;
 import drytron.util.XlsxJogos;
 import drytron.util.PdfJogos;
 import java.awt.Desktop;
@@ -21,22 +22,13 @@ import javafx.scene.control.TextField;
 public class FxmlExibicaoJogosController implements Initializable {
 
     @FXML
-    private Button btnAlterar;
-
-    @FXML
-    private Button btnLimpar;
-
-    @FXML
-    private Button btnSair;
-
-    @FXML
     private TextField tfDir;
 
     @FXML
     void btnClickXlsxAction(ActionEvent event) {
         try {
-            XlsxJogos.GerarXlsx(tfDir.getText() == null || tfDir.getText() == "" ? tfDir.getText() : "D:\\Downloads");
-            Desktop.getDesktop().open(new File(((tfDir.getText() == null || tfDir.getText() == "" ? tfDir.getText() : "D:\\Downloads") + "\\00_JogosRelatorio.xlsx")));
+            XlsxJogos.GerarXlsx(tfDir.getText() == null || "".equals(tfDir.getText()) ? tfDir.getText() : "D:\\Downloads");
+            Desktop.getDesktop().open(new File(((tfDir.getText() == null || "".equals(tfDir.getText()) ? tfDir.getText() : "D:\\Downloads") + "\\00_JogosRelatorio.xlsx")));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
@@ -44,16 +36,18 @@ public class FxmlExibicaoJogosController implements Initializable {
 
     @FXML
     void btnClickDirAction(ActionEvent event) {
-
+        if (!new File(tfDir.getText()).exists()) {
+            Mensagens.mensagemAlerta("Diretório não encontrado.", "Por favor digite um dirtório válido.");
+        }
     }
 
     @FXML
     void btnClickPdfAction(ActionEvent event) {
-       try {
-            PdfJogos.gerar(tfDir.getText() == null || tfDir.getText() == "" ? tfDir.getText() : "D:\\Downloads");
-            Desktop.getDesktop().open(new File(((tfDir.getText() == null || tfDir.getText() == "" ? tfDir.getText() : "D:\\Downloads") + "\\JogosRelatorio.pdf")));
-        } catch (Exception e) {
-            e.printStackTrace();
+        try {
+            PdfJogos.gerar(tfDir.getText() == null || "".equals(tfDir.getText()) ? tfDir.getText() : "D:\\Downloads");
+            Desktop.getDesktop().open(new File(((tfDir.getText() == null || "".equals(tfDir.getText()) ? tfDir.getText() : "D:\\Downloads") + "\\JogosRelatorio.pdf")));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
         }
     }
 

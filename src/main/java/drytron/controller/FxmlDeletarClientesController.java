@@ -1,19 +1,14 @@
 package drytron.controller;
 
 import drytron.dao.ClientesRepository;
-import drytron.dao.JogosDAO;
-import drytron.dao.JogosRepository;
 import drytron.dto.Clientes;
-import drytron.dto.Jogos;
 import drytron.util.Util;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -21,15 +16,6 @@ import javafx.scene.layout.AnchorPane;
  * @author patyu
  */
 public class FxmlDeletarClientesController implements Initializable {
-
-    @FXML
-    private Button btnDeletar;
-
-    @FXML
-    private Button btnLimpar;
-
-    @FXML
-    private Button btnSair;
 
     @FXML
     private TextField tfId;

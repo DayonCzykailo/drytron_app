@@ -8,7 +8,6 @@ import java.io.FileOutputStream;
 
 import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BadElementException;
-import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chapter;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -21,16 +20,14 @@ import com.itextpdf.text.Section;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import drytron.dao.ClientesRepository;
 import drytron.dao.FuncionariosRepository;
-import drytron.dto.Clientes;
 import drytron.dto.Funcionarios;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-public class PdfAdmin {
+public abstract class PdfAdmin {
 
     private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
-    private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.RED);
     private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
     private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
 
@@ -43,9 +40,9 @@ public class PdfAdmin {
             addMetaDado(document);
             addContent(document);
             document.close();
-            
-        } catch (Exception e) {
-            e.printStackTrace();
+
+        } catch (DocumentException | FileNotFoundException e) {
+            Mensagens.mensagemExcessao("Excessão", "Erro no arquivo", e);
         }
     }
 
@@ -140,7 +137,7 @@ public class PdfAdmin {
             table.addCell(new Phrase(Element.ALIGN_LEFT, list.get(i).getCpf(),
                     new Font(Font.FontFamily.TIMES_ROMAN, fonteDados, Font.BOLD)));
 
-            table.addCell(new Phrase(Element.ALIGN_LEFT,Dicionario.getCargo(list.get(i).getCargo()),
+            table.addCell(new Phrase(Element.ALIGN_LEFT, Dicionario.getCargo(list.get(i).getCargo()),
                     new Font(Font.FontFamily.TIMES_ROMAN, fonteDados, Font.BOLD)));
 
             table.addCell(new Phrase(Element.ALIGN_LEFT, list.get(i).getEmail(),

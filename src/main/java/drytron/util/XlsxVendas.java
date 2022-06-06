@@ -22,7 +22,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author dayon
  */
-public class XlsxVendas {
+public abstract class XlsxVendas {
 
     public static void GerarXlsx(String dir) throws IOException, ParseException {
         String[] coluna = {"ID", "NOME", "CPF", "TELEFONE", "E-MAIL", "LOCALIDADE", "BAIRRO", "UF"};
@@ -73,9 +73,9 @@ public class XlsxVendas {
                 sheet.autoSizeColumn(i);
             }
 
-            FileOutputStream fos = new FileOutputStream(dir + "\\VendasRelatorio.xlsx");
-            wb.write(fos);
-            fos.close();
+            try (FileOutputStream fos = new FileOutputStream(dir + "\\VendasRelatorio.xlsx")) {
+                wb.write(fos);
+            }
         }
     }
 }

@@ -1,11 +1,8 @@
 package drytron.controller;
 
 import drytron.dao.ClientesRepository;
-import drytron.dao.FuncionariosRepository;
 import drytron.dao.JogosRepository;
 import drytron.dao.VendasRepository;
-import drytron.dto.Clientes;
-import drytron.dto.Funcionarios;
 import drytron.dto.Jogos;
 import drytron.dto.TableVendas;
 import drytron.dto.Vendas;
@@ -13,13 +10,11 @@ import drytron.util.Util;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TableColumn;
@@ -29,21 +24,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.controlsfx.control.textfield.TextFields;
 
 public class FxmlVenderVendasController implements Initializable {
-
-    @FXML
-    private Button btnAdd;
-
-    @FXML
-    private Button btnLimpar;
-
-    @FXML
-    private Button btnRemove;
-
-    @FXML
-    private Button btnSair;
-
-    @FXML
-    private Button btnVender;
 
     @FXML
     private Spinner<Integer> spQuantidade;

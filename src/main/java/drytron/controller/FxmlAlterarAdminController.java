@@ -1,9 +1,7 @@
 package drytron.controller;
 
-import drytron.dao.ClientesRepository;
 import drytron.dao.FuncionariosRepository;
 import drytron.dto.Cargo;
-import drytron.dto.Clientes;
 import drytron.dto.Endereco;
 import drytron.dto.Funcionarios;
 import drytron.dto.Uf;
@@ -16,8 +14,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Point2D;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -28,14 +24,6 @@ import javafx.scene.layout.Pane;
 
 public class FxmlAlterarAdminController implements Initializable {
 
-    @FXML
-    private Button btnAlterar;
-
-    @FXML
-    private Button btnLimpar;
-
-    @FXML
-    private Button btnSair;
 
     @FXML
     private ChoiceBox<Cargo> cbCargo;
@@ -159,43 +147,36 @@ public class FxmlAlterarAdminController implements Initializable {
         cbCargo.setItems(FXCollections.observableArrayList(Cargo.values()));
         cbCargo.getItems().addAll();
 
-        tfSenha.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent e) {
-                if (rbMostrarSenha.isSelected()) {
-                    Util.mostrarSenha(toolTip, tfSenha);
-                } else {
-                    Util.esconderSenha(toolTip);
-                }
+        tfSenha.setOnKeyPressed((KeyEvent e) -> {
+            if (rbMostrarSenha.isSelected()) {
+                Util.mostrarSenha(toolTip, tfSenha);
+            } else {
+                Util.esconderSenha(toolTip);
             }
         });
-        pMain.setOnMouseMoved(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent t) {
-
-                if (Util.getFuncionarios()!= null) {
-                    Funcionarios f = Util.getFuncionarios();
-                    tfId.setText(String.valueOf(f.getId()));
-                    tfNome.setText(f.getNome());
-                    tfCpf.setText(f.getCpf());
-                    tfTel.setText(f.getTelefone());
-                    tfEmail.setText(f.getEmail());
-                    tfSenha.setText(f.getSenha());
-                    cbCargo.setValue(f.getCargo());
-
-                    tfCep.setText(f.getEndFun().getCep());
-                    tfComplemento.setText(f.getEndFun().getComplemento());
-                    tfLongradouro.setText(f.getEndFun().getLogradouro());
-                    tfBairro.setText(f.getEndFun().getBairro());
-                    tfLocalidade.setText(f.getEndFun().getLocalidade());
-                    cbUf.setValue(Dicionario.getUFEnum(f.getEndFun().getUf()));
-                    Util.setClientes(null);
-                }
-                if (rbMostrarSenha.isSelected()) {
-                    Util.mostrarSenha(toolTip, tfSenha);
-                } else {
-                    Util.esconderSenha(toolTip);
-                }
+        pMain.setOnMouseMoved((MouseEvent t) -> {
+            if (Util.getFuncionarios()!= null) {
+                Funcionarios f = Util.getFuncionarios();
+                tfId.setText(String.valueOf(f.getId()));
+                tfNome.setText(f.getNome());
+                tfCpf.setText(f.getCpf());
+                tfTel.setText(f.getTelefone());
+                tfEmail.setText(f.getEmail());
+                tfSenha.setText(f.getSenha());
+                cbCargo.setValue(f.getCargo());
+                
+                tfCep.setText(f.getEndFun().getCep());
+                tfComplemento.setText(f.getEndFun().getComplemento());
+                tfLongradouro.setText(f.getEndFun().getLogradouro());
+                tfBairro.setText(f.getEndFun().getBairro());
+                tfLocalidade.setText(f.getEndFun().getLocalidade());
+                cbUf.setValue(Dicionario.getUFEnum(f.getEndFun().getUf()));
+                Util.setClientes(null);
+            }
+            if (rbMostrarSenha.isSelected()) {
+                Util.mostrarSenha(toolTip, tfSenha);
+            } else {
+                Util.esconderSenha(toolTip);
             }
         });
     }

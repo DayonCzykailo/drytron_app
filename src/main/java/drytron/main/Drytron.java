@@ -39,9 +39,9 @@ public class Drytron extends Application {
     public void start(Stage stage) throws IOException {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlMainVendas.fxml"));
+            //root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlMainVendas.fxml"));
 
-            //root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlLogin.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlLogin.fxml"));
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/drytron/css/cssfxmlmain.css").toExternalForm());
 

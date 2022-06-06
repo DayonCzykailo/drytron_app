@@ -1,27 +1,15 @@
 package drytron.dao;
 
 import drytron.dto.Clientes;
-import drytron.dto.Endereco;
 import drytron.dto.Funcionarios;
 import drytron.dto.Jogos;
 import drytron.dto.Vendas;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+import drytron.util.Mensagens;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.chart.PieChart;
-import javafx.scene.chart.PieChart.Data;
-import javafx.scene.chart.ScatterChart;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -68,6 +56,7 @@ public class VendasRepository {
         }
         return vendas;
     }
+
     public List<Object[]> listaTodosScatterChart() {
         List<Object[]> vendas = null;
         try {
@@ -91,7 +80,6 @@ public class VendasRepository {
             Query query = em.createQuery("SELECT v FROM Vendas v where v.ativo = :ativo").setParameter("ativo", ativo);
             vendas = query.getResultList();
             em.getTransaction().commit();
-
         } catch (Exception e) {
             em.getTransaction().rollback();
             System.out.println(e);
@@ -213,6 +201,11 @@ public class VendasRepository {
 
     public void insere(Vendas vendas) {
         try {
+            if (vendas.getComprador() == null) {
+                Mensagens.mensagemAlerta("COMPRADOR INVÁLIDO", "ESCOLHA UM CLIENTE VÁLIDO");
+            } else if (vendas.getProduto() == null) {
+                Mensagens.mensagemAlerta("PRODUTO INVÁLIDO", "ESCOLHA UM JOGO VÁLIDO");
+            }            
             em.getTransaction().begin();
             em.persist(vendas);
             em.getTransaction().commit();
@@ -236,6 +229,9 @@ public class VendasRepository {
 
     public void remove(Long id) {
         Vendas vendas = this.pesquisaPeloId(id);
+         if (vendas == null || id == null || id == 0) {
+            Mensagens.mensagemAlerta("ID Inválido!", "Insira um ID válido, novamente.");
+        }
         try {
             em.getTransaction().begin();
             em.remove(vendas);

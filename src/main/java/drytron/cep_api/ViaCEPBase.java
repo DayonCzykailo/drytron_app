@@ -1,4 +1,3 @@
-
 package drytron.cep_api;
 
 import java.io.BufferedReader;
@@ -14,24 +13,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ViaCEPBase {
+
     protected List<CEP> CEPs;
     protected int index;
     protected String currentCEP;
-    
+
     protected ViaCEPEvents Events;
-    
-    public ViaCEPBase () {
+
+    public ViaCEPBase() {
         CEPs = new ArrayList<>();
         index = -1;
         currentCEP = "00000-000";
         this.Events = null;
     }
-    
-    // métodos abstratos
-    public abstract void buscar(String cep) throws ViaCEPException;
-    public abstract void buscarCEP(CEP cep) throws ViaCEPException;
 
-    public void buscarCEP(String Uf, String Localidade, String Logradouro) throws ViaCEPException {
+    // métodos abstratos
+    public abstract void buscar(String cep);
+
+    public abstract void buscarCEP(CEP cep);
+
+    public void buscarCEP(String Uf, String Localidade, String Logradouro) {
         buscarCEP(new CEP(Logradouro, Localidade, Uf));
     }
 
@@ -42,7 +43,7 @@ public abstract class ViaCEPBase {
     public int getSize() {
         return CEPs.size();
     }
-    
+
     public String getCep() {
         return CEPs.get(index).CEP;
     }
@@ -75,7 +76,7 @@ public abstract class ViaCEPBase {
         return CEPs.get(index).Gia;
     }
 
-    public final String getHttpGET(String urlToRead) throws ViaCEPException {
+    public final String getHttpGET(String urlToRead) {
         StringBuilder result = new StringBuilder();
 
         try {
@@ -83,29 +84,27 @@ public abstract class ViaCEPBase {
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
-            BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));
-            
+            BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+
             String line;
             while ((line = rd.readLine()) != null) {
                 result.append(line);
             }
-            
+
         } catch (MalformedURLException | ProtocolException ex) {
             // verifica os Eventos
             if (Events instanceof ViaCEPEvents) {
                 Events.onCEPError(currentCEP);
             }
-            
-            throw new ViaCEPException(ex.getMessage(), ex.getClass().getName());
+
         } catch (IOException ex) {
             // verifica os Eventos
             if (Events instanceof ViaCEPEvents) {
                 Events.onCEPError(currentCEP);
             }
-            
-            throw new ViaCEPException(ex.getMessage(), ex.getClass().getName());
+
         }
-        
+
         return result.toString();
     }
 
@@ -114,7 +113,7 @@ public abstract class ViaCEPBase {
             this.index = index;
             return true;
         }
-        
+
         this.index = -1;
         return false;
     }
@@ -124,18 +123,17 @@ public abstract class ViaCEPBase {
             index = 0;
             return true;
         }
-        
+
         index = -1;
         return false;
     }
-    
 
     public boolean moveNext() {
         if (CEPs.size() > 0 && (index + 1) < CEPs.size()) {
             index += 1;
             return true;
         }
-        
+
         index = -1;
         return false;
     }
@@ -145,17 +143,17 @@ public abstract class ViaCEPBase {
             index -= 1;
             return true;
         }
-        
+
         index = -1;
         return false;
     }
-    
+
     public boolean moveLast() {
         if (CEPs.size() > 0) {
             index = CEPs.size() - 1;
             return true;
         }
-        
+
         index = -1;
         return false;
     }
@@ -163,21 +161,21 @@ public abstract class ViaCEPBase {
     public List<CEP> getList() {
         return CEPs;
     }
-    
-    protected String formatStringToUri(String string) throws ViaCEPException {
+
+    protected String formatStringToUri(String string) {
         String out = null;
-        
+
         if (string != null && !string.isEmpty()) {
             try {
                 out = URLEncoder.encode(string, "utf-8");
                 out = out.replace("+", "%20");
             } catch (UnsupportedEncodingException e) {
-                throw new ViaCEPException("Não foi possível codificar o valor solicitado!", UnsupportedEncodingException.class.getName());
+                System.out.println("Não foi possível codificar o valor solicitado!");
             }
         } else {
-            throw new ViaCEPException("Valor nulo ou vazio informado!", String.class.getName());
+            System.out.println("Valor nulo ou vazio informado!");
         }
-        
+
         return out;
     }
 }

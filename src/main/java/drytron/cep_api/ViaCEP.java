@@ -1,4 +1,3 @@
-
 package drytron.cep_api;
 
 import org.json.JSONArray;
@@ -17,23 +16,23 @@ public class ViaCEP extends ViaCEPBase {
         this.Events = events;
     }
 
-    public ViaCEP(String cep, ViaCEPEvents events) throws ViaCEPException {
+    public ViaCEP(String cep, ViaCEPEvents events) {
         super();
         this.Events = events;
         this.buscar(cep);
     }
 
-    public ViaCEP(String cep) throws ViaCEPException {
+    public ViaCEP(String cep) {
         super();
         this.buscar(cep);
     }
 
     @Override
-    public final void buscar(String cep) throws ViaCEPException {
+    public final void buscar(String cep) {
         currentCEP = cep;
         cep = cep.replaceAll("-", "");
         cep = cep.replace(" ", "");
-        
+
         String url = "http://viacep.com.br/ws/" + cep + "/json/";
 
         JSONObject obj = new JSONObject(getHttpGET(url));
@@ -47,7 +46,7 @@ public class ViaCEP extends ViaCEPBase {
                     obj.getString("uf"),
                     obj.getString("ibge"),
                     obj.getString("gia"));
-            
+
             CEPs.add(novoCEP);
 
             index = CEPs.size() - 1;
@@ -60,17 +59,17 @@ public class ViaCEP extends ViaCEPBase {
                 Events.onCEPError(currentCEP);
             }
 
-            throw new ViaCEPException("Não foi possível encontrar o CEP", cep, ViaCEPException.class.getName());
+            System.out.println("Não foi possível encontrar o CEP");
         }
     }
 
     @Override
-    public void buscarCEP(CEP cep) throws ViaCEPException {
+    public void buscarCEP(CEP cep) {
         buscarCEP(cep.Uf, cep.Localidade, cep.Logradouro);
     }
 
     @Override
-    public void buscarCEP(String Uf, String Localidade, String Logradouro) throws ViaCEPException {
+    public void buscarCEP(String Uf, String Localidade, String Logradouro) {
         currentCEP = "?????-???";
 
         String url = "http://viacep.com.br/ws/" + Uf.toUpperCase() + "/" + Localidade + "/" + Logradouro + "/json/";
@@ -103,11 +102,11 @@ public class ViaCEP extends ViaCEPBase {
                         Events.onCEPError(currentCEP);
                     }
 
-                    throw new ViaCEPException("Não foi possível validar o CEP", currentCEP, ViaCEPException.class.getName());
+                    System.out.println("Não foi possível validar o CEP" + currentCEP);
                 }
             }
         } else {
-            throw new ViaCEPException("Nenhum CEP encontrado", currentCEP, getClass().getName());
+            System.out.println("Nenhum CEP encontrado" + currentCEP);
         }
     }
 }

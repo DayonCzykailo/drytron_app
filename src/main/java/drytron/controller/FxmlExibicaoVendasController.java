@@ -1,5 +1,6 @@
 package drytron.controller;
 
+import drytron.util.Mensagens;
 import drytron.util.PdfVendas;
 import drytron.util.XlsxVendas;
 import java.awt.Desktop;
@@ -11,35 +12,27 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class FxmlExibicaoVendasController implements Initializable {
-
-    @FXML
-    private Button btnAlterar;
-
-    @FXML
-    private Button btnLimpar;
-
-    @FXML
-    private Button btnSair;
 
     @FXML
     private TextField tfDir;
 
     @FXML
     void btnClickDirAction(ActionEvent event) {
-
+ if (!new File(tfDir.getText()).exists()) {
+            Mensagens.mensagemAlerta("Diretório não encontrado.", "Por favor digite um dirtório válido.");
+        }
     }
 
     @FXML
     void btnClickPdfAction(ActionEvent event) {
         try {
-            PdfVendas.gerar(tfDir.getText() == null || tfDir.getText() == "" ? tfDir.getText() : "D:\\Downloads");
-            Desktop.getDesktop().open(new File(((tfDir.getText() == null || tfDir.getText() == "" ? tfDir.getText() : "D:\\Downloads") + "\\VendasRelatorio.pdf")));
-        } catch (Exception e) {
-            e.printStackTrace();
+            PdfVendas.gerar(tfDir.getText() == null || "".equals(tfDir.getText()) ? tfDir.getText() : "D:\\Downloads");
+            Desktop.getDesktop().open(new File(((tfDir.getText() == null || "".equals(tfDir.getText()) ? tfDir.getText() : "D:\\Downloads") + "\\VendasRelatorio.pdf")));
+        } catch (IOException | ParseException ex) {
+            System.out.println(ex.getMessage());
         }
     }
 
@@ -51,8 +44,8 @@ public class FxmlExibicaoVendasController implements Initializable {
     @FXML
     void btnClickXlsxAction(ActionEvent event) throws ParseException {
         try {
-            XlsxVendas.GerarXlsx(tfDir.getText() == null || tfDir.getText() == "" ? tfDir.getText() : "D:\\Downloads");
-            Desktop.getDesktop().open(new File(((tfDir.getText() == null || tfDir.getText() == "" ? tfDir.getText() : "D:\\Downloads") + "\\VendasRelatorio.xlsx")));
+            XlsxVendas.GerarXlsx(tfDir.getText() == null || "".equals(tfDir.getText()) ? tfDir.getText() : "D:\\Downloads");
+            Desktop.getDesktop().open(new File(((tfDir.getText() == null || "".equals(tfDir.getText()) ? tfDir.getText() : "D:\\Downloads") + "\\VendasRelatorio.xlsx")));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }

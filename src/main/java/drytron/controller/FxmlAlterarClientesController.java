@@ -1,11 +1,8 @@
 package drytron.controller;
 
 import drytron.dao.ClientesRepository;
-import drytron.dao.JogosRepository;
 import drytron.dto.Clientes;
 import drytron.dto.Endereco;
-import drytron.dto.GeneroJogos;
-import drytron.dto.Jogos;
 import drytron.dto.Uf;
 import drytron.util.Dicionario;
 import drytron.util.Util;
@@ -15,21 +12,10 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 public class FxmlAlterarClientesController implements Initializable {
-
-    @FXML
-    private Button btnAlterar;
-
-    @FXML
-    private Button btnLimpar;
-
-    @FXML
-    private Button btnSair;
 
     @FXML
     private ChoiceBox<Uf> cbUf;

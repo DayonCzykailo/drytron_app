@@ -1,19 +1,19 @@
 package drytron.dto;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 /**
  *
  * @author dayon
  */
 @Entity
-public class Jogos {
+public class Jogos implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,6 +1,5 @@
 package drytron.controller;
 
-import drytron.dao.ClientesRepository;
 import drytron.dao.VendasRepository;
 import drytron.dto.TableMainVendas;
 import drytron.dto.Vendas;
@@ -10,15 +9,10 @@ import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.ResourceBundle;
-import java.util.Set;
-import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -33,51 +27,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
 public class FxmlMainVendasController implements Initializable {
-
-    @FXML
-    private Button btnAjuda;
-
-    @FXML
-    private Button btnAlterar;
-
-    @FXML
-    private Button btnAtualizar;
-
-    @FXML
-    private Button btnClientes;
-
-    @FXML
-    private Button btnDeletar;
-
-    @FXML
-    private Button btnExibicao;
-
-    @FXML
-    private Button btnMostrarMain;
-
-    @FXML
-    private Button btnPesquisarData;
-
-    @FXML
-    private Button btnPesquisarProduto;
-
-    @FXML
-    private Button btnProdutos;
-
-    @FXML
-    private Button btnRelatorio;
-
-    @FXML
-    private Button btnSair;
-
-    @FXML
-    private Button btnVender;
 
     @FXML
     private TableColumn<TableMainVendas, String> colCliente;
@@ -116,15 +69,6 @@ public class FxmlMainVendasController implements Initializable {
     private TextField tfPesquisarProduto;
 
     @FXML
-    private MenuItem miDevolucao;
-
-    @FXML
-    private MenuItem miMaisRecente;
-
-    @FXML
-    private MenuButton mbFiltros;
-
-    @FXML
     void miClickMaisRecenteAction(ActionEvent event) {
         mostrarDados(new ArrayList<>(new VendasRepository().listaPorData()));
     }
@@ -139,7 +83,6 @@ public class FxmlMainVendasController implements Initializable {
         if (tableMain.getSelectionModel().getSelectedIndex() == -1) {
             System.out.println("Escolha uma linha");
         } else {
-            VendasRepository vr = new VendasRepository();
             Vendas v = new VendasRepository().pesquisaPeloId(tableMain.getSelectionModel().getSelectedItem().getId());
             v.setAtivo('D');
 
@@ -237,7 +180,6 @@ public class FxmlMainVendasController implements Initializable {
         colVendedor.setCellValueFactory(new PropertyValueFactory<>("vendedor"));
         colQuantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
 
-        VendasRepository vendas = new VendasRepository();
         list = lista;
         ArrayList<TableMainVendas> listaTabela = new ArrayList<>();
 

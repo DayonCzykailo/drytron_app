@@ -5,18 +5,14 @@ package drytron.util;
  * @author dayon
  */
 import java.io.FileOutputStream;
-import java.util.Date;
 
 import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BadElementException;
-import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chapter;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
-import com.itextpdf.text.List;
-import com.itextpdf.text.ListItem;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
@@ -25,18 +21,13 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import drytron.dao.ClientesRepository;
-import drytron.dao.JogosRepository;
 import drytron.dto.Clientes;
-import drytron.dto.Jogos;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import org.apache.poi.ss.usermodel.Cell;
 
-public class PdfClientes {
+public abstract class PdfClientes {
 
     private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
-    private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.RED);
     private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
     private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
 
@@ -50,8 +41,8 @@ public class PdfClientes {
             addContent(document);
 
             document.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (DocumentException | FileNotFoundException e) {
+            Mensagens.mensagemExcessao("Excessão", "Erro no arquivo", e);
         }
     }
 

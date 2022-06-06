@@ -19,15 +19,15 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import javafx.event.EventType;
+
 /**
  *
  * @author dayon
- * 
+ *
  * Caralho porra, nao esquece de trocar os OptionPane sao feios demais, bj
  */
 public abstract class Mensagens {
-
-
 
     public static void mensagemInfo(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -92,10 +92,10 @@ public abstract class Mensagens {
         alert.showAndWait();
     }
 
-    public static final String YES = "Yes";
-    public static final String NO = "No";
+    public static final String SIM = "Sim";
+    public static final String NAO = "Não";
     public static final String OK = "OK";
-    public static final String CANCEL = "Cancel";
+    public static final String CANCELAR = "Cancelar";
 
     public static String mensagemConfirmar(String title, String message, String... options) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -104,10 +104,10 @@ public abstract class Mensagens {
         alert.setHeaderText(title);
         alert.setContentText(message);
 
-        //To make enter key press the actual focused button, not the first one. Just like pressing "space".
-       /* alert.getDialogPane().addEventFilter(KeyEvent.KEY_PRESSED, event : {
-            if (event.getCode().equals(KeyCode.ENTER)) {
-                event.consume();
+        
+        alert.getDialogPane().addEventFilter(KeyEvent.KEY_PRESSED, (t) -> {
+            if (t.getCode().equals(KeyCode.ENTER)) {
+                t.consume();
                 try {
                     Robot r = new Robot();
                     r.keyPress(java.awt.event.KeyEvent.VK_SPACE);
@@ -116,10 +116,10 @@ public abstract class Mensagens {
                     e.printStackTrace();
                 }
             }
-        });*/
+        });
 
         if (options == null || options.length == 0) {
-            options = new String[]{OK, CANCEL};
+            options = new String[]{OK, CANCELAR};
         }
 
         List<ButtonType> buttons = new ArrayList<>();
@@ -131,7 +131,7 @@ public abstract class Mensagens {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (!result.isPresent()) {
-            return CANCEL;
+            return CANCELAR;
         } else {
             return result.get().getText();
         }

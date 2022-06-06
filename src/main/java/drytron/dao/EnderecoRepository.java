@@ -1,7 +1,7 @@
 package drytron.dao;
 
 import drytron.dto.Endereco;
-import drytron.dto.Jogos;
+import drytron.util.Mensagens;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -41,9 +41,9 @@ public class EnderecoRepository {
 
     public void insere(Endereco endereco) {
         try {
+            endereco.setCep(endereco.getCep().replace("-", ""));
             em.getTransaction().begin();
             em.persist(endereco);
-            endereco.setCep(endereco.getCep().replace("-", ""));
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -66,6 +66,9 @@ public class EnderecoRepository {
 
     public void remove(Long id) {
         Endereco endereco = this.pesquisaPeloId(id);
+        if (endereco == null || id == null || id == 0) {
+            Mensagens.mensagemAlerta("ID Inválido!", "Insira um ID válido, novamente.");
+        }
         try {
             em.getTransaction().begin();
             em.remove(endereco);

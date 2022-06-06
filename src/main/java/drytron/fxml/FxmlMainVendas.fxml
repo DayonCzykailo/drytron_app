@@ -175,7 +175,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label fx:id="lbnData" layoutX="677.0" layoutY="16.0" prefHeight="17.0" prefWidth="95.0" text="03/05/2021">
+                  <Label fx:id="lbnData" layoutX="753.0" layoutY="15.0" prefHeight="17.0" prefWidth="95.0" text="03/05/2021">
                      <graphic>
                         <ImageView fitHeight="16.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -216,15 +216,6 @@
                         <Font name="System Bold" size="11.0" />
                      </font>
                   </MenuButton>
-                  <Button fx:id="btnMostrarMain" layoutX="823.0" layoutY="19.0" mnemonicParsing="false" onAction="#btnClickMostrarMaisAction" prefHeight="21.0" prefWidth="34.0" style="-fx-background-color: #e1dfd9;">
-                     <graphic>
-                        <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icon/iconMostrarMais.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
                </children>
             </Pane>
          </children>

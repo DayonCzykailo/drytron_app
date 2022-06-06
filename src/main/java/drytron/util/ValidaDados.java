@@ -8,11 +8,9 @@ import java.util.InputMismatchException;
 
 public abstract class ValidaDados {
 
-    final static String formataData = "dd/MM/uuuu";
-
     public static boolean validaData(String dia) {
 
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(formataData)
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern( "dd/MM/uuuu")
                 .withResolverStyle(ResolverStyle.STRICT);
 
         try {
@@ -24,6 +22,7 @@ public abstract class ValidaDados {
             return false;
         }
     }
+    
 
     public static boolean validaCpf(String cpf) {
 

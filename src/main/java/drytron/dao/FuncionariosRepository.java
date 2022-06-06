@@ -1,6 +1,5 @@
 package drytron.dao;
 
-import drytron.dto.Clientes;
 import drytron.dto.Endereco;
 import drytron.dto.Funcionarios;
 import java.util.List;

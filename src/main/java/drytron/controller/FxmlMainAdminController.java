@@ -36,36 +36,6 @@ import javafx.stage.Stage;
 public class FxmlMainAdminController implements Initializable {
 
     @FXML
-    private Button btnAjuda;
-
-    @FXML
-    private Button btnAlterar;
-
-    @FXML
-    private Button btnAtualizar;
-
-    @FXML
-    private Button btnCadastrar;
-
-    @FXML
-    private Button btnDeletar;
-
-    @FXML
-    private Button btnExibicao;
-
-    @FXML
-    private Button btnMostrarMain;
-
-    @FXML
-    private Button btnPesquisar;
-
-    @FXML
-    private Button btnRelatorio;
-
-    @FXML
-    private Button btnSair;
-
-    @FXML
     private TableColumn<Funcionarios, String> colCargo;
 
     @FXML
@@ -245,21 +215,16 @@ public class FxmlMainAdminController implements Initializable {
 
         lbnData.setText(LocalDate.now().format(DateTimeFormatter.ofPattern("d/MM/uuuu")));
 
-        tableMain.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent t) {
-                if (t.getClickCount() == 2) {
-
-                    Util.setFuncionarios(new FuncionariosRepository().pesquisaPeloId(tableMain.getSelectionModel().getSelectedItem().getId()));
-                    telaAutenticacao("/drytron/fxml/FxmlAlterarAdmin.fxml");
-                } else if (t.getButton() == MouseButton.SECONDARY) {
-                    Util.setFuncionarios(new FuncionariosRepository().pesquisaPeloId(tableMain.getSelectionModel().getSelectedItem().getId()));
-                    telaAutenticacao("/drytron/fxml/FxmlDeletarAdmin.fxml");
-                }
-
+        tableMain.setOnMouseClicked((MouseEvent t) -> {
+            if (t.getClickCount() == 2) {
+                
+                Util.setFuncionarios(new FuncionariosRepository().pesquisaPeloId(tableMain.getSelectionModel().getSelectedItem().getId()));
+                telaAutenticacao("/drytron/fxml/FxmlAlterarAdmin.fxml");
+            } else if (t.getButton() == MouseButton.SECONDARY) {
+                Util.setFuncionarios(new FuncionariosRepository().pesquisaPeloId(tableMain.getSelectionModel().getSelectedItem().getId()));
+                telaAutenticacao("/drytron/fxml/FxmlDeletarAdmin.fxml");
             }
-        }
-        );
+        });
     }
 
 }

@@ -1,12 +1,8 @@
 package drytron.controller;
 
-import drytron.dao.FuncionariosRepository;
-import drytron.dto.Funcionarios;
-import drytron.main.Drytron;
 import drytron.util.Util;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,21 +10,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class FxmlAutenticacaoController implements Initializable {
 
-    @FXML
-    private Button btnEntrar;
-
-    @FXML
-    private Button btnLimpar;
-
-    @FXML
-    private Button btnSair;
 
     @FXML
     private PasswordField tfSenha;

@@ -97,7 +97,7 @@
             <Pane layoutX="-1.0" layoutY="396.0" prefHeight="31.0" prefWidth="246.0">
                <children>
                   <Label layoutX="7.0" layoutY="6.0" prefHeight="17.0" prefWidth="57.0" text="Estado(UF)" />
-                  <ChoiceBox fx:id="cbUf" layoutX="82.0" layoutY="2.0" prefWidth="150.0">
+                  <ChoiceBox fx:id="cbUf" disable="true" layoutX="82.0" layoutY="2.0" prefWidth="150.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

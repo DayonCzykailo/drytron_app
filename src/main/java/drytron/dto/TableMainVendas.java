@@ -1,9 +1,5 @@
 package drytron.dto;
 
-import java.time.LocalDateTime;
-import javax.persistence.CascadeType;
-import javax.persistence.OneToOne;
-
 /**
  *
  * @author dayon

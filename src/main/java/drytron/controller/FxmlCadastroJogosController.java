@@ -5,21 +5,15 @@ import drytron.dto.GeneroJogos;
 import drytron.dto.Jogos;
 import drytron.dto.PlataformaJogos;
 import drytron.util.Dicionario;
-import drytron.util.Util;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 
 /**
  *
@@ -39,15 +33,6 @@ public class FxmlCadastroJogosController implements Initializable {
         tfPreco.clear();
         tfIdioma.clear();
     }
-
-    @FXML
-    private Button btnCadastrar;
-
-    @FXML
-    private Button btnLimpar;
-
-    @FXML
-    private Button btnSair;
 
     @FXML
     private ChoiceBox<GeneroJogos> cbGenero;
@@ -114,6 +99,8 @@ public class FxmlCadastroJogosController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

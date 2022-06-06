@@ -1,8 +1,6 @@
 package drytron.util;
 
-import drytron.dao.ClientesRepository;
 import drytron.dao.FuncionariosRepository;
-import drytron.dto.Clientes;
 import drytron.dto.Funcionarios;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -19,7 +17,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author dayon
  */
-public class XlsxAdmin {
+public abstract class XlsxAdmin {
 
     public static void GerarXlsx(String dir) throws IOException {
         String[] coluna = {"ID", "NOME", "CPF", "CARGO", "E-MAIL", "LOCALIDADE", "BAIRRO", "UF"};

@@ -1,7 +1,5 @@
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\controller\FxmlMainClientesController.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\controller\FxmlRelatorioJogosController.java
-D:\NetBeansProjects\drytron_app\src\main\java\drytron\cep_api\ViaCEPException.java
-D:\NetBeansProjects\drytron_app\src\main\java\drytron\email\SendEmail.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\controller\FxmlDeletarClientesController.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\dto\Vendas.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\controller\FxmlLoginController.java
@@ -9,6 +7,8 @@ D:\NetBeansProjects\drytron_app\src\main\java\drytron\controller\FxmlCadastroAdm
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\util\XlsxJogos.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\util\PdfAdmin.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\controller\FxmlMainController.java
+D:\NetBeansProjects\drytron_app\src\main\java\drytron\controller\FxmlExibicaoVendasController.java
+D:\NetBeansProjects\drytron_app\src\main\java\drytron\email\Email.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\dao\ClientesDAO.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\dao\ClientesRepository.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\util\PdfClientes.java
@@ -20,6 +20,7 @@ D:\NetBeansProjects\drytron_app\src\main\java\drytron\dto\Uf.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\dto\Cargo.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\cep_api\CEP.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\controller\FxmlAlterarAdminController.java
+D:\NetBeansProjects\drytron_app\src\main\java\drytron\util\PdfVendas.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\controller\FxmlDeletarJogosController.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\dto\Jogos.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\dao\EnderecoRepository.java
@@ -31,6 +32,7 @@ D:\NetBeansProjects\drytron_app\src\main\java\drytron\main\Main.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\util\Dicionario.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\controller\FxmlExibicaoJogosController.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\controller\FxmlVenderVendasController.java
+D:\NetBeansProjects\drytron_app\src\main\java\drytron\util\Mascaras.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\controller\FxmlCadastroJogosController.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\util\PdfJogos.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\controller\FxmlAutenticacaoController.java
@@ -41,11 +43,14 @@ D:\NetBeansProjects\drytron_app\src\main\java\drytron\dto\GeneroJogos.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\dto\TableVendas.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\util\XlsxAdmin.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\dto\Funcionarios.java
+D:\NetBeansProjects\drytron_app\src\main\java\drytron\util\XlsxVendas.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\controller\FxmlRelatorioClientesController.java
+D:\NetBeansProjects\drytron_app\src\main\java\drytron\controller\FxmlRelatorioVendasController.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\dao\VendasRepository.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\controller\FxmlExibicaoAdminController.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\controller\FxmlEnderecoClientesController.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\util\Mensagens.java
+D:\NetBeansProjects\drytron_app\src\main\java\drytron\controller\FxmlEsqueciMinhaSenhaController.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\controller\FxmlMainVendasController.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\controller\FxmlCadastroClientesController.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\util\ValidaDados.java
@@ -53,7 +58,6 @@ D:\NetBeansProjects\drytron_app\src\main\java\drytron\util\XlsxClientes.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\controller\FxmlAlterarJogosController.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\dto\TableMainVendas.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\controller\FxmlDeletarAdminController.java
-D:\NetBeansProjects\drytron_app\src\main\java\drytron\cep_api\Main.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\controller\FxmlMainAdminController.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\controller\FxmlExibicaoClientesController.java
 D:\NetBeansProjects\drytron_app\src\main\java\drytron\cep_api\ViaCEPBase.java

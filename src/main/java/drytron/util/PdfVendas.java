@@ -8,7 +8,6 @@ import java.io.FileOutputStream;
 
 import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BadElementException;
-import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chapter;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -21,9 +20,7 @@ import com.itextpdf.text.Section;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import drytron.dao.ClientesRepository;
 import drytron.dao.VendasRepository;
-import drytron.dto.Clientes;
 import drytron.dto.Vendas;
 import java.io.FileNotFoundException;
 import java.text.NumberFormat;
@@ -33,7 +30,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class PdfVendas {
+public abstract class PdfVendas {
 
     private static final Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
     private static final Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="375.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="drytron.controller.FxmlEsqueciMinhaSenhaController">
+   <children>
+      <ImageView fx:id="FxmlLogin" fitHeight="468.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icon/iconSpaceLogin.jpg" />
+         </image>
+      </ImageView>
+      <Pane layoutX="347.0" layoutY="46.0" prefHeight="283.0" prefWidth="239.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <ImageView fitHeight="103.0" fitWidth="135.0" layoutX="68.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/iconPlanet.jpeg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="42.0" layoutX="8.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/iconEmail-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="tfEmail" layoutX="49.0" layoutY="115.0" onAction="#tfEmailAction" prefHeight="25.0" prefWidth="170.0" promptText="Insira seu E-mail ...">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
+            <ImageView fitHeight="42.0" fitWidth="51.0" layoutX="119.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/iconCadeado.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnVerificar" layoutX="7.0" layoutY="207.0" mnemonicParsing="false" onAction="#btnClickbtnVerificarAction" prefHeight="30.0" prefWidth="222.0" style="-fx-background-color: #8fce00;" text="VERIFICAR">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnSair" layoutX="7.0" layoutY="242.0" mnemonicParsing="false" onAction="#btnClickSairAction" prefHeight="30.0" prefWidth="222.0" style="-fx-background-color: #ff0000;" text="SAIR">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="16.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/iconVerificado.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="tfCodigo" layoutX="49.0" layoutY="149.0" prefHeight="30.0" prefWidth="170.0" promptText="Insira o Codigo recebido por e-mail">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+         </children>
+      </Pane>
+   </children>
+</Pane>
