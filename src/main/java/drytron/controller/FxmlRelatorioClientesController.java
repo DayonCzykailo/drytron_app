@@ -1,6 +1,6 @@
 package drytron.controller;
 
-import drytron.dao.ClientesRepository;
+import drytron.repository.ClientesRepository;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;

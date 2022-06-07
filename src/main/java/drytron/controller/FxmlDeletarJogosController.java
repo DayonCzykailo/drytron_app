@@ -1,6 +1,6 @@
 package drytron.controller;
 
-import drytron.dao.JogosRepository;
+import drytron.repository.JogosRepository;
 import drytron.dto.Jogos;
 import drytron.util.Util;
 import java.net.URL;
@@ -34,7 +34,7 @@ public class FxmlDeletarJogosController implements Initializable {
 
     @FXML
     void btnClickSairAction(ActionEvent event) {
-        FxmlMainController.getStage().close();
+        FxmlFactory.fecharTelaSecundario();
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {

@@ -1,11 +1,12 @@
 package drytron.controller;
 
-import drytron.dao.ClientesRepository;
-import drytron.dao.JogosRepository;
-import drytron.dao.VendasRepository;
+import drytron.repository.ClientesRepository;
+import drytron.repository.JogosRepository;
+import drytron.repository.VendasRepository;
 import drytron.dto.Jogos;
-import drytron.dto.TableVendas;
+import drytron.model.TableVendas;
 import drytron.dto.Vendas;
+import drytron.util.Mascaras;
 import drytron.util.Util;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -139,6 +140,8 @@ public class FxmlVenderVendasController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Mascaras.mascaraNumero(tfDesconto);
+        
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100);
         valueFactory.setValue(1);
         spQuantidade.setValueFactory(valueFactory);

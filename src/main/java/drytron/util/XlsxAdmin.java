@@ -1,6 +1,6 @@
 package drytron.util;
 
-import drytron.dao.FuncionariosRepository;
+import drytron.repository.FuncionariosRepository;
 import drytron.dto.Funcionarios;
 import java.io.FileOutputStream;
 import java.io.IOException;

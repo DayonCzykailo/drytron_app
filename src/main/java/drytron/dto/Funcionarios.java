@@ -1,5 +1,6 @@
 package drytron.dto;
 
+import drytron.model.Cargo;
 import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

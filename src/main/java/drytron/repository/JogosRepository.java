@@ -1,4 +1,4 @@
-package drytron.dao;
+package drytron.repository;
 
 import drytron.dto.Jogos;
 import java.util.List;

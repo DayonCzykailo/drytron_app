@@ -1,6 +1,6 @@
 package drytron.controller;
 
-import drytron.dao.JogosRepository;
+import drytron.repository.JogosRepository;
 import drytron.dto.Jogos;
 import java.net.URL;
 import java.util.List;

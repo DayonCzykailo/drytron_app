@@ -1,4 +1,4 @@
-package drytron.dao;
+package drytron.repository;
 
 import drytron.dto.Endereco;
 import drytron.util.Mensagens;

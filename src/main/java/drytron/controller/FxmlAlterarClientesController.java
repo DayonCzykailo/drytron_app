@@ -1,10 +1,12 @@
 package drytron.controller;
 
-import drytron.dao.ClientesRepository;
+import drytron.repository.ClientesRepository;
 import drytron.dto.Clientes;
 import drytron.dto.Endereco;
-import drytron.dto.Uf;
+import drytron.model.Uf;
 import drytron.util.Dicionario;
+import drytron.util.Mascaras;
+import drytron.util.Mensagens;
 import drytron.util.Util;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -70,8 +72,11 @@ public class FxmlAlterarClientesController implements Initializable {
 
         c.setEndCli(endCli);
 
-        ClientesRepository cr = new ClientesRepository();
-        cr.atualiza(c);
+        if (Mensagens.mensagemConfirmar("CONFIRMAR ALTERAR", "TEM CERTEZA QUE OS DADOS ESTÃO CORRETOS?", Mensagens.SIM, Mensagens.NAO).equals(Mensagens.SIM)) {
+            ClientesRepository cr = new ClientesRepository();
+            cr.atualiza(c);
+            FxmlFactory.fecharTelaSecundario();
+        }
     }
 
     @FXML
@@ -91,7 +96,7 @@ public class FxmlAlterarClientesController implements Initializable {
 
     @FXML
     void btnClickSairAction(ActionEvent event) {
-        FxmlMainController.getStage().close();
+        FxmlFactory.fecharTelaSecundario();
     }
 
     @FXML
@@ -117,12 +122,17 @@ public class FxmlAlterarClientesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Mascaras.mascaraCEP(tfCep);
+        Mascaras.mascaraCPF(tfCpf);
+        Mascaras.mascaraTelefone(tfTel);
+        Mascaras.mascaraEmail(tfEmail);
+
         cbUf.setItems(FXCollections.observableArrayList(Uf.values()));
         cbUf.getItems().addAll();
 
         if (Util.getClientes() != null) {
             Clientes c = Util.getClientes();
-            
+
             tfId.setText(Long.toString(c.getId()));
             tfNome.setText(c.getNome());
             tfCpf.setText(c.getCpf());

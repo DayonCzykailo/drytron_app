@@ -1,7 +1,7 @@
 package drytron.controller;
 
 import drytron.cep_api.ViaCEP;
-import drytron.dao.EnderecoRepository;
+import drytron.repository.EnderecoRepository;
 import drytron.dto.Endereco;
 import drytron.util.Util;
 import java.net.URL;
@@ -12,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 public class FxmlEnderecoClientesController implements Initializable {
-
 
     @FXML
     private TextField tfBairro;
@@ -78,7 +77,7 @@ public class FxmlEnderecoClientesController implements Initializable {
 
     @FXML
     void btnClickSairAction(ActionEvent event) {
-        FxmlMainClientesController.getStage().close();
+        FxmlFactory.fecharTelaSecundario();
     }
 
     @Override

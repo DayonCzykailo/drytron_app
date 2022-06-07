@@ -1,12 +1,14 @@
 package drytron.controller;
 
 import drytron.cep_api.ViaCEP;
-import drytron.dao.FuncionariosRepository;
-import drytron.dto.Cargo;
+import drytron.repository.FuncionariosRepository;
+import drytron.model.Cargo;
 import drytron.dto.Endereco;
 import drytron.dto.Funcionarios;
-import drytron.dto.Uf;
+import drytron.model.Uf;
 import drytron.util.Dicionario;
+import drytron.util.Mascaras;
+import drytron.util.Mensagens;
 import drytron.util.Util;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -83,9 +85,13 @@ public class FxmlCadastroAdminController implements Initializable {
         f.setSenha(tfSenha.getText());
         f.setCargo(cbCargo.getValue());
         f.setNivel(Dicionario.getNivel(cbCargo.getValue()));
+        
+        if (Mensagens.mensagemConfirmar("CONFIRMAR CADASTRO", "TEM CERTEZA QUE OS DADOS ESTÃO CORRETOS?", Mensagens.SIM, Mensagens.NAO).equals(Mensagens.SIM)) {
+            FuncionariosRepository fr = new FuncionariosRepository();
+            fr.insere(f);
+            FxmlFactory.fecharTelaSecundario();
+        }
 
-        FuncionariosRepository fr = new FuncionariosRepository();
-        fr.insere(f);
     }
 
     @FXML
@@ -103,6 +109,7 @@ public class FxmlCadastroAdminController implements Initializable {
 
             System.out.println(vc.getLocalidade());
         } catch (Exception ex) {
+            Mensagens.mensagemExcessao("ERRO", "Verifique seu CEP.", ex);
         }
     }
 
@@ -124,15 +131,19 @@ public class FxmlCadastroAdminController implements Initializable {
 
     @FXML
     void btnClickSairAction(ActionEvent event) {
-        FxmlMainAdminController.getStage().close();
+        FxmlFactory.fecharTelaSecundario();
     }
 
     @FXML
     private Tooltip toolTip;
 
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Mascaras.mascaraCPF(tfCpf);
+        Mascaras.mascaraTelefone(tfTel);
+        Mascaras.mascaraEmail(tfEmail);
+        Mascaras.mascaraCEP(tfCep);
+
         cbCargo.setItems(FXCollections.observableArrayList(Cargo.values()));
         cbCargo.getItems().addAll();
 

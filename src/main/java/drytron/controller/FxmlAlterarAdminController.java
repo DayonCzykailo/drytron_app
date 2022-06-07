@@ -1,11 +1,13 @@
 package drytron.controller;
 
-import drytron.dao.FuncionariosRepository;
-import drytron.dto.Cargo;
+import drytron.repository.FuncionariosRepository;
+import drytron.model.Cargo;
 import drytron.dto.Endereco;
 import drytron.dto.Funcionarios;
-import drytron.dto.Uf;
+import drytron.model.Uf;
 import drytron.util.Dicionario;
+import drytron.util.Mascaras;
+import drytron.util.Mensagens;
 import drytron.util.Util;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,7 +25,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 public class FxmlAlterarAdminController implements Initializable {
-
 
     @FXML
     private ChoiceBox<Cargo> cbCargo;
@@ -89,9 +90,12 @@ public class FxmlAlterarAdminController implements Initializable {
         f.setSenha(tfSenha.getText());
         f.setCargo(cbCargo.getValue());
         f.setNivel(Dicionario.getNivel(cbCargo.getValue()));
+        if (Mensagens.mensagemConfirmar("CONFIRMAR ALTERAÇÃO", "TEM CERTEZA QUE OS DADOS ESTÃO CORRETOS?", Mensagens.SIM, Mensagens.NAO).equals(Mensagens.SIM)) {
+            FuncionariosRepository fr = new FuncionariosRepository();
+            fr.atualiza(f);
+            FxmlFactory.fecharTelaSecundario();
+        }
 
-        FuncionariosRepository fr = new FuncionariosRepository();
-        fr.atualiza(f);
     }
 
     @FXML
@@ -112,7 +116,7 @@ public class FxmlAlterarAdminController implements Initializable {
 
     @FXML
     void btnClickSairAction(ActionEvent event) {
-        FxmlMainController.getStage().close();
+        FxmlFactory.fecharTelaSecundario();
     }
 
     @FXML
@@ -144,6 +148,11 @@ public class FxmlAlterarAdminController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Mascaras.mascaraCPF(tfCpf);
+        Mascaras.mascaraTelefone(tfTel);
+        Mascaras.mascaraEmail(tfEmail);
+        Mascaras.mascaraCEP(tfCep);
+
         cbCargo.setItems(FXCollections.observableArrayList(Cargo.values()));
         cbCargo.getItems().addAll();
 
@@ -155,7 +164,7 @@ public class FxmlAlterarAdminController implements Initializable {
             }
         });
         pMain.setOnMouseMoved((MouseEvent t) -> {
-            if (Util.getFuncionarios()!= null) {
+            if (Util.getFuncionarios() != null) {
                 Funcionarios f = Util.getFuncionarios();
                 tfId.setText(String.valueOf(f.getId()));
                 tfNome.setText(f.getNome());
@@ -164,7 +173,7 @@ public class FxmlAlterarAdminController implements Initializable {
                 tfEmail.setText(f.getEmail());
                 tfSenha.setText(f.getSenha());
                 cbCargo.setValue(f.getCargo());
-                
+
                 tfCep.setText(f.getEndFun().getCep());
                 tfComplemento.setText(f.getEndFun().getComplemento());
                 tfLongradouro.setText(f.getEndFun().getLogradouro());

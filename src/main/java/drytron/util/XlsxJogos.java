@@ -1,6 +1,6 @@
 package drytron.util;
 
-import drytron.dao.JogosRepository;
+import drytron.repository.JogosRepository;
 import drytron.dto.Jogos;
 import java.io.FileOutputStream;
 import java.io.IOException;

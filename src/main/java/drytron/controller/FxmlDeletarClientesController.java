@@ -1,6 +1,6 @@
 package drytron.controller;
 
-import drytron.dao.ClientesRepository;
+import drytron.repository.ClientesRepository;
 import drytron.dto.Clientes;
 import drytron.util.Util;
 import java.net.URL;
@@ -33,7 +33,7 @@ public class FxmlDeletarClientesController implements Initializable {
 
     @FXML
     void btnClickSairAction(ActionEvent event) {
-        FxmlMainController.getStage().close();
+        FxmlFactory.fecharTelaSecundario();
     }
 
     @FXML

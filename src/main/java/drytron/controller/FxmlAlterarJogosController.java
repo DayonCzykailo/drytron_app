@@ -1,10 +1,13 @@
 package drytron.controller;
 
-import drytron.dao.JogosRepository;
-import drytron.dto.GeneroJogos;
+import drytron.repository.JogosRepository;
+import drytron.model.GeneroJogos;
 import drytron.dto.Jogos;
-import drytron.dto.PlataformaJogos;
+import drytron.model.PlataformaJogos;
+import drytron.repository.ClientesRepository;
 import drytron.util.Dicionario;
+import drytron.util.Mascaras;
+import drytron.util.Mensagens;
 import drytron.util.Util;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -93,8 +96,12 @@ public class FxmlAlterarJogosController implements Initializable {
         j.setEstoque(Integer.parseInt(tfEstoque.getText()));
         j.setPreco(Float.parseFloat(tfPreco.getText()));
 
-        JogosRepository jr = new JogosRepository();
-        jr.alterar(j);
+        if (Mensagens.mensagemConfirmar("CONFIRMAR ALTERAÇÃO", "TEM CERTEZA QUE OS DADOS ESTÃO CORRETOS?", Mensagens.SIM, Mensagens.NAO).equals(Mensagens.SIM)) {
+            JogosRepository jr = new JogosRepository();
+            jr.alterar(j);
+            FxmlFactory.fecharTelaSecundario();
+        }
+
     }
 
     @FXML
@@ -112,11 +119,16 @@ public class FxmlAlterarJogosController implements Initializable {
 
     @FXML
     void btnClickSairAction(ActionEvent event) {
-        FxmlMainController.getStage().close();
+        FxmlFactory.fecharTelaSecundario();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Mascaras.mascaraNumeroInteiro(tfID);
+        Mascaras.mascaraNumeroInteiro(tfEstoque);
+        Mascaras.mascaraNumero(tfPreco);
+        Mascaras.mascaraData(dpLancamento);
+
         cbGenero.setItems(FXCollections.observableArrayList(GeneroJogos.values()));
         cbPlataforma.setItems(FXCollections.observableArrayList(PlataformaJogos.values()));
 
@@ -125,7 +137,7 @@ public class FxmlAlterarJogosController implements Initializable {
 
         if (Util.getJogos() != null) {
             Jogos j = Util.getJogos();
-            
+
             tfID.setText(Long.toString(j.getId()));
             tfNome.setText(j.getNome());
             tfDesenvolvedor.setText(j.getDesenvolvedor());

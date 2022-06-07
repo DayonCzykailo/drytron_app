@@ -1,10 +1,9 @@
 package drytron.controller;
 
-import drytron.dao.FuncionariosRepository;
-import drytron.dto.Cargo;
+import drytron.repository.FuncionariosRepository;
+import drytron.model.Cargo;
 import drytron.dto.Funcionarios;
 import drytron.email.Email;
-import drytron.main.Drytron;
 import drytron.util.Mensagens;
 import drytron.util.Util;
 import java.io.IOException;
@@ -16,17 +15,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class FxmlEsqueciMinhaSenhaController implements Initializable {
 
-    private static Stage stage = new Stage();
     String uuid;
     FuncionariosRepository cr = new FuncionariosRepository();
     List<Funcionarios> lista = cr.listaTodos();
@@ -39,17 +32,8 @@ public class FxmlEsqueciMinhaSenhaController implements Initializable {
 
     @FXML
     void btnClickSairAction(ActionEvent event) {
-        Parent root;
         try {
-            Drytron.getStage().close();
-            root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlLogin.fxml"));
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/drytron/css/cssfxmlmain.css").toExternalForm());
-            stage.setTitle("Sistema de Vendas-Drytron");
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
-           
+            FxmlFactory.acessarTelaPrincipal(FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlLogin.fxml")), getClass().getResource("/drytron/css/cssfxmlmain.css").toExternalForm());
         } catch (IOException e) {
             System.out.println("ERRO em iniciar o programa. (" + e.getMessage() + ")");
         }
@@ -60,27 +44,13 @@ public class FxmlEsqueciMinhaSenhaController implements Initializable {
         if (tfCodigo.getText().equals(uuid)) {
             if (Util.getUsuario().getCargo().equals(Cargo.ADMINISTRADOR) || Util.getUsuario().getCargo().equals(Cargo.GERENTE)) {
                 try {
-                    Parent root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlMainAdmin.fxml"));
-                    Scene scene = new Scene(root);
-                    scene.getStylesheets().add(getClass().getResource("/drytron/css/cssfxmlmainAdmin.css").toExternalForm());
-                    stage.setTitle("Sistema de Vendas-Drytron");
-                    stage.setScene(scene);
-                    stage.setResizable(false);
-                    stage.show();
-                    Drytron.getStage().close();
+                    FxmlFactory.acessarTelaPrincipal(FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlMainAdmin.fxml")));
                 } catch (IOException ex) {
                     System.out.println("DEU RUIM EM btnClickbtnEntrarAction no FXMLLOGIN");
                 }
             } else {
                 try {
-                    Parent root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlMainProdutos.fxml"));
-                    Scene scene = new Scene(root);
-                    scene.getStylesheets().add(getClass().getResource("/drytron/css/cssfxmlmain.css").toExternalForm());
-                    stage.setTitle("Sistema de Vendas-Drytron");
-                    stage.setScene(scene);
-                    stage.setResizable(false);
-                    stage.show();
-                    Drytron.getStage().close();
+                    FxmlFactory.acessarTelaPrincipal(FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlMainProdutos.fxml")), getClass().getResource("/drytron/css/cssfxmlmain.css").toExternalForm());
                 } catch (IOException ex) {
                     System.out.println("DEU RUIM EM btnClickbtnEntrarAction no FXMLLOGIN");
                 }
@@ -99,13 +69,11 @@ public class FxmlEsqueciMinhaSenhaController implements Initializable {
                 return;
             }
         }
-
         Mensagens.mensagemAlerta("E-MAIL INVÁLIDO", "INSIRA O E-MAIL DO FUNCIONARIO EM QUESTÃO");
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         uuid = UUID.randomUUID().toString();
-
     }
 }

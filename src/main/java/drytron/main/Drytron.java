@@ -12,6 +12,7 @@
 */
 package drytron.main;
 
+import drytron.controller.FxmlFactory;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -25,31 +26,13 @@ import javafx.stage.Stage;
  */
 public class Drytron extends Application {
 
-    private static Stage stage;
-
-    public static Stage getStage() {
-        return stage;
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = null;
         try {
-            //root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlMainVendas.fxml"));
+            //root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlCadastrarAdmin.fxml"));
 
-            root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlLogin.fxml"));
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/drytron/css/cssfxmlmain.css").toExternalForm());
-
-            stage.setTitle("Sistema de Vendas-Drytron");
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
-            setStage(stage);
+            FxmlFactory.acessarTelaPrincipal(FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlLogin.fxml")),getClass().getResource("/drytron/css/cssfxmlmain.css").toExternalForm());
+            
         } catch (IOException e) {
             System.out.println("ERRO em iniciar o programa. (" + e.getMessage() + ")");
         }

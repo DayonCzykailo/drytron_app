@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 
 public class FxmlAutenticacaoController implements Initializable {
 
-
     @FXML
     private PasswordField tfSenha;
 
@@ -31,7 +30,7 @@ public class FxmlAutenticacaoController implements Initializable {
         if (((Util.getUsuario().getNome().equals(tfUsuario.getText())) && (Util.getUsuario().getSenha().equals(tfSenha.getText())))) {
             Parent root = null;
             try {
-                FxmlMainAdminController.getStage().close();
+                FxmlFactory.fecharTelaSecundario();
                 stage = new Stage();
                 root = FXMLLoader.load(getClass().getResource(Util.getTelaUrl()));
                 Scene scene = new Scene(root);

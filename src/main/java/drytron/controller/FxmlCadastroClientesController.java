@@ -1,10 +1,10 @@
 package drytron.controller;
 
 import drytron.cep_api.ViaCEP;
-import drytron.dao.ClientesRepository;
+import drytron.repository.ClientesRepository;
 import drytron.dto.Clientes;
 import drytron.dto.Endereco;
-import drytron.dto.Uf;
+import drytron.model.Uf;
 import drytron.util.Dicionario;
 import drytron.util.Mascaras;
 import drytron.util.Mensagens;
@@ -22,7 +22,6 @@ import javafx.scene.control.TextField;
  * @author dayon
  */
 public class FxmlCadastroClientesController implements Initializable {
-
 
     @FXML
     private ChoiceBox<Uf> cbUf;
@@ -67,8 +66,8 @@ public class FxmlCadastroClientesController implements Initializable {
             tfLongradouro.setText(vc.getLogradouro());
             cbUf.setValue(Dicionario.getUFEnum(vc.getUf()));
 
-            System.out.println(vc.getLocalidade());
         } catch (Exception e) {
+            Mensagens.mensagemExcessao("ERRO", "Verifique seu CEP.", e);
         }
     }
 
@@ -92,12 +91,10 @@ public class FxmlCadastroClientesController implements Initializable {
 
         c.setEndCli(e);
 
-        System.out.println(e.getLocalidade());
-        //if (FxDialogs.showConfirm("Choose one baby!", "Can i ask you a question?", FxDialogs.YES, FxDialogs.NO).equals(FxDialogs.YES)) {
-
         if (Mensagens.mensagemConfirmar("CONFIRMAR CADASTRO", "TEM CERTEZA QUE OS DADOS ESTÃO CORRETOS?", Mensagens.SIM, Mensagens.NAO).equals(Mensagens.SIM)) {
             ClientesRepository cr = new ClientesRepository();
             cr.insere(c);
+            FxmlFactory.fecharTelaSecundario();
         }
 
     }
@@ -118,7 +115,7 @@ public class FxmlCadastroClientesController implements Initializable {
 
     @FXML
     void btnClickSairAction(ActionEvent event) {
-        FxmlMainController.getStage().close();
+        FxmlFactory.fecharTelaSecundario();
     }
 
     @Override
@@ -127,6 +124,7 @@ public class FxmlCadastroClientesController implements Initializable {
         Mascaras.mascaraCPF(tfCpf);
         Mascaras.mascaraTelefone(tfTel);
         Mascaras.mascaraEmail(tfEmail);
+        
         cbUf.setItems(FXCollections.observableArrayList(Uf.values()));
         cbUf.getItems().addAll();
 

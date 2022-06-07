@@ -1,9 +1,9 @@
 package drytron.util;
 
-import drytron.dto.Cargo;
-import drytron.dto.GeneroJogos;
-import drytron.dto.PlataformaJogos;
-import drytron.dto.Uf;
+import drytron.model.Cargo;
+import drytron.model.GeneroJogos;
+import drytron.model.PlataformaJogos;
+import drytron.model.Uf;
 import java.text.NumberFormat;
 import java.util.Locale;
 

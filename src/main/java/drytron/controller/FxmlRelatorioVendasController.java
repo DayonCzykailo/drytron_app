@@ -1,6 +1,6 @@
 package drytron.controller;
 
-import drytron.dao.VendasRepository;
+import drytron.repository.VendasRepository;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;

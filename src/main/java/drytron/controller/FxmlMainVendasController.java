@@ -1,8 +1,9 @@
 package drytron.controller;
 
-import drytron.dao.VendasRepository;
-import drytron.dto.TableMainVendas;
+import drytron.repository.VendasRepository;
+import drytron.model.TableMainVendas;
 import drytron.dto.Vendas;
+import drytron.util.Mensagens;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -10,24 +11,20 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import org.controlsfx.control.textfield.TextFields;
 
 public class FxmlMainVendasController implements Initializable {
@@ -81,7 +78,7 @@ public class FxmlMainVendasController implements Initializable {
     @FXML
     void btnClickDevolucaoAction(ActionEvent event) {
         if (tableMain.getSelectionModel().getSelectedIndex() == -1) {
-            System.out.println("Escolha uma linha");
+            Mensagens.mensagemInfo("Dica", "Selecione uma linha");
         } else {
             Vendas v = new VendasRepository().pesquisaPeloId(tableMain.getSelectionModel().getSelectedItem().getId());
             v.setAtivo('D');
@@ -92,7 +89,7 @@ public class FxmlMainVendasController implements Initializable {
 
     @FXML
     void btnClickAjudaAction(ActionEvent event) {
-        gerarTela("/drytron/fxml/Fxml.fxml");
+        //gerarTela("/drytron/fxml/Fxml.fxml");
     }
 
     @FXML
@@ -102,18 +99,21 @@ public class FxmlMainVendasController implements Initializable {
 
     @FXML
     void btnClickClienteTelaAction(ActionEvent event) {
-        gerarTela("/drytron/fxml/FxmlMainClientes.fxml");
+        try {
+            FxmlFactory.acessarTelaPrincipal(FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlMainClientes.fxml")));
+        } catch (IOException ex) {
+        }
     }
 
     @FXML
     void btnClickExibicaoAction(ActionEvent event) {
-        gerarTela("/drytron/fxml/FxmlExibicaoVendas.fxml");
+        try {
+            FxmlFactory.acessarTelaSecundario(FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlExibicaoVendas.fxml")));
+        } catch (IOException ex) {
+            Logger.getLogger(FxmlMainVendasController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    @FXML
-    void btnClickMostrarMaisAction(ActionEvent event) {
-        gerarTela("/drytron/fxml/Fxml.fxml");
-    }
 
     @FXML
     void btnClickPesquisarProdutoAction(ActionEvent event) {
@@ -127,48 +127,43 @@ public class FxmlMainVendasController implements Initializable {
 
     @FXML
     void btnClickProdutosTelaAction(ActionEvent event) {
-        gerarTela("/drytron/fxml/FxmlMainProdutos.fxml");
+        try {
+            FxmlFactory.acessarTelaPrincipal(FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlMainProdutos.fxml")));
+        } catch (IOException ex) {
+            Mensagens.mensagemErro("ERRO!!!", " Erro: " + ex.getMessage());
+        }
     }
 
     @FXML
     void btnClickRelatorioAction(ActionEvent event) {
-        gerarTela("/drytron/fxml/FxmlRelatorioVendas.fxml");
+        try {
+            FxmlFactory.acessarTelaSecundario(FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlRelatorioVendas.fxml")));
+        } catch (IOException ex) {
+            Mensagens.mensagemErro("ERRO!!!", " Erro: " + ex.getMessage());
+        }
     }
 
     @FXML
     void btnClickSairAction(ActionEvent event) {
-        gerarTela("/drytron/fxml/Fxml.fxml");
+        try {
+            FxmlFactory.acessarTelaPrincipal(FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlLogin.fxml")), getClass().getResource("/drytron/css/cssfxmlmain.css").toExternalForm());
+        } catch (IOException ex) {
+            Mensagens.mensagemErro("ERRO!!!", "Erro em Sair do Modulo Erro: " + ex.getMessage());
+        }
     }
 
     @FXML
     void btnClickVenderAction(ActionEvent event) {
-        gerarTela("/drytron/fxml/FxmlVenderVendas.fxml");
-    }
-
-    private void gerarTela(String tela) {
-        Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource(tela));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
+            FxmlFactory.acessarTelaPrincipal(FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlVenderVendas.fxml")));
         } catch (IOException ex) {
-            System.out.println("ERRO NO BOTÃO gerar URL:" + tela + "  :" + ex.getMessage());
+            Mensagens.mensagemErro("ERRO!!!", " Erro: " + ex.getMessage());
         }
     }
 
     private ArrayList<Vendas> list;
     private ObservableList<TableMainVendas> obList;
-    private static Stage stage = new Stage();
 
-    public static Stage getStage() {
-        return stage;
-    }
-
-    public static void setStage(Stage stage) {
-        FxmlMainVendasController.stage = stage;
-    }
 
     private void mostrarDados(ArrayList<Vendas> lista) {
         colId.setCellValueFactory(new PropertyValueFactory<>("Id"));

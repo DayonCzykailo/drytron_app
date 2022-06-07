@@ -1,4 +1,4 @@
-package drytron.dao;
+package drytron.repository;
 
 import drytron.dto.Clientes;
 import drytron.dto.Funcionarios;

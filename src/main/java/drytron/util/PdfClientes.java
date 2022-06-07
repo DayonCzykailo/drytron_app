@@ -20,7 +20,7 @@ import com.itextpdf.text.Section;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import drytron.dao.ClientesRepository;
+import drytron.repository.ClientesRepository;
 import drytron.dto.Clientes;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

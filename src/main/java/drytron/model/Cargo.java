@@ -1,5 +1,5 @@
 
-package drytron.dto;
+package drytron.model;
 
 /**
  *

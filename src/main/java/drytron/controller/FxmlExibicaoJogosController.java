@@ -1,6 +1,6 @@
 package drytron.controller;
 
-import drytron.dao.JogosRepository;
+import drytron.repository.JogosRepository;
 import drytron.dto.Jogos;
 import drytron.util.Mensagens;
 import drytron.util.XlsxJogos;
@@ -53,7 +53,7 @@ public class FxmlExibicaoJogosController implements Initializable {
 
     @FXML
     void btnClickSairAction(ActionEvent event) {
-        FxmlMainController.getStage().close();
+        FxmlFactory.fecharTelaSecundario();
     }
 
     @Override

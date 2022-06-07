@@ -1,6 +1,6 @@
 package drytron.util;
 
-import drytron.dao.VendasRepository;
+import drytron.repository.VendasRepository;
 import drytron.dto.Vendas;
 import java.io.FileOutputStream;
 import java.io.IOException;

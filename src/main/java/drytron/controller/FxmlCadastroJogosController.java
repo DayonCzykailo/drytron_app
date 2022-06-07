@@ -1,10 +1,12 @@
 package drytron.controller;
 
-import drytron.dao.JogosRepository;
-import drytron.dto.GeneroJogos;
+import drytron.repository.JogosRepository;
+import drytron.model.GeneroJogos;
 import drytron.dto.Jogos;
-import drytron.dto.PlataformaJogos;
+import drytron.model.PlataformaJogos;
 import drytron.util.Dicionario;
+import drytron.util.Mascaras;
+import drytron.util.Mensagens;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -21,18 +23,6 @@ import javafx.scene.control.TextField;
  */
 public class FxmlCadastroJogosController implements Initializable {
 
-    public FxmlCadastroJogosController() {
-
-    }
-
-    public FxmlCadastroJogosController(Jogos j) {
-        tfNome.setText(j.getNome());
-        tfDesenvolvedor.clear();
-        tfPublicador.clear();
-        tfEstoque.clear();
-        tfPreco.clear();
-        tfIdioma.clear();
-    }
 
     @FXML
     private ChoiceBox<GeneroJogos> cbGenero;
@@ -74,9 +64,12 @@ public class FxmlCadastroJogosController implements Initializable {
         j.setIdioma(tfIdioma.getText());
         j.setEstoque(Integer.parseInt(tfEstoque.getText()));
         j.setPreco(Float.parseFloat(tfPreco.getText()));
-
-        JogosRepository jr = new JogosRepository();
-        jr.insere(j);
+        
+        if (Mensagens.mensagemConfirmar("CONFIRMAR CADASTRO", "TEM CERTEZA QUE OS DADOS ESTÃO CORRETOS?", Mensagens.SIM, Mensagens.NAO).equals(Mensagens.SIM)) {
+            JogosRepository jr = new JogosRepository();
+            jr.insere(j);
+            FxmlFactory.fecharTelaSecundario();
+        }
     }
 
     @FXML
@@ -94,16 +87,19 @@ public class FxmlCadastroJogosController implements Initializable {
 
     @FXML
     void btnClickSairAction(ActionEvent event) {
-        FxmlMainController.getStage().close();
+        FxmlFactory.fecharTelaSecundario();
     }
 
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Mascaras.mascaraNumeroInteiro(tfEstoque);
+        Mascaras.mascaraNumero(tfPreco);
 
         cbGenero.setItems(FXCollections.observableArrayList(GeneroJogos.values()));
         cbPlataforma.setItems(FXCollections.observableArrayList(PlataformaJogos.values()));

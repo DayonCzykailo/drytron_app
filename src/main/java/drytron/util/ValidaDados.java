@@ -10,7 +10,7 @@ public abstract class ValidaDados {
 
     public static boolean validaData(String dia) {
 
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern( "dd/MM/uuuu")
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/uuuu")
                 .withResolverStyle(ResolverStyle.STRICT);
 
         try {
@@ -19,6 +19,7 @@ public abstract class ValidaDados {
 
             return true;
         } catch (DateTimeParseException e) {
+            System.out.println("ERRO:"+e.getMessage());
             return false;
         }
     }

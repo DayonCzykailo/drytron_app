@@ -1,6 +1,6 @@
 package drytron.controller;
 
-import drytron.dao.FuncionariosRepository;
+import drytron.repository.FuncionariosRepository;
 import drytron.dto.Funcionarios;
 import drytron.util.Util;
 import java.net.URL;
@@ -28,7 +28,7 @@ public class FxmlDeletarAdminController  implements Initializable {
 
     @FXML
     void btnClickSairAction(ActionEvent event) {
-        FxmlMainController.getStage().close();
+        FxmlFactory.fecharTelaSecundario();
     }
 
     @FXML

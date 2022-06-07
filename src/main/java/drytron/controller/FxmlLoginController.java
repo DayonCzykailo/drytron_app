@@ -1,9 +1,8 @@
 package drytron.controller;
 
-import drytron.dao.FuncionariosRepository;
-import drytron.dto.Cargo;
+import drytron.repository.FuncionariosRepository;
+import drytron.model.Cargo;
 import drytron.dto.Funcionarios;
-import drytron.main.Drytron;
 import drytron.util.Util;
 import java.io.IOException;
 import java.net.URL;
@@ -13,11 +12,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 public class FxmlLoginController implements Initializable {
 
@@ -35,18 +31,12 @@ public class FxmlLoginController implements Initializable {
     @FXML
     void btnClickbtnEsqSenhaAction(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlEsqueciMinhaSenha.fxml"));
-            Scene scene = new Scene(root);
-            stage.setTitle("Sistema de Vendas-Drytron");
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
-            Drytron.getStage().close();
+            FxmlFactory.acessarTelaPrincipal(FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlEsqueciMinhaSenha.fxml")));
         } catch (IOException ex) {
-            System.out.println("DEU RUIM EM btnClickbtnEntrarAction no EsqSenha");
+            System.out.println("DEU RUIM EM btnClickbtnEntrarAction no EsqSenha :" + ex.getMessage());
         }
+
     }
-    private static Stage stage = new Stage();
 
     @FXML
     void btnClickbtnEntrarAction(ActionEvent event) {
@@ -57,27 +47,13 @@ public class FxmlLoginController implements Initializable {
                 Util.setUsuario(lista.get(i));
                 if (lista.get(i).getCargo().equals(Cargo.ADMINISTRADOR) || lista.get(i).getCargo().equals(Cargo.GERENTE)) {
                     try {
-                        Parent root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlMainAdmin.fxml"));
-                        Scene scene = new Scene(root);
-                        scene.getStylesheets().add(getClass().getResource("/drytron/css/cssfxmlmainAdmin.css").toExternalForm());
-                        stage.setTitle("Sistema de Vendas-Drytron");
-                        stage.setScene(scene);
-                        stage.setResizable(false);
-                        stage.show();
-                        Drytron.getStage().close();
+                        FxmlFactory.acessarTelaPrincipal(FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlMainAdmin.fxml")));
                     } catch (IOException ex) {
                         System.out.println("DEU RUIM EM btnClickbtnEntrarAction no FXMLLOGIN");
                     }
                 } else {
                     try {
-                        Parent root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlMainProdutos.fxml"));
-                        Scene scene = new Scene(root);
-                        scene.getStylesheets().add(getClass().getResource("/drytron/css/cssfxmlmain.css").toExternalForm());
-                        stage.setTitle("Sistema de Vendas-Drytron");
-                        stage.setScene(scene);
-                        stage.setResizable(false);
-                        stage.show();
-                        Drytron.getStage().close();
+                        FxmlFactory.acessarTelaPrincipal(FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlMainProdutos.fxml")), getClass().getResource("/drytron/css/cssfxmlmain.css").toExternalForm());
                     } catch (IOException ex) {
                         System.out.println("DEU RUIM EM btnClickbtnEntrarAction no FXMLLOGIN");
                     }

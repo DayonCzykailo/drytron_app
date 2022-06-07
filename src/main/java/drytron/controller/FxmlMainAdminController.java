@@ -1,12 +1,10 @@
 package drytron.controller;
 
-import drytron.dao.ClientesRepository;
-import drytron.dao.FuncionariosRepository;
-import drytron.dto.Clientes;
+import drytron.repository.FuncionariosRepository;
 import drytron.dto.Funcionarios;
-import drytron.dto.Jogos;
 import drytron.main.Drytron;
 import drytron.util.Dicionario;
+import drytron.util.Mensagens;
 import drytron.util.Util;
 import java.io.IOException;
 import java.net.URL;
@@ -14,16 +12,14 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -31,7 +27,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
 public class FxmlMainAdminController implements Initializable {
 
@@ -70,15 +65,6 @@ public class FxmlMainAdminController implements Initializable {
 
     private ArrayList<Funcionarios> list;
     private ObservableList<Funcionarios> obList;
-    private static Stage stage = new Stage();
-
-    public static Stage getStage() {
-        return stage;
-    }
-
-    public static void setStage(Stage stage) {
-        FxmlMainAdminController.stage = stage;
-    }
 
     private void mostrarDados() {
         colId.setCellValueFactory(new PropertyValueFactory<>("Id"));
@@ -98,13 +84,8 @@ public class FxmlMainAdminController implements Initializable {
 
     @FXML
     void btnClickAjudaAction(ActionEvent event) {
-        Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("/drytron/fxml/ViewFxmlAdmin.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
+            FxmlFactory.acessarTelaSecundario(FXMLLoader.load(getClass().getResource("/drytron/fxml/ViewFxmlAdmin.fxml")));
         } catch (IOException ex) {
             System.out.println("ERRO NO BOTÃO AJUDA");
         }
@@ -137,16 +118,11 @@ public class FxmlMainAdminController implements Initializable {
 
     @FXML
     void btnClickMostrarMaisAction(ActionEvent event) {
-        Parent root;
         try {
             FuncionariosRepository fr = new FuncionariosRepository();
             Util.setEndereco(fr.pesquisaEndereco(tableMain.getSelectionModel().getSelectedItem().getId()));
             System.out.println("End  " + Util.getEndereco().getLocalidade());
-            root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlEnderecoAdmin.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
+            FxmlFactory.acessarTelaSecundario(FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlEnderecoAdmin.fxml")));
         } catch (IOException ex) {
             System.out.println("ERRO NO BOTÃO MostrarMais  :" + ex.getMessage());
         }
@@ -170,13 +146,8 @@ public class FxmlMainAdminController implements Initializable {
 
     @FXML
     void btnClickRelatorioAction(ActionEvent event) {
-        Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlRelatorioAdmin.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
+            FxmlFactory.acessarTelaSecundario(FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlRelatorioAdmin.fxml")));
         } catch (IOException ex) {
             System.out.println("ERRO NO BOTÃO Relatório");
         }
@@ -184,26 +155,21 @@ public class FxmlMainAdminController implements Initializable {
 
     @FXML
     void btnClickSairAction(ActionEvent event) {
-        Drytron.getStage().close();
+        try {
+            FxmlFactory.acessarTelaPrincipal(FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlLogin.fxml")),getClass().getResource("/drytron/css/cssfxmlmain.css").toExternalForm());
+        } catch (IOException ex) {
+            Mensagens.mensagemErro("ERRO!!!", "Erro em Sair do Modulo Erro: "+ex.getMessage());
+        }
     }
 
     public void telaAutenticacao(String tela) {
-        Parent root = null;
         Util.setTelaUrl("");
         Util.setTelaUrl(tela);
         try {
-            stage = new Stage();
-            root = FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlAutenticacao.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
-
+            FxmlFactory.acessarTelaSecundario(FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlAutenticacao.fxml")));
         } catch (IOException ex) {
-            System.out.println("ERRO EM ALTERAR CLICK :" + ex.getMessage());
-            if (root == null) {
-                System.out.println("Nao Acho a tela ");
-            }
+            System.out.println("ERRO EM ALTENTICAR CLICK :" + ex.getMessage());
+
         }
     }
 
@@ -213,11 +179,11 @@ public class FxmlMainAdminController implements Initializable {
         lblUsuario.setText(Util.getUsuario().getNome());
         mostrarDados();
 
-        lbnData.setText(LocalDate.now().format(DateTimeFormatter.ofPattern("d/MM/uuuu")));
+        lbnData.setText(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/uuuu")));
 
         tableMain.setOnMouseClicked((MouseEvent t) -> {
             if (t.getClickCount() == 2) {
-                
+
                 Util.setFuncionarios(new FuncionariosRepository().pesquisaPeloId(tableMain.getSelectionModel().getSelectedItem().getId()));
                 telaAutenticacao("/drytron/fxml/FxmlAlterarAdmin.fxml");
             } else if (t.getButton() == MouseButton.SECONDARY) {

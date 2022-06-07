@@ -1,5 +1,6 @@
 package drytron.util;
 
+import drytron.controller.FxmlFactory;
 import drytron.controller.FxmlMainAdminController;
 import drytron.dto.Clientes;
 import drytron.dto.Endereco;
@@ -97,8 +98,8 @@ public abstract class Util {
         Point2D p = tfSenha.localToScene(tfSenha.getBoundsInLocal().getMaxX(), tfSenha.getBoundsInLocal().getMaxY());
         toolTip.setText(tfSenha.getText());
         toolTip.show(tfSenha,
-                p.getX() + FxmlMainAdminController.getStage().getScene().getX() + FxmlMainAdminController.getStage().getX(),
-                p.getY() + FxmlMainAdminController.getStage().getScene().getY() + FxmlMainAdminController.getStage().getY());
+                p.getX() + FxmlFactory.getStageSecundario().getScene().getX() + FxmlFactory.getStageSecundario().getX(),
+                p.getY() + FxmlFactory.getStageSecundario().getScene().getY() + FxmlFactory.getStageSecundario().getY());
     }
 
     public static void esconderSenha(Tooltip toolTip) {
