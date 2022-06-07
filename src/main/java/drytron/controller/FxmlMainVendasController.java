@@ -155,7 +155,7 @@ public class FxmlMainVendasController implements Initializable {
     @FXML
     void btnClickVenderAction(ActionEvent event) {
         try {
-            FxmlFactory.acessarTelaPrincipal(FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlVenderVendas.fxml")));
+            FxmlFactory.acessarTelaSecundario(FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlVenderVendas.fxml")));
         } catch (IOException ex) {
             Mensagens.mensagemErro("ERRO!!!", " Erro: " + ex.getMessage());
         }

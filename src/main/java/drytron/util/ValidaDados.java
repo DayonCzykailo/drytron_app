@@ -1,12 +1,21 @@
 package drytron.util;
 
+import drytron.dto.Clientes;
+import drytron.dto.Jogos;
+import drytron.repository.ClientesRepository;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import javafx.scene.control.TextField;
 
 public abstract class ValidaDados {
+
+    public static double validaDesconto(TextField tf) {
+        return Double.valueOf(tf.getText().trim() == null || tf.getText().trim().equals("") ? "0" : tf.getText());
+    }
 
     public static boolean validaData(String dia) {
 
@@ -19,11 +28,10 @@ public abstract class ValidaDados {
 
             return true;
         } catch (DateTimeParseException e) {
-            System.out.println("ERRO:"+e.getMessage());
+            System.out.println("ERRO:" + e.getMessage());
             return false;
         }
     }
-    
 
     public static boolean validaCpf(String cpf) {
 
