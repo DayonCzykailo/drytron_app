@@ -19,6 +19,7 @@ public class FxmlDeletarAdminController  implements Initializable {
     void btnClickDeletarAction(ActionEvent event) {
         FuncionariosRepository cr = new FuncionariosRepository();
         cr.remove(Long.parseLong(tfId.getText()));
+        FxmlFactory.fecharTelaSecundario();
     }
 
     @FXML

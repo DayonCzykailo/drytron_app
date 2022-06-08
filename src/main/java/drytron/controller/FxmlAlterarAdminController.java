@@ -1,5 +1,6 @@
 package drytron.controller;
 
+import drytron.cep_api.ViaCEP;
 import drytron.repository.FuncionariosRepository;
 import drytron.model.Cargo;
 import drytron.dto.Endereco;
@@ -9,11 +10,11 @@ import drytron.util.Dicionario;
 import drytron.util.Mascaras;
 import drytron.util.Mensagens;
 import drytron.util.Util;
+import drytron.util.ValidaDados;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -67,13 +68,22 @@ public class FxmlAlterarAdminController implements Initializable {
 
     @FXML
     private TextField tfTel;
+    
+    private String nome;
 
     @FXML
     void btnClickAlterarAction(ActionEvent event) {
         Funcionarios f = new Funcionarios();
-
+        if(!procurarEndereco()){
+            return;
+        }
+        if (!ValidaDados.validaAdmin(tfCep.getText(), tfEmail.getText(), tfSenha.getText(), tfCpf.getText(), nome.equals(tfNome.getText())? "":tfNome.getText(), tfTel.getText(), cbCargo.getValue())) {
+            return;
+        }
+        
+        f.setId(Long.valueOf(tfId.getText()));
         f.setNome(tfNome.getText());
-        f.setCpf(tfCpf.getText());
+        f.setCpf(tfCpf.getText().replace(".", "").replace("-", ""));
         f.setTelefone(tfTel.getText());
         f.setEmail(tfEmail.getText());
 
@@ -90,12 +100,32 @@ public class FxmlAlterarAdminController implements Initializable {
         f.setSenha(tfSenha.getText());
         f.setCargo(cbCargo.getValue());
         f.setNivel(Dicionario.getNivel(cbCargo.getValue()));
+
         if (Mensagens.mensagemConfirmar("CONFIRMAR ALTERAÇÃO", "TEM CERTEZA QUE OS DADOS ESTÃO CORRETOS?", Mensagens.SIM, Mensagens.NAO).equals(Mensagens.SIM)) {
             FuncionariosRepository fr = new FuncionariosRepository();
             fr.atualiza(f);
             FxmlFactory.fecharTelaSecundario();
         }
 
+    }
+
+    private boolean procurarEndereco() {
+        ViaCEP vc = new ViaCEP();
+        try {
+            vc.buscar(tfCep.getText());
+
+            tfBairro.setText(vc.getBairro());
+            tfCep.setText(vc.getCep());
+            tfComplemento.setText(vc.getComplemento());
+            tfLocalidade.setText(vc.getLocalidade());
+            tfLongradouro.setText(vc.getLogradouro());
+            cbUf.setValue(Dicionario.getUFEnum(vc.getUf()));
+
+            return true;
+        } catch (Exception ex) {
+            Mensagens.mensagemExcessao("ERRO", "Verifique seu CEP.", ex);
+            return false;
+        }
     }
 
     @FXML
@@ -125,6 +155,8 @@ public class FxmlAlterarAdminController implements Initializable {
         Funcionarios f = fr.pesquisaPeloId(Long.parseLong(tfId.getText()));
 
         if (f != null) {
+            nome = f.getNome();
+                    
             tfNome.setText(f.getNome());
             tfCpf.setText(f.getCpf());
             tfTel.setText(f.getTelefone());
@@ -155,6 +187,26 @@ public class FxmlAlterarAdminController implements Initializable {
 
         cbCargo.setItems(FXCollections.observableArrayList(Cargo.values()));
         cbCargo.getItems().addAll();
+        if (Util.getFuncionarios() != null) {
+            Funcionarios f = Util.getFuncionarios();
+            nome = f.getNome();
+            
+            tfId.setText(String.valueOf(f.getId()));
+            tfNome.setText(f.getNome());
+            tfCpf.setText(f.getCpf());
+            tfTel.setText(f.getTelefone());
+            tfEmail.setText(f.getEmail());
+            tfSenha.setText(f.getSenha());
+            cbCargo.setValue(f.getCargo());
+
+            tfCep.setText(f.getEndFun().getCep());
+            tfComplemento.setText(f.getEndFun().getComplemento());
+            tfLongradouro.setText(f.getEndFun().getLogradouro());
+            tfBairro.setText(f.getEndFun().getBairro());
+            tfLocalidade.setText(f.getEndFun().getLocalidade());
+            cbUf.setValue(Dicionario.getUFEnum(f.getEndFun().getUf()));
+            Util.setClientes(null);
+        }
 
         tfSenha.setOnKeyPressed((KeyEvent e) -> {
             if (rbMostrarSenha.isSelected()) {
@@ -164,24 +216,7 @@ public class FxmlAlterarAdminController implements Initializable {
             }
         });
         pMain.setOnMouseMoved((MouseEvent t) -> {
-            if (Util.getFuncionarios() != null) {
-                Funcionarios f = Util.getFuncionarios();
-                tfId.setText(String.valueOf(f.getId()));
-                tfNome.setText(f.getNome());
-                tfCpf.setText(f.getCpf());
-                tfTel.setText(f.getTelefone());
-                tfEmail.setText(f.getEmail());
-                tfSenha.setText(f.getSenha());
-                cbCargo.setValue(f.getCargo());
 
-                tfCep.setText(f.getEndFun().getCep());
-                tfComplemento.setText(f.getEndFun().getComplemento());
-                tfLongradouro.setText(f.getEndFun().getLogradouro());
-                tfBairro.setText(f.getEndFun().getBairro());
-                tfLocalidade.setText(f.getEndFun().getLocalidade());
-                cbUf.setValue(Dicionario.getUFEnum(f.getEndFun().getUf()));
-                Util.setClientes(null);
-            }
             if (rbMostrarSenha.isSelected()) {
                 Util.mostrarSenha(toolTip, tfSenha);
             } else {

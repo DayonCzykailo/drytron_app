@@ -21,6 +21,14 @@ public abstract class Mascaras {
         }
         return cpf;
     }
+    
+    public static String formataTelefone(String telefone){
+    if(telefone.isBlank() || telefone.isEmpty()){
+        return "";
+    }
+    String formatado =  "(" +telefone.substring(0, 2) + ")" + telefone.substring(2, 6) + "-" +telefone.substring(6, 10);
+    return formatado;
+    }
 
     public static void mascaraNumeroInteiro(TextField textField) {
 

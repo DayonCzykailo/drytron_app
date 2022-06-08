@@ -8,6 +8,7 @@ import drytron.util.Dicionario;
 import drytron.util.Mascaras;
 import drytron.util.Mensagens;
 import drytron.util.Util;
+import drytron.util.ValidaDados;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -52,10 +53,17 @@ public class FxmlAlterarClientesController implements Initializable {
     @FXML
     private TextField tfTel;
 
+    private String nome;
+
     @FXML
     void btnClickAlterarAction(ActionEvent event) {
         Clientes c = new Clientes();
 
+        if (!ValidaDados.validaCliente(tfCep.getText(), tfEmail.getText(), tfCpf.getText(), nome.equals(tfNome.getText()) ? "" : tfNome.getText(), tfTel.getText())) {
+            return;
+        }
+        
+        c.setId(Long.valueOf(tfId.getText()));
         c.setNome(tfNome.getText());
         c.setCpf(tfCpf.getText());
         c.setTelefone(tfTel.getText());
@@ -105,6 +113,8 @@ public class FxmlAlterarClientesController implements Initializable {
         Clientes c = cr.pesquisaPeloId(Long.parseLong(tfId.getText()));
 
         if (c != null) {
+            nome = c.getNome();
+            
             tfNome.setText(c.getNome());
             tfCpf.setText(c.getCpf());
             tfTel.setText(c.getTelefone());
@@ -132,7 +142,8 @@ public class FxmlAlterarClientesController implements Initializable {
 
         if (Util.getClientes() != null) {
             Clientes c = Util.getClientes();
-
+            nome = c.getNome();
+            
             tfId.setText(Long.toString(c.getId()));
             tfNome.setText(c.getNome());
             tfCpf.setText(c.getCpf());

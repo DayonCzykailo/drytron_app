@@ -95,7 +95,7 @@ public class FxmlMainClientesController implements Initializable {
             tmc.setId(c.getId());
             tmc.setNome(c.getNome());
             tmc.setCpf(Mascaras.formataCpf(c.getCpf()));
-            tmc.setTelefone("(" + c.getTelefone().substring(0, 2) + ")" + c.getTelefone().substring(2, 6) + "-" + c.getTelefone().substring(6, 10));
+            tmc.setTelefone(Mascaras.formataTelefone(c.getTelefone()));
             tmc.setEmail(c.getEmail());
             tmc.setAtivo(c.getAtivo());
 

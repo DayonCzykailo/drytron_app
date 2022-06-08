@@ -51,6 +51,20 @@ public class JogosRepository {
         }
         return jogos;
     }
+    
+    public List<Jogos> verificaPorNome(String nome) {
+        List<Jogos> jogos = null;
+        try {
+            em.getTransaction().begin();
+            Query query = em.createQuery("SELECT j FROM Jogos j where j.nome like :nomeJogos").setParameter("nomeJogos",  nome);
+            jogos = query.getResultList();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            System.out.println("JogosRepository: Ocorreu um problema no método listaTodos");
+        }
+        return jogos;
+    }
 
     public void insere(Jogos jogos) {
         try {

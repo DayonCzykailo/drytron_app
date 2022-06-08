@@ -8,6 +8,7 @@ import drytron.model.Uf;
 import drytron.util.Dicionario;
 import drytron.util.Mascaras;
 import drytron.util.Mensagens;
+import drytron.util.ValidaDados;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -74,7 +75,9 @@ public class FxmlCadastroClientesController implements Initializable {
     @FXML
     void btnClickCadastrarAction(ActionEvent event) {
         Clientes c = new Clientes();
-
+        if (!ValidaDados.validaCliente(tfCep.getText(), tfEmail.getText(), tfCpf.getText(), tfNome.getText(), tfTel.getText())) {
+            return;
+        }
         c.setNome(tfNome.getText());
         c.setCpf(tfCpf.getText());
         c.setTelefone(tfTel.getText());
@@ -124,7 +127,7 @@ public class FxmlCadastroClientesController implements Initializable {
         Mascaras.mascaraCPF(tfCpf);
         Mascaras.mascaraTelefone(tfTel);
         Mascaras.mascaraEmail(tfEmail);
-        
+
         cbUf.setItems(FXCollections.observableArrayList(Uf.values()));
         cbUf.getItems().addAll();
 

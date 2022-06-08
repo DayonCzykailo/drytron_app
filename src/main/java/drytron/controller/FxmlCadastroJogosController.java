@@ -7,6 +7,7 @@ import drytron.model.PlataformaJogos;
 import drytron.util.Dicionario;
 import drytron.util.Mascaras;
 import drytron.util.Mensagens;
+import drytron.util.ValidaDados;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -22,7 +23,6 @@ import javafx.scene.control.TextField;
  * @author dayon
  */
 public class FxmlCadastroJogosController implements Initializable {
-
 
     @FXML
     private ChoiceBox<GeneroJogos> cbGenero;
@@ -54,7 +54,10 @@ public class FxmlCadastroJogosController implements Initializable {
     @FXML
     void btnClickCadastrarAction(ActionEvent event) {
         Jogos j = new Jogos();
-
+        if (!ValidaDados.validaJogos(tfNome.getText(), cbGenero.getValue(), cbPlataforma.getValue(), dpLancamento,
+                tfDesenvolvedor.getText(), tfPublicador.getText(), tfIdioma.getText(),tfEstoque.getText(),tfPreco.getText())) {
+            return;
+        }
         j.setNome(tfNome.getText());
         j.setGenero(Dicionario.getGenero(cbGenero.getValue()));
         j.setPlataforma(Dicionario.getPlataforma(cbPlataforma.getValue()));
@@ -64,7 +67,7 @@ public class FxmlCadastroJogosController implements Initializable {
         j.setIdioma(tfIdioma.getText());
         j.setEstoque(Integer.parseInt(tfEstoque.getText()));
         j.setPreco(Float.parseFloat(tfPreco.getText()));
-        
+
         if (Mensagens.mensagemConfirmar("CONFIRMAR CADASTRO", "TEM CERTEZA QUE OS DADOS ESTÃO CORRETOS?", Mensagens.SIM, Mensagens.NAO).equals(Mensagens.SIM)) {
             JogosRepository jr = new JogosRepository();
             jr.insere(j);

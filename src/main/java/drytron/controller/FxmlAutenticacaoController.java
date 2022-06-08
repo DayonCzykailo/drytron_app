@@ -1,5 +1,6 @@
 package drytron.controller;
 
+import drytron.util.Mensagens;
 import drytron.util.Util;
 import java.io.IOException;
 import java.net.URL;
@@ -22,28 +23,23 @@ public class FxmlAutenticacaoController implements Initializable {
     @FXML
     private TextField tfUsuario;
 
-    private static Stage stage = new Stage();
 
     @FXML
     void btnClickEntrarAction(ActionEvent event) {
-
+        boolean logou = false;
         if (((Util.getUsuario().getNome().equals(tfUsuario.getText())) && (Util.getUsuario().getSenha().equals(tfSenha.getText())))) {
-            Parent root = null;
             try {
                 FxmlFactory.fecharTelaSecundario();
-                stage = new Stage();
-                root = FXMLLoader.load(getClass().getResource(Util.getTelaUrl()));
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.setResizable(false);
-                stage.show();
+                logou = true;
+                FxmlFactory.acessarTelaSecundario(FXMLLoader.load(getClass().getResource(Util.getTelaUrl())));
 
             } catch (IOException ex) {
                 System.out.println("ERRO EM AUTENTICAR  :" + ex.getMessage());
-                if (root == null) {
-                    System.out.println("Nao Acho a tela ");
-                }
+
             }
+        }
+        if (!logou) {
+            Mensagens.mensagemInfo("LOGIN INVÁLIDO!!!", "VERIFIQUE SE SUA SENHA OU NOME DE USUARIO ESTÃO INCORRETOS");
         }
     }
 
@@ -55,6 +51,7 @@ public class FxmlAutenticacaoController implements Initializable {
 
     @FXML
     void btnClickSairAction(ActionEvent event) {
+        FxmlFactory.fecharTelaSecundario();
     }
 
     @Override

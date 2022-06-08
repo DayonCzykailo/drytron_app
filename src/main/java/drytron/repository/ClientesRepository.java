@@ -99,6 +99,16 @@ public class ClientesRepository {
         }
         return clientes;
     }
+    public List<Clientes> verificaPorNome(String nome) {
+        List<Clientes> clientes = null;
+        try {
+            Query query = em.createQuery("FROM Clientes c where c.nome like :nomeClientes").setParameter("nomeClientes", nome);
+            clientes = query.getResultList();
+        } catch (Exception e) {
+            System.out.println("ClientesRepository: Ocorreu um problema no método listaTodos");
+        }
+        return clientes;
+    }
 
     public void insere(Clientes clientes) {
         try {

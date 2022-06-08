@@ -25,6 +25,7 @@ public class FxmlDeletarJogosController implements Initializable {
     void btnClickDeletarAction(ActionEvent event) {
         JogosRepository jr = new JogosRepository();
         jr.remove(Integer.parseInt(tfId.getText()));
+        FxmlFactory.fecharTelaSecundario();
     }
 
     @FXML

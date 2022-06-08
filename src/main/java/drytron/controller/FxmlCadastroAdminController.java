@@ -10,7 +10,9 @@ import drytron.util.Dicionario;
 import drytron.util.Mascaras;
 import drytron.util.Mensagens;
 import drytron.util.Util;
+import drytron.util.ValidaDados;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -66,10 +68,13 @@ public class FxmlCadastroAdminController implements Initializable {
     @FXML
     void btnClickCadastrarAction(ActionEvent event) {
         Funcionarios f = new Funcionarios();
-
+        if(!ValidaDados.validaAdmin(tfCep.getText(),tfEmail.getText() ,tfSenha.getText(),tfCpf.getText(), tfNome.getText(), tfTel.getText(),cbCargo.getValue())){
+            return;
+        }
+        
         f.setNome(tfNome.getText());
-        f.setCpf(tfCpf.getText());
-        f.setTelefone(tfTel.getText());
+        f.setCpf(tfCpf.getText().replace(".", "").replace("-", ""));
+        f.setTelefone(tfTel.getText().replace("(", "").replace(")", "").replace("-", ""));
         f.setEmail(tfEmail.getText());
 
         Endereco e = new Endereco();
@@ -85,7 +90,7 @@ public class FxmlCadastroAdminController implements Initializable {
         f.setSenha(tfSenha.getText());
         f.setCargo(cbCargo.getValue());
         f.setNivel(Dicionario.getNivel(cbCargo.getValue()));
-        
+
         if (Mensagens.mensagemConfirmar("CONFIRMAR CADASTRO", "TEM CERTEZA QUE OS DADOS ESTÃO CORRETOS?", Mensagens.SIM, Mensagens.NAO).equals(Mensagens.SIM)) {
             FuncionariosRepository fr = new FuncionariosRepository();
             fr.insere(f);

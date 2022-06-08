@@ -1,7 +1,5 @@
 package drytron.controller;
 
-import drytron.repository.JogosRepository;
-import drytron.dto.Jogos;
 import drytron.util.Mensagens;
 import drytron.util.XlsxJogos;
 import drytron.util.PdfJogos;
@@ -9,14 +7,10 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class FxmlExibicaoJogosController implements Initializable {

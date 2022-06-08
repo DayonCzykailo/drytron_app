@@ -21,7 +21,7 @@ public class FxmlExibicaoVendasController implements Initializable {
 
     @FXML
     void btnClickDirAction(ActionEvent event) {
- if (!new File(tfDir.getText()).exists()) {
+        if (!new File(tfDir.getText()).exists()) {
             Mensagens.mensagemAlerta("Diretório não encontrado.", "Por favor digite um dirtório válido.");
         }
     }

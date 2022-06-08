@@ -24,6 +24,7 @@ public class FxmlDeletarClientesController implements Initializable {
     void btnClickDeletarAction(ActionEvent event) {
         ClientesRepository cr = new ClientesRepository();
         cr.remove(Long.parseLong(tfId.getText()));
+        FxmlFactory.fecharTelaSecundario();
     }
 
     @FXML

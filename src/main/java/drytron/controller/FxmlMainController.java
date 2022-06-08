@@ -108,7 +108,7 @@ public class FxmlMainController implements Initializable {
             tmj.setDesenvolvedor(j.getDesenvolvedor());
             tmj.setPublicador(j.getPublicador());
             tmj.setIdioma(j.getIdioma());
-            tmj.setPreco("R$" + new DecimalFormat("0.00").format(j.getPreco()));
+            tmj.setPreco("R$ " + new DecimalFormat("0.00").format(j.getPreco()));
             tmj.setEstoque("" + j.getEstoque());
             tmj.setAtivo(j.getAtivo());
             

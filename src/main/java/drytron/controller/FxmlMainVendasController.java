@@ -128,9 +128,9 @@ public class FxmlMainVendasController implements Initializable {
     @FXML
     void btnClickProdutosTelaAction(ActionEvent event) {
         try {
-            FxmlFactory.acessarTelaPrincipal(FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlMainProdutos.fxml")));
+            FxmlFactory.acessarTelaPrincipal(FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlMainProdutos.fxml")), getClass().getResource("/drytron/css/cssfxmlmain.css").toExternalForm());
         } catch (IOException ex) {
-            Mensagens.mensagemErro("ERRO!!!", " Erro: " + ex.getMessage());
+            System.out.println(ex.getMessage());
         }
     }
 

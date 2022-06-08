@@ -3,7 +3,10 @@ package drytron.controller;
 import drytron.repository.FuncionariosRepository;
 import drytron.dto.Funcionarios;
 import drytron.main.Drytron;
+import drytron.model.Cargo;
+import drytron.model.TableMainFuncionario;
 import drytron.util.Dicionario;
+import drytron.util.Mascaras;
 import drytron.util.Mensagens;
 import drytron.util.Util;
 import java.io.IOException;
@@ -52,7 +55,7 @@ public class FxmlMainAdminController implements Initializable {
     private Label lbnData;
 
     @FXML
-    private TableView<Funcionarios> tableMain;
+    private TableView<TableMainFuncionario> tableMain;
 
     @FXML
     private TextField tfPesquisar;
@@ -63,10 +66,9 @@ public class FxmlMainAdminController implements Initializable {
     @FXML
     private Label lblUsuario;
 
-    private ArrayList<Funcionarios> list;
-    private ObservableList<Funcionarios> obList;
+    private ObservableList<TableMainFuncionario> obList;
 
-    private void mostrarDados() {
+    private void mostrarDados(ArrayList<Funcionarios> lista) {
         colId.setCellValueFactory(new PropertyValueFactory<>("Id"));
         colNome.setCellValueFactory(new PropertyValueFactory<>("Nome"));
         colCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
@@ -74,10 +76,21 @@ public class FxmlMainAdminController implements Initializable {
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colCargo.setCellValueFactory(new PropertyValueFactory<>("cargo"));
 
-        FuncionariosRepository f = new FuncionariosRepository();
-        list = new ArrayList<>(f.listaTodos());
+        ArrayList<TableMainFuncionario> listaTabela = new ArrayList<>();
 
-        obList = FXCollections.observableArrayList(list);
+        for (Funcionarios f : lista) {
+            TableMainFuncionario tmf = new TableMainFuncionario();
+            tmf.setId(f.getId());
+            tmf.setNome(f.getNome());
+            tmf.setCpf(Mascaras.formataCpf(f.getCpf()));
+            tmf.setTelefone(Mascaras.formataTelefone(f.getTelefone()));
+            tmf.setEmail(f.getEmail());
+            tmf.setCargo(Dicionario.getCargo(f.getCargo()));
+
+            listaTabela.add(tmf);
+        }
+
+        obList = FXCollections.observableArrayList(listaTabela);
         tableMain.setItems(obList);
 
     }
@@ -98,7 +111,7 @@ public class FxmlMainAdminController implements Initializable {
 
     @FXML
     void btnClickAtualizarAction(ActionEvent event) {
-        mostrarDados();
+        mostrarDados(new ArrayList<>(new FuncionariosRepository().listaTodos()));
     }
 
     @FXML
@@ -130,18 +143,7 @@ public class FxmlMainAdminController implements Initializable {
 
     @FXML
     void btnClickPesquisarAction(ActionEvent event) {
-        colId.setCellValueFactory(new PropertyValueFactory<>("Id"));
-        colNome.setCellValueFactory(new PropertyValueFactory<>("Nome"));
-        colCpf.setCellValueFactory(new PropertyValueFactory<>("Cpf"));
-        colTelefone.setCellValueFactory(new PropertyValueFactory<>("Telefone"));
-        colEmail.setCellValueFactory(new PropertyValueFactory<>("Email"));
-        colCargo.setCellValueFactory(new PropertyValueFactory<>("cargo"));
-
-        FuncionariosRepository f = new FuncionariosRepository();
-        list = new ArrayList<>(f.listaPorNome(tfPesquisar.getText()));
-
-        obList = FXCollections.observableArrayList(list);
-        tableMain.setItems(obList);
+        mostrarDados(new ArrayList<>(new FuncionariosRepository().listaPorNome(tfPesquisar.getText())));
     }
 
     @FXML
@@ -156,9 +158,10 @@ public class FxmlMainAdminController implements Initializable {
     @FXML
     void btnClickSairAction(ActionEvent event) {
         try {
-            FxmlFactory.acessarTelaPrincipal(FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlLogin.fxml")),getClass().getResource("/drytron/css/cssfxmlmain.css").toExternalForm());
+            FxmlFactory.fecharTelaSecundario();
+            FxmlFactory.acessarTelaPrincipal(FXMLLoader.load(getClass().getResource("/drytron/fxml/FxmlLogin.fxml")), getClass().getResource("/drytron/css/cssfxmlmain.css").toExternalForm());
         } catch (IOException ex) {
-            Mensagens.mensagemErro("ERRO!!!", "Erro em Sair do Modulo Erro: "+ex.getMessage());
+            Mensagens.mensagemErro("ERRO!!!", "Erro em Sair do Modulo Erro: " + ex.getMessage());
         }
     }
 
@@ -177,13 +180,13 @@ public class FxmlMainAdminController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         lblCargo.setText(Dicionario.getCargo(Util.getUsuario().getCargo()));
         lblUsuario.setText(Util.getUsuario().getNome());
-        mostrarDados();
+
+       mostrarDados(new ArrayList<>(new FuncionariosRepository().listaTodos()));
 
         lbnData.setText(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/uuuu")));
 
         tableMain.setOnMouseClicked((MouseEvent t) -> {
             if (t.getClickCount() == 2) {
-
                 Util.setFuncionarios(new FuncionariosRepository().pesquisaPeloId(tableMain.getSelectionModel().getSelectedItem().getId()));
                 telaAutenticacao("/drytron/fxml/FxmlAlterarAdmin.fxml");
             } else if (t.getButton() == MouseButton.SECONDARY) {
