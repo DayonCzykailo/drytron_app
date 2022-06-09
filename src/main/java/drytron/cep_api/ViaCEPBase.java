@@ -119,7 +119,7 @@ public abstract class ViaCEPBase {
     }
 
     public boolean moveFirst() {
-        if (CEPs.size() > 0) {
+        if (!CEPs.isEmpty()) {
             index = 0;
             return true;
         }
@@ -129,7 +129,7 @@ public abstract class ViaCEPBase {
     }
 
     public boolean moveNext() {
-        if (CEPs.size() > 0 && (index + 1) < CEPs.size()) {
+        if (!CEPs.isEmpty() && (index + 1) < CEPs.size()) {
             index += 1;
             return true;
         }
@@ -139,7 +139,7 @@ public abstract class ViaCEPBase {
     }
 
     public boolean movePrevious() {
-        if (CEPs.size() > 0 && (index - 1) >= 0) {
+        if (!CEPs.isEmpty() && (index - 1) >= 0) {
             index -= 1;
             return true;
         }
@@ -149,7 +149,7 @@ public abstract class ViaCEPBase {
     }
 
     public boolean moveLast() {
-        if (CEPs.size() > 0) {
+        if (!CEPs.isEmpty()) {
             index = CEPs.size() - 1;
             return true;
         }

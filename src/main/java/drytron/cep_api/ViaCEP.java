@@ -1,5 +1,6 @@
 package drytron.cep_api;
 
+import drytron.util.Mensagens;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -59,7 +60,7 @@ public class ViaCEP extends ViaCEPBase {
                 Events.onCEPError(currentCEP);
             }
 
-            System.out.println("Não foi possível encontrar o CEP");
+            Mensagens.mensagemInfo("INFO!!!", "Nenhum CEP encontrado" + currentCEP);
         }
     }
 
@@ -101,12 +102,12 @@ public class ViaCEP extends ViaCEPBase {
                     if (Events instanceof ViaCEPEvents) {
                         Events.onCEPError(currentCEP);
                     }
-
-                    System.out.println("Não foi possível validar o CEP" + currentCEP);
+                    Mensagens.mensagemInfo("INFO!!!", "Não foi possível validar o CEP" + currentCEP);
                 }
             }
         } else {
-            System.out.println("Nenhum CEP encontrado" + currentCEP);
+            Mensagens.mensagemInfo("INFO!!!", "Nenhum CEP encontrado" + currentCEP);
+
         }
     }
 }
