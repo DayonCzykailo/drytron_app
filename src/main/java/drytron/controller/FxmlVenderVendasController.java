@@ -100,6 +100,12 @@ public class FxmlVenderVendasController implements Initializable {
 
                     Jogos jogo = jr.listaPorNome(list.get(i).getProduto()).get(0);
                     v.setProduto(jogo);
+                    
+                    if(v.getProduto().getEstoque() - list.get(i).getQuantidade() < 0){
+                        Mensagens.mensagemAlerta("ALERTA!!!", "O produto "+v.getProduto().getNome()+" terá um estoque negativo,\n se a operação for efetivada.");
+                        break;
+                    }
+                    
 
                     v.setValorFinal((((list.get(i).getDesconto() == 0.0 ? 100 : list.get(i).getDesconto()) / 100) * jogo.getPreco()) * list.get(i).getQuantidade());
                     v.setPercDesconto((float) list.get(i).getDesconto());
