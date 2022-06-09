@@ -142,6 +142,21 @@ public class VendasRepository {
         }
         return produtos;
     }
+    public List<String> listaTodosProdutosEstoque() {
+        List<String> produtos = null;
+        try {
+            em.getTransaction().begin();
+            Query query = em.createQuery("SELECT j.nome FROM Jogos j where j.estoque > 0");
+            produtos = query.getResultList();
+            em.getTransaction().commit();
+
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            System.out.println(e);
+            System.out.println("VendasRepository: Ocorreu um problema no método listaTodos");
+        }
+        return produtos;
+    }
 
     public List<Vendas> listaPorProdutoPesquisa(String produto) {
         List<Vendas> vendas = null;

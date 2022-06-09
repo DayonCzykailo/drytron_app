@@ -150,7 +150,7 @@ public class FxmlVenderVendasController implements Initializable {
         spQuantidade.setValueFactory(valueFactory);
 
         TextFields.bindAutoCompletion(tfComprador, new ClientesRepository().listaTodosNomes());
-        TextFields.bindAutoCompletion(tfProduto, new VendasRepository().listaTodosProdutos());
+        TextFields.bindAutoCompletion(tfProduto, new VendasRepository().listaTodosProdutosEstoque());
 
     }
 
