@@ -84,7 +84,7 @@ public class FxmlVenderVendasController implements Initializable {
     @FXML
     void btnClickVenderAction(ActionEvent event) {
         try {
-            if (Mensagens.mensagemConfirmar("CONFIRMAR ALTERAR", "TEM CERTEZA QUE OS DADOS ESTÃO CORRETOS?", Mensagens.SIM, Mensagens.NAO).equals(Mensagens.SIM)) {
+            if (Mensagens.mensagemConfirmar("CONFIRMAR A VENDA", "TEM CERTEZA QUE OS DADOS ESTÃO CORRETOS?", Mensagens.SIM, Mensagens.NAO).equals(Mensagens.SIM)) {
                 for (int i = 0; i < list.size(); i++) {
                     Vendas v = new Vendas();
 
@@ -98,13 +98,14 @@ public class FxmlVenderVendasController implements Initializable {
 
                     v.setData(LocalDateTime.now());
 
-                    Jogos jogo = jr.listaPorNome(tfProduto.getText()).get(0);
+                    Jogos jogo = jr.listaPorNome(list.get(i).getProduto()).get(0);
                     v.setProduto(jogo);
 
                     v.setValorFinal((((list.get(i).getDesconto() == 0.0 ? 100 : list.get(i).getDesconto()) / 100) * jogo.getPreco()) * list.get(i).getQuantidade());
                     v.setPercDesconto((float) list.get(i).getDesconto());
 
                     new VendasRepository().atualiza(v);
+                    new VendasRepository().diminuirEstoque(list.get(i).getQuantidade(), list.get(i).getProduto());
                 }
             }
         } catch (Exception e) {

@@ -57,6 +57,29 @@ public class VendasRepository {
         return vendas;
     }
 
+    public boolean diminuirEstoque(int estoque, String nome) {
+        Jogos jogos = null;
+        try {
+            jogos = (Jogos) new JogosRepository().verificaPorNome(nome).get(0);
+            
+            if(jogos == null){
+                System.out.println("ERRO !!! Não foi possivel descontar os dados.");
+                return false;
+            }
+            
+            jogos.setEstoque(jogos.getEstoque() - estoque);
+            em.getTransaction().begin();
+            em.merge(jogos);
+            em.getTransaction().commit();
+        } catch (Exception e) {            
+            em.getTransaction().rollback();
+            System.out.println(e);
+            System.out.println("VendasRepository: Ocorreu um problema no método diminuirEstoque");
+            return false;
+        }
+        return true;
+    }
+
     public List<Object[]> listaTodosScatterChart() {
         List<Object[]> vendas = null;
         try {
@@ -205,7 +228,7 @@ public class VendasRepository {
                 Mensagens.mensagemAlerta("COMPRADOR INVÁLIDO", "ESCOLHA UM CLIENTE VÁLIDO");
             } else if (vendas.getProduto() == null) {
                 Mensagens.mensagemAlerta("PRODUTO INVÁLIDO", "ESCOLHA UM JOGO VÁLIDO");
-            }            
+            }
             em.getTransaction().begin();
             em.persist(vendas);
             em.getTransaction().commit();
@@ -229,7 +252,7 @@ public class VendasRepository {
 
     public void remove(Long id) {
         Vendas vendas = this.pesquisaPeloId(id);
-         if (vendas == null || id == null || id == 0) {
+        if (vendas == null || id == null || id == 0) {
             Mensagens.mensagemAlerta("ID Inválido!", "Insira um ID válido, novamente.");
         }
         try {
